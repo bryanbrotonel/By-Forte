@@ -1,2 +1,2 @@
-# Minority-Club-Apparel
-Minority Club Apparel Website
+# Forte
+Success through noise.
