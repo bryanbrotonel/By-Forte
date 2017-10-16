@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Droid+Sans|Droid+Serif");
-.font, .subtitle, h2, p {
-  color: white; }
+.font, .uk-navbar-nav li a, h2, p {
+  color: black; }
 
 .center {
   display: flex;
@@ -17,7 +17,6 @@
 
 .uk-navbar-nav li a {
   font-family: "Droid Sans", sans-serif;
-  color: white;
   padding: 3vw; }
 
 .uk-navbar-nav li a:hover {
@@ -26,11 +25,8 @@
 .uk-navbar-nav > li.uk-active > a {
   color: #95989A; }
 
-.subtitle {
-  vertical-align: middle;
-  padding: 0px 20px;
-  font-family: "Droid Sans", sans-serif;
-  font-size: 17px; }
+.uk-background-default {
+  background-color: #f5f5f5; }
 
 h2 {
   font-family: "Droid Serif", serif;

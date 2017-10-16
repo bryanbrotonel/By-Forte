@@ -11,43 +11,44 @@
   <title>About | Forte Apparel</title>
 </head>
 
-<body class="uk-background-fixed" style="background-image: url(images/background2.jpg);">
-  <div class="uk-container">
-    <!--Small Nav Bar-->
-    <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-hidden@l" uk-navbar>
-      <div class="uk-navbar-center">
-        <div class="uk-navbar-center-left">
-          <ul class="uk-navbar-nav">
-            <li><a href="#">shop</a></li>
-            <li class="uk-active"><a href="index.html">home</a></li>
-          </ul>
-        </div>
-        <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png" width="190" height="50" alt="Club Fporte"></a>
-        <div class="uk-navbar-center-right">
-          <ul class="uk-navbar-nav">
-            <li><a href="about.html">about</a></li>
-            <li><a href="#">contact</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+<body class="uk-background-default" style="height: 100vh;">
+  <div class="uk-offcanvas-content">
     <div class="uk-container">
-      <!--Large Nav Bar-->
-      <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-visible@l" uk-navbar>
+      <!--Small Nav Bar-->
+      <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-hidden@l" uk-navbar>
         <div class="uk-navbar-left">
-          <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png" width="190" height="50" alt="Club Fporte"></a>
-          <!-- <span class="subtitle">Success through noise</span> -->
+          <a class="uk-navbar-toggle" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-usage">></a>
+          <div class="uk-navbar-center uk-margin">
+            <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png" width="190" height="50" alt="Club Forte"></a>
+          </div>
         </div>
-        <div class="uk-navbar-right">
-          <ul class="uk-navbar-nav">
-            <li><a href="index.html">home</a></li>
-            <li><a href="#">shop</a></li>
-            <li class="uk-active"><a href="about.html">about</a></li>
-            <li><a href="#">contact</a></li>
-          </ul>
-        </div>
+        <div id="offcanvas-usage" uk-offcanvas>
+          <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+            <ul class="uk-nav uk-nav-primary uk-nav-center">
+              <li><a href="index.html">home</a></li>
+              <li><a href="#">shop</a></li>
+              <li class="uk-active"><a href="about.html">about</a></li>
+              <li><a href="#">contact</a></li>
+            </ul>
+          </div>
       </nav>
-      <div style="height: 100vh;">
+      <div class="uk-container">
+        <!--Large Nav Bar-->
+        <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-visible@l" uk-navbar>
+          <div class="uk-navbar-left">
+            <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png" width="190" height="50" alt="Club Fporte"></a>
+            <!-- <span class="subtitle">Success through noise</span> -->
+          </div>
+          <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+              <li><a href="index.html">home</a></li>
+              <li><a href="#">shop</a></li>
+              <li class="uk-active"><a href="about.html">about</a></li>
+              <li><a href="#">contact</a></li>
+            </ul>
+          </div>
+        </nav>
+      <div>
         <div class="uk-section uk-section-small">
           <div class="uk-container">
             <div class="uk-flex uk-height-medium uk-margin uk-text-center">
@@ -65,12 +66,7 @@
       </div>
     </div>
   </div>
-  <!-- <div class="uk-position-bottom uk-overlay uk-overlay-default uk-position-relative">
-    <div class="uk-container">
-      <div class="uk-inline">Left</div>
-      <div class="uk-inline">Right</div>
-    </div>
-  </div> -->
 </body>
+
 
 </html>
