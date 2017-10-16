@@ -4,9 +4,16 @@
 h2
   @extend .font
   font-family: $header-font
-  font-size: 40px
+  font-size: 20px
 
 p
   @extend .font
-  font-size: 16px
+  font-size: 10px
   font-family: $body-font
+
+// For Desktop
+@media only screen and (min-width: 768px)
+  p
+    font-size: 16px
+  h2
+    font-size: 4vmin

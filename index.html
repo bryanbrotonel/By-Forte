@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="uk-background-default">
 
 <head>
-  <meta name- "viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--UIkit-->
   <link rel="stylesheet" href="css/uikit.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -11,18 +11,18 @@
   <title>Forte Apparel</title>
 </head>
 
-<body class="uk-background-default" style="height: 100vh;">
+<body>
   <div class="uk-offcanvas-content">
     <div class="uk-container">
       <!--Small Nav Bar-->
       <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-hidden@l" uk-navbar>
         <div class="uk-navbar-left">
-          <a class="uk-navbar-toggle" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-usage">></a>
+          <a class="uk-navbar-toggle" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-usage"></a>
           <div class="uk-navbar-center uk-margin">
             <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png" width="190" height="50" alt="Club Forte"></a>
           </div>
         </div>
-        <div id="offcanvas-usage" uk-offcanvas>
+        <div id="offcanvas-usage" uk-offcanvas="mode: push;">
           <div class="uk-offcanvas-bar uk-flex uk-flex-column">
             <ul class="uk-nav uk-nav-primary uk-nav-center">
               <li class="uk-active"><a href="index.html">home</a></li>
@@ -31,6 +31,7 @@
               <li><a href="#">contact</a></li>
             </ul>
           </div>
+        </div>
       </nav>
       <div class="uk-container">
         <!--Large Nav Bar-->
@@ -53,7 +54,6 @@
             <img src="images/background.jpg" alt="Success through noise" uk-cover>
           </div>
         </div>
-      </div>
       </div>
     </div>
 
