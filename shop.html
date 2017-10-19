@@ -7,15 +7,15 @@
   <script src="js/uikit.js"></script>
   <link href="css/style.css" rel="stylesheet" media="screen">
   <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
-  <title>Club Forte</title>
+  <title>Shop | Club Forte</title>
 </head>
 
 <body>
-  <div class="uk-offcanvase-content">
+  <div class="uk-offcanvas-content">
     <header>
       <div class="uk-margin-bottom">
         <!--Small Nav Bar-->
-        <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-hidden@l" uk-navbar>
+        <nav class="uk-navbar-container uk-navbar-transparent uk-hidden@l uk-container" uk-navbar>
           <div class="uk-navbar-left">
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-usage"></a>
             <div class="uk-navbar-center uk-margin">
@@ -25,8 +25,8 @@
           <div id="offcanvas-usage" uk-offcanvas="mode: push;">
             <div class="uk-offcanvas-bar uk-flex uk-flex-column">
               <ul class="uk-nav uk-nav-primary uk-nav-center">
-                <li class="uk-active"><a href="index.html">home</a></li>
-                <li><a href="shop.html">shop</a></li>
+                <li><a href="index.html">home</a></li>
+                <li class="uk-active"><a href="shop.html">shop</a></li>
                 <li><a href="about.html">about</a></li>
                 <li><a href="contact.html">contact</a></li>
               </ul>
@@ -38,27 +38,55 @@
           <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-visible@l" uk-navbar>
             <div class="uk-navbar-left">
               <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png" width="190" height="50" alt="Club Fporte"></a>
-              <!-- <span class="subtitle">Success through noise</span> -->
             </div>
             <div class="uk-navbar-right">
               <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="index.html">home</a></li>
-                <li><a href="shop.html">shop</a></li>
+                <li><a href="index.html">home</a></li>
+                <li class="uk-active"><a href="shop.html">shop</a></li>
                 <li><a href="about.html">about</a></li>
                 <li><a href="contact.html">contact</a></li>
               </ul>
             </div>
           </nav>
-    </header>
-
-    <div class="uk-offcanvas-content uk-container">
-      <div class="uk-padding-large">
-        <div class="uk-cover-container uk-height-large">
-          <img src="images/background.jpg" alt="Success through noise" uk-cover>
         </div>
       </div>
+    </header>
+
+    <div class="uk-container">
+      <h3 id="timer" class="uk-position-center"></h3>
     </div>
-    </div>
+  </div>
 </body>
+
+<script>
+  // Set the date we're counting down to
+  var countDownDate = new Date("Jan 1, 2018 00:00:00").getTime();
+
+  // Update the count down every 1 second
+  var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="timer"
+    document.getElementById("timer").innerHTML = ('0' + days).slice(-2) + ":" + ('0' + hours).slice(-2) + ":" +
+      ('0' + minutes).slice(-2) + ":" + ('0' + seconds).slice(-2);
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("timer").innerHTML = "Welcome to the Club.";
+    }
+  }, 1000);
+</script>
 
 </html>

@@ -1,19 +1,33 @@
 .uk-background-default
   background-color: #f5f5f5
 
-h2
+h1, h2, h3
   @extend .font
   font-family: $header-font
-  font-size: 24px
+
+h1
+  font-size: 170%
+h2
+  font-size: 160%
+h3
+  font-size: 150%
 
 p
   @extend .font
   font-size: 13px
   font-family: $body-font
 
+textarea
+  resize: none
+  height: 10em
+
 // For Desktop
 @media only screen and (min-width: 768px)
   p
     font-size: 16px
+  h1
+    font-size: 180%
   h2
-    font-size: 4vmin
+    font-size: 170%
+  h3
+    font-size: 160%

@@ -11,11 +11,11 @@
 </head>
 
 <body>
-  <div class="uk-offcanvase-content">
+  <div class="uk-offcanvas-content">
     <header>
       <div class="uk-margin-bottom">
         <!--Small Nav Bar-->
-        <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-hidden@l" uk-navbar>
+        <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-hidden@l uk-container" uk-navbar>
           <div class="uk-navbar-left">
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-usage"></a>
             <div class="uk-navbar-center uk-margin">
@@ -25,10 +25,10 @@
           <div id="offcanvas-usage" uk-offcanvas="mode: push;">
             <div class="uk-offcanvas-bar uk-flex uk-flex-column">
               <ul class="uk-nav uk-nav-primary uk-nav-center">
-                <li class="uk-active"><a href="index.html">home</a></li>
+                <li><a href="index.html">home</a></li>
                 <li><a href="shop.html">shop</a></li>
                 <li><a href="about.html">about</a></li>
-                <li><a href="contact.html">contact</a></li>
+                <li class="uk-active"><a href="contact.html">contact</a></li>
               </ul>
             </div>
           </div>
@@ -42,23 +42,41 @@
             </div>
             <div class="uk-navbar-right">
               <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="index.html">home</a></li>
+                <li><a href="index.html">home</a></li>
                 <li><a href="shop.html">shop</a></li>
                 <li><a href="about.html">about</a></li>
-                <li><a href="contact.html">contact</a></li>
+                <li class="uk-active"><a href="contact.html">contact</a></li>
               </ul>
             </div>
           </nav>
-    </header>
-
-    <div class="uk-offcanvas-content uk-container">
-      <div class="uk-padding-large">
-        <div class="uk-cover-container uk-height-large">
-          <img src="images/background.jpg" alt="Success through noise" uk-cover>
         </div>
       </div>
-    </div>
-    </div>
+    </header>
+
+    <form class="uk-position-medium uk-position-top-center uk-position-relative	uk-form-width-large uk-width-large">
+      <fieldset class="uk-fieldset">
+
+        <legend class="uk-legend">Contact</legend>
+
+        <div class="uk-margin">
+          <input class="uk-input" type="text" placeholder="Name">
+        </div>
+
+        <div class="uk-margin">
+          <input class="uk-input" type="text" placeholder="Email">
+        </div>
+
+        <div class="uk-margin">
+          <textarea class="uk-textarea" rows="5" placeholder="Message"></textarea>
+        </div>
+
+        <div class="uk-margin">
+          <button class="uk-button uk-align-center" rows="3">Submit</button>
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
 </body>
 
 </html>

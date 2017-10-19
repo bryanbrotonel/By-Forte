@@ -1,5 +1,6 @@
+@import url(../css/uikit.css);
 @import url("https://fonts.googleapis.com/css?family=Droid+Sans|Droid+Serif");
-.font, .uk-navbar-nav li a, h2, p {
+.font, .uk-navbar-nav li a, h1, h2, h3, p {
   color: black; }
 
 .center {
@@ -28,19 +29,37 @@
 .uk-background-default {
   background-color: #f5f5f5; }
 
+h1, h2, h3 {
+  font-family: "Droid Serif", serif; }
+
+h1 {
+  font-size: 170%; }
+
 h2 {
-  font-family: "Droid Serif", serif;
-  font-size: 24px; }
+  font-size: 160%; }
+
+h3 {
+  font-size: 150%; }
 
 p {
   font-size: 13px;
   font-family: "Droid Sans", sans-serif; }
 
+textarea {
+  resize: none;
+  height: 10em; }
+
 @media only screen and (min-width: 768px) {
   p {
     font-size: 16px; }
 
+  h1 {
+    font-size: 180%; }
+
   h2 {
-    font-size: 4vmin; } }
+    font-size: 170%; }
+
+  h3 {
+    font-size: 160%; } }
 
 /*# sourceMappingURL=style.css.map */
