@@ -1,5 +1,8 @@
-@import url(../css/uikit.css);
+@import "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.31/css/uikit.min.css";
 @import url("https://fonts.googleapis.com/css?family=Droid+Sans|Droid+Serif");
+html {
+  background: #fff; }
+
 .font, .uk-navbar-nav li a, h1, h2, h3, p {
   color: black; }
 

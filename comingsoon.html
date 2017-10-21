@@ -2,16 +2,49 @@
 <html lang="en">
 
 <head>
-  <meta name-"viewport" content="width=device-width, initial-scale=1">
-  <link href="css/comingsoon.css" rel="stylesheet" media="screen">
-  <title>Forte Apparel - Coming Soon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/style.css" rel="stylesheet" media="screen">
+  <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.31/js/uikit.min.js"></script>
+  <title>Shop | Club Forte</title>
 </head>
 
 <body>
   <div class="center">
-    <h1>Forte Apparel</h1>
-    <p>Coming soon</p>
+    <h3 id="timer">Forte Apparel</h3>
    </div>
 </body>
+
+<script>
+  // Set the date we're counting down to
+  var countDownDate = new Date("2018-01-01 00:00:00").getTime();
+
+  // Update the count down every 1 second
+  var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="timer"
+    document.getElementById("timer").innerHTML = (days >= 100 ? ('0' + days).slice(-3) : ('0' + days).slice(-2)) + ":" + ('0' + hours).slice(-2) + ":" +
+      ('0' + minutes).slice(-2) + ":" + ('0' + seconds).slice(-2);
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("timer").innerHTML = "Welcome to the Club.";
+    }
+  }, 1000);
+</script>
 
 </html>
