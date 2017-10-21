@@ -4,23 +4,22 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="css/style.css" rel="stylesheet" media="screen">
-  <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+  <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/uikit.js"></script>
   <title>Club Forte</title>
 </head>
 
 <body>
-  <div class="uk-offcanvase-content">
+  <div class="uk-offcanvas-content">
     <header>
-      <div class="uk-margin-bottom">
+      <div>
         <!--Small Nav Bar-->
         <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-hidden@l" uk-navbar>
           <div class="uk-navbar-left">
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-usage"></a>
             <div class="uk-navbar-center uk-margin">
               <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png" width="190" height="50" alt="Club Forte"></a>
-              <h2>Forte</h2>
             </div>
           </div>
           <div id="offcanvas-usage" uk-offcanvas="mode: push;">
@@ -38,7 +37,7 @@
           <!--Large Nav Bar-->
           <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-visible@l" uk-navbar>
             <div class="uk-navbar-left">
-              <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png" width="190" height="50" alt="Club Fporte"></a>
+              <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png" width="190" height="50" alt="Club Forte"></a>
               <!-- <span class="subtitle">Success through noise</span> -->
             </div>
             <div class="uk-navbar-right">
@@ -54,12 +53,34 @@
 
     <div class="uk-offcanvas-content uk-container">
       <div class="uk-padding-large">
-        <div class="uk-cover-container uk-height-large">
-          <img src="https://source.unsplash.com/collection/1278499" alt="Success through noise" uk-cover>
+        <div id="element" class="uk-position-relative uk-visible-toggle" uk-slideshow="maxHeight: 450; autoplay: 1; velocity: 0.6; autoplay-interval: 5000;">
+
+          <ul class="uk-slideshow-items">
+            <li>
+              <img src="images/Main Forte Slideshow.png" alt="" uk-cover>
+            </li>
+            <li>
+              <img src="images/Triple Forte Slideshow.png" alt="" uk-cover>
+            </li>
+            <li>
+              <img src="images/Gi Forte Slideshow.png" alt="" uk-cover>
+            </li>
+          </ul>
+
+          <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+          <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
         </div>
       </div>
-    </div>
-    </div>
 </body>
+
+<script>
+  $(window).blur(function() {
+    UIkit.slideshow(element).stopAutoplay();
+  });
+
+  $(window).focus(function() {
+    UIkit.slideshow(element).startAutoplay();
+  });
+</script>
 
 </html>
