@@ -12,49 +12,51 @@
 
 <body>
   <div class="uk-offcanvas-content">
-    <header class="uk-container">
-        <!--Small Nav Bar-->
-        <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-hidden@l" uk-navbar>
-          <div class="uk-navbar-left">
-            <a class="uk-navbar-toggle" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-usage"></a>
-            <div class="uk-navbar-center uk-margin">
-              <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png" width="190" height="50" alt="Club Forte"></a>
-            </div>
+    
+    <header>
+      <!--Small Nav Bar-->
+      <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-hidden@l" uk-navbar>
+        <div class="uk-navbar-left">
+          <a class="uk-navbar-toggle" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-usage"></a>
+          <div class="uk-navbar-center uk-margin">
+            <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png"
+              width="190" height="50" alt="Club Forte"></a>
           </div>
-          <div id="offcanvas-usage" uk-offcanvas="mode: push;">
-            <div class="uk-offcanvas-bar uk-flex uk-flex-column">
-              <ul class="uk-nav uk-nav-primary uk-nav-center">
-                <li class="uk-active"><a href="index.html">home</a></li>
-                <li><a href="shop.html">shop</a></li>
-                <li><a href="about.html">about</a></li>
-                <li><a href="contact.html">contact</a></li>
-              </ul>
-            </div>
+        </div>
+        <div id="offcanvas-usage" uk-offcanvas="mode: push;">
+          <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+            <ul class="uk-nav uk-nav-primary uk-nav-center">
+              <li class="uk-active"><a href="index.html">home</a></li>
+              <li><a href="shop.html">shop</a></li>
+              <li><a href="about.html">about</a></li>
+              <li><a href="contact.html">contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="uk-container">
+        <!--Large Nav Bar-->
+        <nav class="uk-navbar-container uk-navbar-transparent uk-margin-medium-bottom uk-visible@l" uk-navbar>
+          <div class="uk-navbar-left">
+            <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png"
+                width="190" height="50" alt="Club Forte"></a>
+          </div>
+          <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+              <li class="uk-active"><a href="index.html">home</a></li>
+              <li><a href="shop.html">shop</a></li>
+              <li><a href="about.html">about</a></li>
+              <li><a href="contact.html">contact</a></li>
+            </ul>
           </div>
         </nav>
-        <div class="uk-container">
-          <!--Large Nav Bar-->
-          <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-visible@l" uk-navbar>
-            <div class="uk-navbar-left">
-              <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png" width="190" height="50" alt="Club Forte"></a>
-              <!-- <span class="subtitle">Success through noise</span> -->
-            </div>
-            <div class="uk-navbar-right">
-              <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="index.html">home</a></li>
-                <li><a href="shop.html">shop</a></li>
-                <li><a href="about.html">about</a></li>
-                <li><a href="contact.html">contact</a></li>
-              </ul>
-            </div>
-          </nav>
     </header>
 
     <div class="uk-offcanvas-content uk-container">
-      <div class="uk-padding-large">
-        <div id="element" class="uk-position-relative uk-visible-toggle" uk-slideshow="maxHeight: 450; autoplay: 1; velocity: 0.6; autoplay-interval: 5000;">
-
-          <ul class="uk-slideshow-items">
+      <div>
+        <div id="element" class="uk-position-relative uk-visible-toggle uk-width-1-2@xs"
+          uk-slideshow="maxHeight: 450; autoplay: 1; velocity: 0.6; autoplay-interval: 5000;">
+          <ul class="uk-slideshow-items" uk-viewport-height>
             <li>
               <img src="images/Main Forte Slideshow.png" alt="" uk-cover>
             </li>
@@ -65,11 +67,14 @@
               <img src="images/Gi Forte Slideshow.png" alt="" uk-cover>
             </li>
           </ul>
-
-          <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-          <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+          <a class="uk-position-center-left uk-position-small uk-hidden-hover"
+            href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+          <a class="uk-position-center-right uk-position-small uk-hidden-hover"
+            href="#" uk-slidenav-next uk-slideshow-item="next"></a>
         </div>
       </div>
+    </div>
+  </div>
 </body>
 
 <script>
