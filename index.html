@@ -12,7 +12,7 @@
 
 <body>
   <div class="uk-offcanvas-content">
-    
+
     <header>
       <!--Small Nav Bar-->
       <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-hidden@l" uk-navbar>
@@ -23,7 +23,7 @@
               width="190" height="50" alt="Club Forte"></a>
           </div>
         </div>
-        <div id="offcanvas-usage" uk-offcanvas="mode: push;">
+        <div id="offcanvas-usage" uk-offcanvas="mode: slide;">
           <div class="uk-offcanvas-bar uk-flex uk-flex-column">
             <ul class="uk-nav uk-nav-primary uk-nav-center">
               <li class="uk-active"><a href="index.html">home</a></li>
@@ -54,8 +54,7 @@
 
     <div class="uk-offcanvas-content uk-container">
       <div>
-        <div id="element" class="uk-position-relative uk-visible-toggle uk-width-1-2@xs"
-          uk-slideshow="maxHeight: 450; autoplay: 1; velocity: 0.6; autoplay-interval: 5000;">
+        <div id="element" class="uk-position-relative uk-visible-toggle uk-width-1-2@xs" uk-slideshow="maxHeight: 450; autoplay: 1; velocity: 0.6; autoplay-interval: 6000;">
           <ul class="uk-slideshow-items" uk-viewport-height>
             <li>
               <img src="images/Main Forte Slideshow.png" alt="" uk-cover>
@@ -67,15 +66,19 @@
               <img src="images/Gi Forte Slideshow.png" alt="" uk-cover>
             </li>
           </ul>
-          <a class="uk-position-center-left uk-position-small uk-hidden-hover"
-            href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-          <a class="uk-position-center-right uk-position-small uk-hidden-hover"
-            href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+          <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+          <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
         </div>
       </div>
     </div>
+    </div>
   </div>
 </body>
+
+<footer class="uk-container uk-position-bottom-center uk-text-center">
+  <p class="uk-text-meta" style="margin: 0">© Club Forte 2017. All rights reserved.</p>
+  <p class="uk-text-meta" style="margin: 0">By <a target="_blank" href="http://bryanbrotonel.me">Bryan Brotonel</a></p>
+</footer>
 
 <script>
   $(window).blur(function() {
