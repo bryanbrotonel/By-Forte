@@ -1,11 +1,18 @@
-$(function() {
-	window.dataLayer = window.dataLayer || [];
+(function($) {
+	$(function() {
 
-	function gtag() {
-		dataLayer.push(arguments);
-	}
-	gtag('js', new Date());
+		$('.button-collapse').sideNav();
 
-	gtag('config', 'UA-108344152-3');
+		$('.parallax').parallax();
 
-});
+		$('.scrollspy').scrollSpy();
+
+		$('.scrollspy').on('scrollSpy:enter', function () {
+			$('.navbar-fixed').find('a[href="#' + $(this).attr('id') + '"]').parent().addClass('active');
+		});
+
+		$('.scrollspy').on('scrollSpy:exit', function () {
+			$('.navbar-fixed').find('a[href="#' + $(this).attr('id') + '"]').parent().removeClass('active');
+		});
+	}); // end of document ready
+})(jQuery); // end of jQuery name space

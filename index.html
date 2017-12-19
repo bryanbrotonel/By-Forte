@@ -1,96 +1,170 @@
 <!DOCTYPE html>
-<html lang="en" class="uk-background-default">
+<html lang="en">
 
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/style.css" rel="stylesheet" media="screen">
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108344152-3"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.31/js/uikit.min.js"></script>
-    <script src="js/main.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon-precomposed" href="img/favicon.png">
+    <link rel="icon" href="img/favicon.png" sizes="32x32">
     <title>Club Forte</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
   </head>
 
   <body>
-    <div class="uk-offcanvas-content">
+    <div id="top" class="navbar-fixed scrollspy">
+      <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+          <a id="logo-container" href="#top" class="brand-logo logo-title">Club Forte</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
 
-      <header>
-        <!--Small Nav Bar-->
-        <nav class="uk-navbar-container uk-navbar-transparent uk-margin uk-hidden@l" uk-navbar>
-          <div class="uk-navbar-left">
-            <a class="uk-navbar-toggle" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-usage"></a>
-            <div class="uk-navbar-center uk-margin">
-              <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png"
-              width="190" height="50" alt="Club Forte"></a>
-            </div>
-          </div>
-          <div id="offcanvas-usage" uk-offcanvas="mode: slide;">
-            <div class="uk-offcanvas-bar uk-flex uk-flex-column">
-              <ul class="uk-nav uk-nav-primary uk-nav-center">
-                <li class="uk-active"><a href="index.html">home</a></li>
-                <li><a href="shop.html">shop</a></li>
-                <li><a href="about.html">about</a></li>
-                <li><a href="contact.html">contact</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <div class="uk-container">
-          <!--Large Nav Bar-->
-          <nav class="uk-navbar-container uk-navbar-transparent uk-margin-medium-bottom uk-visible@l" uk-navbar>
-            <div class="uk-navbar-left">
-              <a href="index.html" class="uk-navbar-item uk-logo"><img src="images/logo.png"
-                width="190" height="50" alt="Club Forte"></a>
-            </div>
-            <div class="uk-navbar-right">
-              <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="index.html">home</a></li>
-                <li><a href="shop.html">shop</a></li>
-                <li><a href="about.html">about</a></li>
-                <li><a href="contact.html">contact</a></li>
-              </ul>
-            </div>
-          </nav>
-      </header>
+          <ul id="nav-mobile" class="side-nav">
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+      </nav>
+    </div>
 
-      <div class="uk-offcanvas-content uk-container">
-        <div>
-          <div id="element" class="uk-position-relative uk-visible-toggle uk-width-1-2@xs" uk-slideshow="maxHeight: 450; autoplay: 1; velocity: 0.6; autoplay-interval: 6000;">
-            <ul class="uk-slideshow-items" uk-viewport-height>
-              <li>
-                <img src="images/Main Forte Slideshow.png" alt="" uk-cover>
-              </li>
-              <li>
-                <img src="images/Triple Forte Slideshow.png" alt="" uk-cover>
-              </li>
-              <li>
-                <img src="images/Gi Forte Slideshow.png" alt="" uk-cover>
-              </li>
-            </ul>
-            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+    <div class="parallax-container valign-wrapper">
+      <div class="section">
+        <div class="container">
+          <div class="row center">
+            <h1 class="header col s12 logo-title">Club Forte</h1>
           </div>
         </div>
       </div>
+      <div class="parallax"><img src="https://source.unsplash.com/usNcrgrSTqM/1600x900"></div>
+    </div>
+
+
+    <div id="shop" class="container section scrollspy">
+      <div class="section no-pad-bot">
+        <h4 class="center-align">Shop coming soon.</h4>
       </div>
     </div>
+
+
+    <div class="parallax-container valign-wrapper">
+      <div class="parallax"><img src="https://source.unsplash.com/collection/1278499/1600x900"></div>
+    </div>
+
+    <div id="about" class="container section scrollspy">
+      <div class="section no-pad-bot">
+        <div class="row">
+          <div class="col m6 offset-m3">
+            <div class="center-align">
+              <h4>Motive</h4>
+              <p class="light">Club Forte is a streetwear brand based in Vancouver, Canada.
+                <br><br> We represent what it means to bring the ideas that we visualize in our minds to life. We embrace the creative process by creating in silence and let our products speak for themselves.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="parallax-container valign-wrapper">
+      <div class="section">
+        <div class="container">
+          <div class="row center">
+            <h4 class="header col s12 light">Success Through Noise</h4>
+          </div>
+        </div>
+      </div>
+      <div class="parallax"><img src="https://source.unsplash.com/uFRe7dhN8M0/1600x900"></div>
+    </div>
+
+    <div id="contact" class="container section scrollspy">
+      <div class="section no-pad-bot">
+        <div class="container">
+          <div class="center-align">
+            <h4>Contact</h4>
+          </div>
+          <form id="contactForm">
+
+            <div class="row">
+              <div class="input-field col s6 offset-s3">
+                <input name="name" id="name" type="text" class="validate">
+                <label for="name">Name</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s6 offset-s3">
+                <input name="subject" id="subject" type="text" class="validate">
+                <label for="subject">Subject</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s6 offset-s3">
+                <textarea name="message" id="message" class="materialize-textarea validate" data-length="150"></textarea>
+                <label for="message">Message</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field center">
+                <button id="submit" class="btn waves-effect waves-light green darken-1" type="submit" name="action">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer grey darken-4">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h4 class="white-text logo-title">Club Forte</h4>
+            <p class="grey-text text-lighten-4">We represent what it means to bring the ideas that we visualize in our minds to life.</p>
+            <p>Vancouver, Canada</p>
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Connect</h5>
+            <ul>
+              <li><a class="white-text" href="#about">About</a></li>
+              <li><a class="white-text" href="#contact">Contact</a></li>
+              <li><a target="_blank" class="white-text" href="https://www.instagram.com/clubforteapparel/">Instagram</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Credits</h5>
+            <ul>
+              <li><a target="_blank" class="white-text" href="http://materializecss.com">Materialize</a></li>
+              <li><a target="_blank" class="white-text" href="https://jqueryvalidation.org/">jQueryValidation</a></li>
+              <li><a target="_blank" class="white-text" href="https://unsplash.com/">Unsplash</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          <div class="center-align">
+            <p class="uk-text-meta" style="margin: 0">&copy; Club Forte 2017. All rights reserved.</p>
+            <p class="uk-text-meta" style="margin: 0">Made by <a class="white-text" target="_blank" href="http://bryanbrotonel.me">Bryan Brotonel</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!--  Scripts-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/form.js"></script>
+
   </body>
-
-  <footer class="uk-container uk-position-bottom-center uk-text-center">
-    <p class="uk-text-meta" style="margin: 0">© Club Forte 2017. All rights reserved.</p>
-    <p class="uk-text-meta" style="margin: 0">By <a target="_blank" href="http://bryanbrotonel.me">Bryan Brotonel</a></p>
-  </footer>
-
-  <script>
-    $(window).blur(function() {
-      UIkit.slideshow(element).stopAutoplay();
-    });
-
-    $(window).focus(function() {
-      UIkit.slideshow(element).startAutoplay();
-    });
-  </script>
 
 </html>

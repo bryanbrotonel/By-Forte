@@ -1,4 +1,4 @@
 # Forte
-The people's brand | Vancouver, Canada
+A streetwear brand based in Vancouver, Canada.
 
 Success through noise.
