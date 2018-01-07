@@ -201,7 +201,7 @@ a {
   padding-bottom: 150px;
 }
 
-.download-section {
+.shop-section {
   color: white;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://source.unsplash.com/1IkmlZO38TQ/1600x900") no-repeat bottom center scroll;
   background-color: black;
@@ -266,6 +266,19 @@ footer {
       &:hover {
         text-decoration: none;
         color: $primary;
+      }
+    }
+
+    @media(max-width:767px) {
+      padding: 20px 0;
+
+      .col-sm {
+        h5 {
+          margin-bottom: 5px;
+        }
+        p:last-child {
+          padding-bottom: 30px;
+        }
       }
     }
   }
