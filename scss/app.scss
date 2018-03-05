@@ -1,3 +1,4 @@
+// sass --watch scss/app.scss:css/app.css
 // START OF GRAYSCALE TEMPLATE SCSS
 @import 'variables.scss';
 @import 'mixins.scss';
@@ -11,7 +12,17 @@ body {
   // color: white;
   color: black;
   // background-color: black;
-  background-color: white;
+  background-color: black;
+
+  ::selection {
+    background: black;
+    /* WebKit/Blink Browsers */
+  }
+
+  ::-moz-selection {
+    background: black;
+    /* Gecko Browsers */
+  }
 }
 
 html {
@@ -268,7 +279,6 @@ footer {
         color: $primary;
       }
     }
-
     @media(max-width:767px) {
       padding: 20px 0;
 
@@ -276,6 +286,7 @@ footer {
         h5 {
           margin-bottom: 5px;
         }
+
         p:last-child {
           padding-bottom: 30px;
         }
@@ -311,6 +322,22 @@ img::-moz-selection {
 }
 
 body {
-  -webkit-tap-highlight-color: fade-out(white, .8);
+  -webkit-tap-highlight-color: fade-out(black, .8);
 }
 // END OF GRAYSCALE TEMPLATE SCSS
+
+#centerdiv {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 30em;
+  height: 18em;
+  margin-top: -9em;
+  /*set to a negative number 1/2 of your height*/
+  margin-left: -15em;
+  /*set to a negative number 1/2 of your width*/
+  h1,
+  p {
+    color: white;
+  }
+}
