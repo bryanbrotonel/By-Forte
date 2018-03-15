@@ -1,10 +1,7 @@
-// Modules and Variables
-@import "src/scss/modules/all";
-@import "src/scss/partials/all";
+@import "src/scss/main";
 
 body {
-  background: $primary-green;
-  font-family: $base-font-family;
+  background: $green;
   height: 100%;
   width: 100%;
   margin: 0;
