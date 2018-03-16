@@ -1,0 +1,11 @@
+@import "src/scss/main";
+
+.NavLink {
+  font-family: $base-font-family;
+}
+
+@media (min-width: 1281px) {
+  .NavBar {
+     width: 80vh;
+  }
+}

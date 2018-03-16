@@ -1,9 +1,8 @@
 // _typography.scss
-
-p {
+html, .nav.navbar-nav.navbar-right li a {
+  color: red;
   font-family: $base-font-family;
 }
-
 
 h1 {
   font-family: $header-font-family;

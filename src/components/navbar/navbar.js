@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from 'images/By Forte Primary (Black).png';
 import {
   Collapse,
@@ -7,12 +7,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
-import './index.scss';
+  NavLink, } from 'reactstrap';
+import './navbar.scss';
 
 export class NavBar extends React.Component {
   constructor(props) {
@@ -29,30 +25,28 @@ export class NavBar extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
-  
+
   render() {
     return (
       <div>
-        <Navbar color="faded" light expand="md">
+        <Navbar className="NavBar mx-auto" color="faded" light expand="md">
           <NavbarBrand href="/">
-            <a className="navbar-brand" href="#">
-              <img src={logo} width="60" height="40" alt="by forte"/>
-              </a>
+            <img src={logo} width="60" height="40" alt="by forte"/>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/home/">Home</NavLink>
+                <NavLink className ="NavLink" href="/">HOME</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/about/">About</NavLink>
+                <NavLink className ="NavLink" href="/about">ABOUT</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/shop/">Shop</NavLink>
+                <NavLink className ="NavLink" href="/lookbook">LOOKBOOK</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/lookbook/">Lookbook</NavLink>
+                <NavLink className ="NavLink" href="/shop">SHOP</NavLink>
               </NavItem>
             </Nav>
           </Collapse>

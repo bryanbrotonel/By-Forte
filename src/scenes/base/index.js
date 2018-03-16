@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from 'images/logo.svg';
-import './index.scss';
-import {NavBar} from './navbar.js'
+import 'components/navbar/navbar.scss';
+import {NavBar} from 'components/navbar/navbar'
 
 class App extends Component {
   render() {
