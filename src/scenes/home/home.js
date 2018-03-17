@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import './about.scss';
+import './home.scss';
 
-export class About extends Component {
+export class Home extends Component {
   render() {
     return (
       <div>
-        <h1>ABOUT</h1>
+        <h1>HOME</h1>
       </div>
     )
   }
