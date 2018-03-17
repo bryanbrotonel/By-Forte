@@ -1,11 +1,16 @@
 @import "src/scss/main";
 
+// Global
 .NavLink {
   font-family: $base-font-family;
 }
 
+// Mobile
+
+// Desktop
 @media (min-width: 1281px) {
   .NavBar {
      width: 80vh;
+     margin: 2vh 0vh;
   }
 }
