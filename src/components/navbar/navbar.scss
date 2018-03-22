@@ -1,16 +1,19 @@
-@import "src/scss/main";
-
-// Global
-.NavLink {
-  font-family: $base-font-family;
+.NavBar {
+  // margin-bottom: 40px;
+  // min-height: 80px;
 }
 
-// Mobile
+img {
+  width: 70px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-// Desktop
-@media (min-width: 1281px) {
+@media screen and (min-width: 640px) {
   .NavBar {
-     width: 80vh;
-     margin: 2vh 0vh;
+    margin-bottom: 40px;
+    min-height: 80px;
   }
 }

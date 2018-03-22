@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from 'images/By Forte Primary (Black).png';
 import {
   Collapse,
   Navbar,
@@ -9,18 +8,27 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
-import { NavLink as RRNavLink } from 'react-router-dom';
-import './navbar.scss';
+import {NavLink as RRNavLink} from 'react-router-dom';
+import logo from 'images/By Forte Primary (Black).png'
+import './navbar.css'
 
 export class NavBar extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
       isOpen: false
     };
+  }
+
+  handleClick() {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      this.setState({
+        isOpen: !this.state.isOpen
+      });
+    }
   }
 
   toggle() {
@@ -30,30 +38,27 @@ export class NavBar extends React.Component {
   }
 
   render() {
-    const pages = ['about', 'lookbook', 'shop'];
+    const pages = ['home', 'about', 'lookbook', 'shop'];
     const navLinks = pages.map(page => {
       return (
         <NavItem key={page}>
-          <NavLink to={'/' + page} activeClassName="text-dark" className="NavLink text-uppercase text-muted mx-auto" tag={RRNavLink}>{page}</NavLink>
-        </NavItem>)
+          <NavLink onClick={this.handleClick} to={'/' + page} activeClassName="text-dark" className="NavLink text-uppercase text-muted mx-auto" tag={RRNavLink}>{page}</NavLink>
+        </NavItem>
+    )
     });
 
     return (
-      <div>
-      <Navbar className="NavBar mx-auto" color="faded" light={true} expand="md">
-        <NavbarBrand href="/">
-          <img src={logo} width="60" height="40" alt="by forte"/>
+      <Navbar className="NavBar" light={true} expand="md">
+        <NavbarBrand href="/" className="mr-auto align-middle">
+          <img className="" src={logo} alt="By Forte"/>
         </NavbarBrand>
-        <NavbarToggler onClick={this.toggle}/>
+        <NavbarToggler onClick={this.handleClick}/>
         <Collapse isOpen={this.state.isOpen} navbar={true}>
           <Nav className="ml-auto" navbar={true}>
-            <NavItem>
-              <NavLink to='/#' activeClassName="text-dark" className="NavLink text-uppercase text-muted mx-auto" tag={RRNavLink}>Home</NavLink>
-            </NavItem>
             {navLinks}
           </Nav>
         </Collapse>
       </Navbar>
-    </div>);
+    );
   }
 }

@@ -1,0 +1,28 @@
+// Font Sizes
+$p-font-sizes: (
+  null: 15px,
+  480px: 16px,
+  640px: 17px,
+  1024px: 19px
+);
+
+
+$h1-font-sizes: (
+  null  : 28px,
+  480px : 31px,
+  640px : 33px,
+  1024px: 36px
+);
+
+// Font size mixin
+@mixin font-size($fs-map) {
+  @each $fs-breakpoint, $fs-font-size in $fs-map {
+    @if $fs-breakpoint == null {
+      font-size: $fs-font-size;
+    } @else {
+      @media screen and (min-width: $fs-breakpoint) {
+        font-size: $fs-font-size;
+      }
+    }
+  }
+}
