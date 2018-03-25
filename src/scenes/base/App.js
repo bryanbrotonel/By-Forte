@@ -7,12 +7,14 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div className="App container">
+      <div id="App">
         <NavBar/>
-        <Routes/>
+        <div className="container">
+          <Routes/>
+        </div>
         <Footer/>
       </div>
-    );
+  );
   }
 }
 

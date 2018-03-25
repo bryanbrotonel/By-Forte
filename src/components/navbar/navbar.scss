@@ -1,10 +1,9 @@
-.NavBar {
-  // margin-bottom: 40px;
-  // min-height: 80px;
+#wrapper {
+  padding-top: 15px;
 }
 
 img {
-  width: 70px;
+  width: 80px;
   height: 50px;
   display: flex;
   align-items: center;
@@ -12,8 +11,7 @@ img {
 }
 
 @media screen and (min-width: 640px) {
-  .NavBar {
+  .conent {
     margin-bottom: 40px;
-    min-height: 80px;
   }
 }

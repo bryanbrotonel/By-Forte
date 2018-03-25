@@ -1,12 +1,13 @@
 // _typography.scss
-html, .nav.navbar-nav.navbar-right li a {
-  color: blue;
-  font-family: $base-font-family;
-}
 
-p, nav {
+p {
   font-family: $base-font-family;
   @include font-size($p-font-sizes);
+}
+
+nav {
+  font-family: $base-font-family;
+  @include font-size($nav-font-sizes);
 }
 
 h1 {

@@ -14,4 +14,11 @@ $header-font-family: $header-font;
 $header-font-weight: $bold;
 // Bootstrap
 
+// Container
+.container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
+
 @import "scss/modules/all"

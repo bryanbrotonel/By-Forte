@@ -40,25 +40,25 @@ export class NavBar extends React.Component {
   render() {
     const pages = ['home', 'about', 'lookbook', 'shop'];
     const navLinks = pages.map(page => {
-      return (
-        <NavItem key={page}>
-          <NavLink onClick={this.handleClick} to={'/' + page} activeClassName="text-dark" className="NavLink text-uppercase text-muted mx-auto" tag={RRNavLink}>{page}</NavLink>
-        </NavItem>
-    )
+      return (<NavItem key={page}>
+        <NavLink onClick={this.handleClick} to={'/' + page} activeClassName="text-dark" className="NavLink text-uppercase text-muted mx-auto" tag={RRNavLink}>{page}</NavLink>
+      </NavItem>)
     });
 
     return (
-      <Navbar className="NavBar" light={true} expand="md">
-        <NavbarBrand href="/" className="mr-auto align-middle">
-          <img className="" src={logo} alt="By Forte"/>
-        </NavbarBrand>
-        <NavbarToggler onClick={this.handleClick}/>
-        <Collapse isOpen={this.state.isOpen} navbar={true}>
-          <Nav className="ml-auto" navbar={true}>
-            {navLinks}
-          </Nav>
-        </Collapse>
-      </Navbar>
-    );
+      <div id="wrapper" className="container">
+        <Navbar className="NavBar" light={true} expand="md">
+          <NavbarBrand href="/" className="mr-auto align-middle">
+            <img className="" src={logo} alt="By Forte"/>
+          </NavbarBrand>
+          <NavbarToggler onClick={this.handleClick}/>
+          <Collapse isOpen={this.state.isOpen} navbar={true}>
+            <Nav className="ml-auto" navbar={true}>
+              {navLinks}
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+  );
   }
 }

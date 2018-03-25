@@ -6,12 +6,18 @@ $p-font-sizes: (
   1024px: 19px
 );
 
-
 $h1-font-sizes: (
-  null  : 28px,
-  480px : 31px,
-  640px : 33px,
+  null: 28px,
+  480px: 31px,
+  640px: 33px,
   1024px: 36px
+);
+
+$nav-font-sizes: (
+  null: 14px,
+  480px: 14px,
+  640px: 14px,
+  1024px: 14px
 );
 
 // Font size mixin
