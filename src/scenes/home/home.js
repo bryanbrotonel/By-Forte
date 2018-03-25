@@ -5,8 +5,10 @@ export class Home extends Component {
   render() {
     return (
       <div>
-        <h1>HOME</h1>
-        <p>Paragraph</p>
-    </div>)
+        <div className="contianer">
+          <p>Test</p>
+        </div>
+      </div>
+    )
   }
 }
