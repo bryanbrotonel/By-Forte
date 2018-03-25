@@ -7,14 +7,18 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div id="App">
-        <NavBar/>
-        <div className ="container">
+      <div id="app">
+        <div id="NavBar">
+          <NavBar/>
+        </div>
+        <div id="body">
           <Routes/>
         </div>
-        <Footer/>
-      </div>
-    );
+        <div id="Footer">
+          <Footer/>
+        </div>
+    </div>
+  );
   }
 }
 
