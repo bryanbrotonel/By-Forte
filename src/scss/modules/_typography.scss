@@ -1,34 +1,40 @@
-// Font Sizes
-$p-font-sizes: (
-  null: 15px,
-  480px: 16px,
-  640px: 17px,
-  1024px: 19px
-);
-
-$h1-font-sizes: (
-  null: 28px,
-  480px: 31px,
-  640px: 33px,
-  1024px: 36px
-);
-
-$nav-font-sizes: (
-  null: 14px,
-  480px: 14px,
-  640px: 14px,
-  1024px: 14px
-);
-
-// Font size mixin
-@mixin font-size($fs-map) {
-  @each $fs-breakpoint, $fs-font-size in $fs-map {
-    @if $fs-breakpoint == null {
-      font-size: $fs-font-size;
+// unitless function to convert px to em
+@function em($pixels, $context: $browser-context) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $pixels / $context * 1em;
+}
+// responsive font size mixin
+@mixin font-size-map($font-size-map) {
+  @each $breakpoint, $font-size in $font-size-map {
+    @if $breakpoint == null {
+      font-size: em($font-size);
     } @else {
-      @media screen and (min-width: $fs-breakpoint) {
-        font-size: $fs-font-size;
+      @include breakpoint($breakpoint) {
+        font-size: em($font-size);
       }
     }
   }
 }
+
+// body font size
+$browser-context: 16;
+
+// typography scale
+$body-font-size: (
+  null: 16,
+  $md: 15,
+  $sm: 14,
+  $xs: 13
+);
+$h1-font-size: (
+  null: 48
+);
+
+$h2-font-size: (
+  null: 24px
+);

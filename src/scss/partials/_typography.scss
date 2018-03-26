@@ -1,16 +1,32 @@
-// _typography.scss
+// // _typography.scss
+//
+// p {
+//   font-family: $base-font-family;
+//   @include font-size($p-font-sizes);
+// }
+//
+// nav {
+//   font-family: $base-font-family;
+//   @include font-size($nav-font-sizes);
+// }
+//
+// h1 {
+//   font-family: $header-font-family;
+//   @include font-size($h1-font-sizes);
+// }
 
-p {
-  font-family: $base-font-family;
-  @include font-size($p-font-sizes);
-}
-
-nav {
-  font-family: $base-font-family;
-  @include font-size($nav-font-sizes);
+html {
+    line-height: 1.2;
+    font-family: $base-font-family;
+    @include font-size-map($body-font-size);
 }
 
 h1 {
-  font-family: $header-font-family;
-  @include font-size($h1-font-sizes);
+    font-family: $header-font-family;
+    @include font-size-map($h1-font-size);
+}
+
+h2 {
+    font-family: $header-font-family;
+    @include font-size-map($h2-font-size);
 }
