@@ -12,3 +12,8 @@ h2 {
     font-family: $header-font-family;
     @include font-size-map($h2-font-size);
 }
+
+.NavLink {
+  font-family: $header-font-family;
+  @include font-size-map($body-font-size);
+}
