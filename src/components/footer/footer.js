@@ -1,25 +1,26 @@
 import React from 'react';
 // import {NavLink as RRNavLink} from 'react-router-dom';
+import logo from 'images/By Forte Primary (Black).png'
 import './footer.css';
 
 export class Footer extends React.Component {
   render() {
     return (
-      <div className="footer">
-        <div className="container">
-          <div class="row">
-            <div class="col-sm">
-              <h2>By Forte</h2>
+      <div className="container footer">
+        <hr/>
+          <div className="row">
+            <div className="col-sm">
+              <img className="" src={logo} alt="By Forte"/>
+              <br/>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget diam finibus, consectetur est vitae, porttitor sapien</p>
             </div>
-            <div class="col-sm">
+            <div className="col-sm">
               <h2>Links</h2>
+              <li>Test</li>
+              <li>Test</li>
+              <li>Test</li>
             </div>
-            <div class="col-sm">
-              <p>Test</p>
-            </div>
-          </div>
         </div>
-    </div>
-  )
+    </div>)
   }
 }
