@@ -1,9 +1,9 @@
 import React from "react";
 import {Switch, Route, Redirect} from "react-router-dom";
-import {Home} from "./scenes/home/home";
-import {About} from 'scenes/about/about';
-import {Lookbook} from 'scenes/lookbook/lookbook';
-import {Shop} from 'scenes/shop/shop';
+import {Home} from "scenes/home";
+import {About} from 'scenes/about';
+import {Lookbook} from 'scenes/lookbook';
+import {Shop} from 'scenes/shop';
 
 export default() =>
 <Switch>

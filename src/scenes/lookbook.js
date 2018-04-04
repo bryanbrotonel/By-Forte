@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import './shop.scss';
+import 'scss/scenes/lookbook.css';
 
-export class Shop extends Component {
+export class Lookbook extends Component {
   render() {
     return (
       <div>
-        <h1>SHOP</h1>
+        <h1>LOOKBOOK</h1>
       </div>
     )
   }

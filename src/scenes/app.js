@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {NavBar} from 'components/navbar/navbar'
-import {Footer} from 'components/footer/footer'
+import {NavBar} from 'components/navbar'
+import {Footer} from 'components/footer'
 import Routes from "routes";
-import './App.css';
+import 'scss/scenes/app.css';
 
 class App extends Component {
   render() {

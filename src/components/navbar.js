@@ -10,7 +10,6 @@ import {
 } from 'reactstrap';
 import {NavLink as RRNavLink} from 'react-router-dom';
 import logo from 'images/By Forte Primary (Black).png'
-import './navbar.css'
 
 export class NavBar extends React.Component {
   constructor(props) {
@@ -51,7 +50,7 @@ export class NavBar extends React.Component {
       <div id="wrapper" className="container">
         <Navbar className="NavBar" light={true} expand="md">
           <NavbarBrand to="/" className="mr-auto align-middle" tag={RRNavLink}>
-            <img className="" src={logo} alt="By Forte"/>
+            <img id="logo" className="" src={logo} alt="By Forte"/>
           </NavbarBrand>
           <NavbarToggler onClick={this.handleClick}/>
           <Collapse isOpen={this.state.isOpen} navbar={true}>
