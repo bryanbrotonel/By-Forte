@@ -1,22 +1,19 @@
 .footer {
-  position: relative;
-  bottom: 0;
-  width: 100;
+	position: relative;
+	bottom: 30px;
+	width: 100;
 
-  /* Set the fixed height of the footer here */
-  min-height: 75px;
-}
+	/* Set the fixed height of the footer here */
+	min-height: 75px;
 
-.footer > li {
-  list-style: none;
-}
+	.row {
+		padding-top: 25px;
+	}
 
-.row {
-  padding-top: 25px;
-}
-// Medium devices (tablets, 768px and up)
-@media (min-width: 576px) {
-  .col-sm {
-    margin-right: 60px;
-  }
+	// Medium devices (tablets, 768px and up)
+	@media (min-width: 576px) {
+		.col-sm {
+			margin-right: 60px;
+		}
+	}
 }
