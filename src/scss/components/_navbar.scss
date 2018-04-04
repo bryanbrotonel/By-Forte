@@ -1,0 +1,11 @@
+.navbar-brand {
+	display: flex;
+	align-items: center;
+}
+
+@media (min-width: 576px) {
+	.navbarSpacing {
+		padding-top: 2vh;
+		max-width: 850px;
+	}
+}

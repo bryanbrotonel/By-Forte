@@ -1,17 +1,9 @@
 // Modules and Variables
-@import "src/scss/modules/all";
+@import 'scss/partials/base';
 
 // Partials
-@import 'partials/base.scss';
-@import 'partials/typography.scss';
+@import 'scss/partials/typography';
+@import 'scss/partials/figures';
 
-// Vendor
-// Bootstrap
-
-// Required
-@import "node_modules/bootstrap/scss/functions";
-@import "node_modules/bootstrap/scss/variables";
-@import "node_modules/bootstrap/scss/mixins";
-
-@import "node_modules/bootstrap/scss/grid";
-@import "node_modules/bootstrap/scss/navbar";
+// Components
+@import 'scss/components/all';

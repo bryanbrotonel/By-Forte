@@ -1,10 +1,19 @@
-// _typography.scss
-
-p {
-  font-family: $base-font-family;
+html {
+    font-family: $base-font-family;
+    @include font-size-map($body-font-size);
 }
 
-
 h1 {
+    font-family: $header-font-family;
+    @include font-size-map($h1-font-size);
+}
+
+h2 {
+    font-family: $header-font-family;
+    @include font-size-map($h2-font-size);
+}
+
+.NavLink {
   font-family: $header-font-family;
+  @include font-size-map($body-font-size);
 }
