@@ -31,10 +31,15 @@ $body-font-size: (
   $sm: 14,
   $xs: 14
 );
+
 $h1-font-size: (
-  null: 48
+  $xs : 31px,
+  $sm : 33px,
+  $md: 36px
 );
 
 $h2-font-size: (
-  null: 24px
+  $xs : 27px,
+  $sm : 29px,
+  $md: 32px
 );

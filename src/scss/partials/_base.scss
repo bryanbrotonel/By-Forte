@@ -36,8 +36,12 @@ $xs: 480px;
 	}
 }
 
+li {
+	list-style: none;
+}
+
 // Center div
-#centerdiv {
+.centerdiv {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -49,7 +53,6 @@ $xs: 480px;
   /*set to a negative number 1/2 of your width*/
 }
 
-
 // Container
 .container {
 	width: auto;
@@ -57,7 +60,4 @@ $xs: 480px;
 	padding: 0 15px;
 }
 
-li {
-	list-style: none;
-}
 @import "scss/modules/all"
