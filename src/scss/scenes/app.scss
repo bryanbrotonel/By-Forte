@@ -1,26 +1,27 @@
 @import "scss/main.scss";
 
 #app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
 #body {
-  flex: 1 0 auto;
-  width: 100%;
+	margin: 20px auto;
+	flex: 1 0 auto;
+	width: 100%;
 }
 
 #body:after {
-  content: ‘\00a0’;
-  display: block;
-  margin-top: var(— space);
-  height: 0;
-  visibility: hidden;
+	content: ‘\00a0’;
+	display: block;
+	margin-top: var(— space);
+	height: 0;
+	visibility: hidden;
 }
-
 @media (min-width: 576px) {
-  #body {
-    padding-top: 2vh;
-  }
+	#body {
+		margin: 0;
+		padding-top: 2vh;
+	}
 }

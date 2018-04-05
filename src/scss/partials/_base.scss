@@ -36,6 +36,10 @@ $xs: 480px;
 	}
 }
 
+li {
+	list-style: none;
+}
+
 // Center div
 .centerdiv {
   position: fixed;
@@ -54,10 +58,6 @@ $xs: 480px;
 	width: auto;
 	max-width: 1000px;
 	padding: 0 15px;
-}
-
-li {
-	list-style: none;
 }
 
 @import "scss/modules/all"

@@ -47,8 +47,8 @@ export class NavBar extends React.Component {
     });
 
     return (
-      <div className="container navbarSpacing">
-        <Navbar className="NavBar" light={true} expand="md">
+      <div className="container">
+        <Navbar light={true} expand="md">
           <NavbarBrand to="/" className="navbar-brand mr-auto" tag={RRNavLink}>
             <img id="logo" src={logo} alt="By Forte"/>
           </NavbarBrand>

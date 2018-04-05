@@ -5,8 +5,8 @@ import logo from 'images/By Forte Primary (Black).png'
 export class Footer extends React.Component {
   render() {
     return (
-      <div className="container footer">
-        <hr/>
+      <div className="footer container">
+          <hr/>
           <div className="row">
             <div className="col-sm">
               <img id="logo" src={logo} alt="By Forte"/>
