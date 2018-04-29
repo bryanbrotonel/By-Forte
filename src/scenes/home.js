@@ -5,7 +5,6 @@ export class Home extends Component {
   render() {
     return (<div>
       <div className="container">
-        <h1>HOME</h1>
       </div>
     </div>)
   }
