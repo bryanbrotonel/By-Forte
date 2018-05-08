@@ -1,0 +1,9 @@
+.picture {
+    color: white;
+}
+
+.picture-row {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+}

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import 'scss/scenes/lookbook.css';
 
 export class Lookbook extends Component {
