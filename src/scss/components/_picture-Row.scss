@@ -3,23 +3,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.picture:first-child {
-    background-image: url("https://source.unsplash.com/collection/1278499/1024×576");
-}
-
-.picture:nth-child(2) {
-        background-image: url("https://source.unsplash.com/collection/1278499/1024×576");
-}
-
-.picture:nth-child(3) {
-    background-image: url("https://source.unsplash.com/collection/1278499/1024×576");
+    background-repeat: no-repeat;
+    height: 30vh;
+    width: 30vh;
+    margin: 10px;
 }
 
 @media (min-width: 576px) {
     .picture {
-        height: 30vh;
-        width: 30vh;
+        margin: 0;
     }
 }
