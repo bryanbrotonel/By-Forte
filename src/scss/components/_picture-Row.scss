@@ -1,9 +1,25 @@
 .picture {
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.picture-row {
-    flex-grow: 1;
-    display: flex;
-    justify-content: space-around;
+.picture:first-child {
+    background-image: url("https://source.unsplash.com/collection/1278499/1024×576");
+}
+
+.picture:nth-child(2) {
+        background-image: url("https://source.unsplash.com/collection/1278499/1024×576");
+}
+
+.picture:nth-child(3) {
+    background-image: url("https://source.unsplash.com/collection/1278499/1024×576");
+}
+
+@media (min-width: 576px) {
+    .picture {
+        height: 30vh;
+        width: 30vh;
+    }
 }
