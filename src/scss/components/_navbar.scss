@@ -1,5 +1,6 @@
+// navbar.scss
 .navbar {
-	padding: 30px 0 0;
+	padding: 30px 0 30px;
 	margin: 0;
 	border-width: 0;
 }
@@ -12,10 +13,4 @@
 
 .navbar-collapse {
 	padding: 0;
-}
-@media (min-width: 576px) {
-	.navbar {
-		padding-top: 2vh;
-		margin: auto;
-	}
 }

@@ -48,7 +48,7 @@ export class NavBar extends React.Component {
 
     return (
       <div className="container">
-        <Navbar light={true} expand="md">
+        <Navbar class="navbar" light={true} expand="md">
           <NavbarBrand to="/" className="navbar-brand mr-auto" tag={RRNavLink}>
             <img id="logo" src={logo} alt="By Forte"/>
           </NavbarBrand>
