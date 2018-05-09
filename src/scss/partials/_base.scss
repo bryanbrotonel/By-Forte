@@ -1,35 +1,34 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald|Roboto');
-$header-font: 'Oswald', sans-serif;
-$base-font: 'Roboto', sans-serif;
-
+$header-font: 'Oswald',
+sans-serif;
+$base-font: 'Roboto',
+sans-serif;
 // Font weights
 $light: 100;
 $regular: 400;
 $bold: 600;
-
 // Base Font
 $base-font-family: $base-font;
 $base-font-weight: $regular;
-
 $base-line-height: 1.4;
-
 // Headings
 $header-font-family: $header-font;
 $header-font-weight: $bold;
-
 // breakpoint variables
 $lg: 1170px;
 $md: 1024px;
 $sm: 640px;
 $xs: 480px;
-
 // breakpoint mixin
-@mixin breakpoint($mq01: 0, $mq2: false, $maxmin: max-width) {
-	@if $mq2 == false {
+@mixin breakpoint($mq01: 0,
+$mq2: false,
+$maxmin: max-width) {
+	@if $mq2==false {
 		@media ($maxmin: $mq01) {
 			@content;
 		}
-	} @else {
+	}
+	@else {
 		@media (min-width: $mq01) and (max-width: $mq2) {
 			@content;
 		}
@@ -46,11 +45,15 @@ li {
 	flex: 1;
 }
 
-// Container
-.container {
-	width: auto;
-	max-width: 1000px;
-	padding: 0 15px;
+.content {
+	width: 100%;
+}
+
+ // Medium devices (tablets, 768px and up)
+@media (min-width: 576px) {
+	.content {
+		width: 50%;
+	}
 }
 
 @import "scss/modules/all"

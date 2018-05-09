@@ -6,27 +6,29 @@ import placeholderThree from "images/PlaceholderThree.jpg";
 export class PictureRow extends Component {
     render() {
         return (
-            <div className="d-flex justify-content-around w-100 flex-column flex-lg-row">
-                <div className="picture"
-                    style={
-                        {
-                            backgroundImage: 'url(' + placeholderOne + ')'
-                        }
-                    }>
-                </div>
-                <div className="picture"
-                    style={
-                        {
-                            backgroundImage: 'url(' + placeholderTwo + ')'
-                        }
-                    }>
-                </div>
-                <div className="picture"
-                    style={
-                        {
-                            backgroundImage: 'url(' + placeholderThree + ')'
-                        }
-                    }>
+            <div className="mx-auto">
+                <div className="d-flex flex-column flex-lg-row">
+                    <div className="picture"
+                        style={
+                            {
+                                backgroundImage: 'url(' + placeholderOne + ')'
+                            }
+                        }>
+                    </div>
+                    <div className="picture"
+                        style={
+                            {
+                                backgroundImage: 'url(' + placeholderTwo + ')'
+                            }
+                        }>
+                    </div>
+                    <div className="picture"
+                        style={
+                            {
+                                backgroundImage: 'url(' + placeholderThree + ')'
+                            }
+                        }>
+                    </div>
                 </div>
             </div>
         )
