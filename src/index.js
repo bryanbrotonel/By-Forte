@@ -5,7 +5,7 @@ import {BrowserRouter as Router} from "react-router-dom";
 import registerServiceWorker from './registerServiceWorker';
 import * as firebase from 'firebase';
 
-import App from 'scenes/app';
+import App from 'scenes/App';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'scss/main.css';
