@@ -10,6 +10,7 @@ import {
 } from 'reactstrap';
 import {NavLink as RRNavLink} from 'react-router-dom';
 import logo from 'images/By Forte Primary (Black).png'
+import './styles.css'
 
 export class NavBar extends React.Component {
   constructor(props) {
