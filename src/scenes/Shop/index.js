@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ShirtShop } from "./components/shirtShop";
+import { ShirtShop } from "./components/Shirt Shop/shirtShop";
 import { PasswordInput } from "./components/passwordInput";
 import "./styles.css";
 
@@ -18,15 +18,15 @@ export class Shop extends Component {
     // Validate password
 
     // Assign new password
-    if (value === "password") {
-      console.log("facts!");
+    if (value === "a") {
+      console.log("logged in!");
       this.setState({ validPassword: true });
     }
   }
 
   render() {
     return (
-      <div className="middle-align container">
+      <div className="middle-align fill-height-or-more container">
         {this.state.validPassword ? (
           <ShirtShop />
         ) : (

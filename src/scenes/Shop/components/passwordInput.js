@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export class PasswordInput extends Component {
 
@@ -18,8 +18,8 @@ export class PasswordInput extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.validatePassword(this.state.passwordValue);
     console.log('Final Password: ' + this.state.passwordValue);
+    this.props.validatePassword(this.state.passwordValue);
   }
 
   render() {
