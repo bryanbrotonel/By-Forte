@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
-import {ShirtShop} from './components/shirtShop';
-import {PasswordInput} from './components/passwordInput';
-import './styles.css';
+import React, { Component } from "react";
+import { ShirtShop } from "./components/shirtShop";
+import { PasswordInput } from "./components/passwordInput";
+import "./styles.css";
 
 export class Shop extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -20,15 +19,20 @@ export class Shop extends Component {
 
     // Assign new password
     if (value === "password") {
-      console.log('facts!');
-      this.setState({validPassword: true});
+      console.log("facts!");
+      this.setState({ validPassword: true });
     }
-
   }
 
   render() {
-    return (<div className="middle-align container">
-      { this.state.validPassword ? <ShirtShop/> : <PasswordInput validatePassword={this.validatePassword}/>}
-    </div>);
+    return (
+      <div className="middle-align container">
+        {this.state.validPassword ? (
+          <ShirtShop />
+        ) : (
+          <PasswordInput validatePassword={this.validatePassword} />
+        )}
+      </div>
+    );
   }
 }
