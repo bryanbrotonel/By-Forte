@@ -27,7 +27,7 @@ export class Shop extends Component {
 
   render() {
     return (
-      <div className='middle-align fill-height-or-more container'>
+      <div className='middle-align container'>
         {this.state.validPassword ? (
           <ProductShop />
         ) : (

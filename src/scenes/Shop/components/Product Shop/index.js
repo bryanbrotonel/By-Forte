@@ -17,12 +17,12 @@ export class ProductShop extends Component {
           <ProductItem name="BY FORTE TEE" colour="WHITE" image={whiteForte} />
           <ProductItem name="BY FORTE TEE" colour="YELLOW" image={yellowForte} />
           <ProductItem
-            name="MANTRA FORTE TEE"
+            name="MANTRA TEE"
             colour="NORTH CAROLINA BLUE"
             image={ncBlueMantraBack}
           />
           <ProductItem
-            name="MANTRA FORTE TEE"
+            name="MANTRA TEE"
             colour="GREY"
             image={ashMantraBack}
           />

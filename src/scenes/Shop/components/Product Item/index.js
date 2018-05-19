@@ -3,44 +3,36 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export class ProductItem extends Component {
-  constructor(props) {
-    super(props);
-
-    this.url = `${this.props.name}-${this.props.colour}`
+  render() {
+    let name = this.props.name;
+    let colour = this.props.colour;
+    let image = this.props.image;
+    let url = `${name}-${colour}`
       .split(" ")
       .join("-")
       .toLowerCase();
 
-    this.state = {
-      name: this.props.name,
-      colour: this.props.colour,
-      image: this.props.image,
-      url: this.url
-    };
-  }
-
-  render() {
     return (
       <div className="col-6 col-lg-3">
         <Link
           to={{
-            pathname: `/shop/collections/tops/products/${this.url}`,
+            pathname: `/shop/collections/tops/products/${url}`,
             state: {
-              name: this.state.name,
-              colour: this.state.colour,
-              image: this.state.image
+              name: name,
+              colour: colour,
+              image: image
             }
           }}
         >
           <img
             className="display-image mx-auto d-block"
-            src={this.state.image}
-            alt={`${this.state.name} - ${this.state.colour}`}
+            src={image}
+            alt={`${name} - ${colour}`}
           />
         </Link>
         <p>
-          {this.state.name} <br />
-          <span className="text-muted">{this.state.colour}</span>
+          {name} <br />
+          <span className="text-muted">{colour}</span>
         </p>
       </div>
     );
