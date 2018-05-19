@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export class PasswordInput extends Component {
 
@@ -25,7 +25,7 @@ export class PasswordInput extends Component {
   render() {
     return (<React.Fragment>
       <form onSubmit={this.handleSubmit}>
-        <input className="form-control" type="password" name="password" value={this.state.passwordValue} onChange={this.handleChange}/>
+        <input className='form-control' type='password' name='password' value={this.state.passwordValue} onChange={this.handleChange}/>
       </form>
     </React.Fragment>);
   }

@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import {NavBar} from 'components/Navbar'
 import {Footer} from 'components/Footer'
-import Routes from "routes";
+import Routes from 'routes';
 import './styles.css';
 
 class App extends Component {
   render() {
-    return (<div id="app">
-      <div id="NavBar">
+    return (<div id='app'>
+      <div id='NavBar'>
         <NavBar/>
       </div>
-      <div id="body">
+      <div id='body'>
         <Routes/>
       </div>
-      <div id="Footer">
+      <div id='Footer'>
         <Footer/>
       </div>
     </div>);

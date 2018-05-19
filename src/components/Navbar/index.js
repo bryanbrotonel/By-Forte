@@ -42,20 +42,20 @@ export class NavBar extends React.Component {
     const navLinks = pages.map(page => {
       return (
         <NavItem key={page}>
-          <NavLink onClick={this.handleClick} to={'/' + page} activeClassName="text-dark" className="NavLink text-uppercase text-muted mx-auto" tag={RRNavLink}>{page}</NavLink>
+          <NavLink onClick={this.handleClick} to={'/' + page} activeClassName='text-dark' className='NavLink text-uppercase text-muted mx-auto' tag={RRNavLink}>{page}</NavLink>
         </NavItem>
     )
     });
 
     return (
-      <div className="container">
-        <Navbar className="navbar" light={true} expand="md">
-          <NavbarBrand to="/" className="navbar-brand mr-auto" tag={RRNavLink}>
-            <img id="logo" src={logo} alt="By Forte"/>
+      <div className='container'>
+        <Navbar className='navbar' light={true} expand='md'>
+          <NavbarBrand to='/' className='navbar-brand mr-auto' tag={RRNavLink}>
+            <img id='logo' src={logo} alt='By Forte'/>
           </NavbarBrand>
           <NavbarToggler onClick={this.handleClick}/>
           <Collapse isOpen={this.state.isOpen} navbar={true}>
-            <Nav className="ml-auto" navbar={true}>
+            <Nav className='ml-auto' navbar={true}>
               {navLinks}
             </Nav>
           </Collapse>

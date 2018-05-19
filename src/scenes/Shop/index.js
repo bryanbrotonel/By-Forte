@@ -1,13 +1,14 @@
-import React, { Component } from "react";
-import { ShirtShop } from "./components/Shirt Shop/shirtShop";
-import { PasswordInput } from "./components/passwordInput";
-import "./styles.css";
+import React, { Component } from 'react';
+import { ProductShop } from './components/Product Shop';
+import { PasswordInput } from './components/passwordInput';
+
+import './styles.css';
 
 export class Shop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      validPassword: false
+      validPassword: true
     };
 
     this.validatePassword = this.validatePassword.bind(this);
@@ -18,17 +19,17 @@ export class Shop extends Component {
     // Validate password
 
     // Assign new password
-    if (value === "a") {
-      console.log("logged in!");
+    if (value === 'a') {
+      // console.log('logged in!');
       this.setState({ validPassword: true });
     }
   }
 
   render() {
     return (
-      <div className="middle-align fill-height-or-more container">
+      <div className='middle-align fill-height-or-more container'>
         {this.state.validPassword ? (
-          <ShirtShop />
+          <ProductShop />
         ) : (
           <PasswordInput validatePassword={this.validatePassword} />
         )}
