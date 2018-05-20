@@ -11,21 +11,21 @@ export class ProductInfo extends Component {
       name: name,
       colour: colour.toUpperCase(),
       image: image,
-      productInfo: []
+      productDescription: []
     };
   }
 
   componentDidMount() {
     switch (this.state.name) {
       case "BY FORTE TEE":
-        this.productInfoAppend = [
+        this.productDescriptionInfo = [
           "100% COTTON",
           "SCREEN PRINTED",
           "FRONT BY FORTE LOGO"
         ];
         break;
       case "MANTRA TEE":
-        this.productInfoAppend = [
+        this.productDescriptionInfo = [
           "100% COTTON",
           "SCREEN PRINTED",
           "BACK MANTRA logo"
@@ -36,17 +36,17 @@ export class ProductInfo extends Component {
     }
 
     this.setState(prevState => ({
-      productInfo: prevState.productInfo.concat(this.productInfoAppend)
+      productDescription: prevState.productDescription.concat(this.productDescriptionInfo)
     }));
   }
 
   render() {
     const description = [];
 
-    for (var i = 0; i < this.state.productInfo.length; i++) {
+    for (var i = 0; i < this.state.productDescription.length; i++) {
       description.push(
-        <React.Fragment key={this.state.productInfo[i]}>
-          {this.state.productInfo[i]}
+        <React.Fragment key={this.state.productDescription[i]}>
+          {this.state.productDescription[i]}
           <br />
         </React.Fragment>
       );

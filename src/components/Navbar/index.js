@@ -52,7 +52,7 @@ export class NavBar extends React.Component {
             activeStyle={{
               fontWeight: "bold"
             }}
-            className="NavLink text-uppercase text-muted mx-auto"
+            className="NavLink text-uppercase mx-auto"
             tag={RRNavLink}
           >
             {page}

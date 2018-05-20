@@ -76,7 +76,9 @@ li {
   border: 1px solid $black;
   color: $black;
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:visited {
     background-color: $black;
     border: 1px solid $black;
     color: $white;
@@ -88,7 +90,8 @@ li {
   color: $black;
   text-align-last: center;
 
-  &:hover {
+  &:hover,
+  &:enabled {
     border: 1px solid $black;
     color: $black;
     text-align-last: center;
