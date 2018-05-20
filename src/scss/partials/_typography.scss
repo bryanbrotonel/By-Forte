@@ -1,6 +1,6 @@
-html {
+body {
   font-family: $base-font-family;
-  @include font-size-map($body-font-size);
+  // @include font-size-map($body-font-size);
 }
 
 h1 {
@@ -10,7 +10,13 @@ h1 {
 
 h2 {
   font-family: $header-font-family;
-  @include font-size-map($h2-font-size);
+  // @include font-size-map($h2-font-size);
+}
+
+h4,
+h5,
+h6 {
+  font-family: $base-font-family;
 }
 
 .NavLink {

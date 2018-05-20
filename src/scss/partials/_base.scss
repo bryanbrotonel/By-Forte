@@ -1,59 +1,106 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald|Roboto');
-$header-font: 'Oswald',
-sans-serif;
-$base-font: 'Roboto',
-sans-serif;
+@import url("https://fonts.googleapis.com/css?family=Oswald|Roboto");
+
+$header-font: "Oswald", sans-serif;
+$base-font: "Roboto", sans-serif;
+
 // Font weights
 $light: 100;
 $regular: 400;
 $bold: 600;
+
 // Base Font
 $base-font-family: $base-font;
 $base-font-weight: $regular;
 $base-line-height: 1.4;
+
 // Headings
 $header-font-family: $header-font;
 $header-font-weight: $bold;
+
 // breakpoint variables
 $lg: 1170px;
 $md: 1024px;
 $sm: 640px;
 $xs: 480px;
-// breakpoint mixin
-@mixin breakpoint($mq01: 0,
-$mq2: false,
-$maxmin: max-width) {
-	@if $mq2==false {
-		@media ($maxmin: $mq01) {
-			@content;
-		}
-	}
-	@else {
-		@media (min-width: $mq01) and (max-width: $mq2) {
-			@content;
-		}
-	}
+
+// Breakpoint Mixin
+@mixin breakpoint($mq01: 0, $mq2: false, $maxmin: max-width) {
+  @if $mq2 == false {
+    @media ($maxmin: $mq01) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $mq01) and (max-width: $mq2) {
+      @content;
+    }
+  }
 }
 
+@import "scss/modules/all";
+
 li {
-	list-style: none;
+  list-style: none;
+}
+
+%fill-height-or-more {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  > * {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .center-align {
-	display: flex;
-	align-items: center;
-	flex: 1;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.middle-align {
+  @extend %fill-height-or-more;
+  align-items: center;
+  justify-content: center;
 }
 
 .content {
-	width: 100%;
+  width: 100%;
 }
 
- // Medium devices (tablets, 768px and up)
+// UIKit Compoennts
+
+.uk-button-default {
+  border: 1px solid $black;
+  color: $black;
+
+  &:hover,
+  &:active,
+  &:visited {
+    background-color: $black;
+    border: 1px solid $black;
+    color: $white;
+  }
+}
+
+.uk-select {
+  border: 1px solid $black;
+  color: $black;
+  text-align-last: center;
+
+  &:hover,
+  &:enabled {
+    border: 1px solid $black;
+    color: $black;
+    text-align-last: center;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
 @media (min-width: 576px) {
-	.content {
-		width: 50%;
-	}
+  .content {
+    width: 50%;
+  }
 }
-
-@import "scss/modules/all"
