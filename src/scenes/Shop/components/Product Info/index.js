@@ -5,6 +5,7 @@ export class ProductInfo extends Component {
   constructor(props) {
     super(props);
 
+    // TODO: Get info from Database
     const { name, colour, image } = props.location.state;
 
     this.state = {
@@ -16,6 +17,11 @@ export class ProductInfo extends Component {
   }
 
   componentDidMount() {
+
+    this.name = this.state.name;
+    this.colour = this.state.colour;
+    this.image = this.state.image
+
     switch (this.state.name) {
       case "BY FORTE TEE":
         this.productDescriptionInfo = [
@@ -28,7 +34,7 @@ export class ProductInfo extends Component {
         this.productDescriptionInfo = [
           "100% COTTON",
           "SCREEN PRINTED",
-          "BACK MANTRA logo"
+          "BACK MANTRA LOGO"
         ];
         break;
       default:
@@ -60,13 +66,13 @@ export class ProductInfo extends Component {
               <img
                 className="w-100"
                 src={this.state.image}
-                alt={`${this.state.name} - ${this.state.colour}`}
+                alt={`${this.name} - ${this.colour}`}
               />
             </div>
             <div className="col-sm">
               <div>
-                <h2>{this.state.name}</h2>
-                <h4 className="text-muted">{this.state.colour}</h4>
+                <h2>{this.name}</h2>
+                <h4 className="text-muted">{this.colour}</h4>
                 <h5>$30</h5>
               </div>
                 <p>{description}</p>
