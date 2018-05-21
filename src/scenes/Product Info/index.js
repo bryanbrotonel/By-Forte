@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router";
 import PropTypes from "prop-types";
 
 export class ProductInfo extends Component {
@@ -12,15 +13,18 @@ export class ProductInfo extends Component {
       name: name,
       colour: colour.toUpperCase(),
       image: image,
-      productDescription: []
+      productDescription: [],
+      orderedItem: [],
+      redirect: false
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-
     this.name = this.state.name;
     this.colour = this.state.colour;
-    this.image = this.state.image
+    this.image = this.state.image;
 
     switch (this.state.name) {
       case "BY FORTE TEE":
@@ -42,12 +46,45 @@ export class ProductInfo extends Component {
     }
 
     this.setState(prevState => ({
-      productDescription: prevState.productDescription.concat(this.productDescriptionInfo)
+      productDescription: prevState.productDescription.concat(
+        this.productDescriptionInfo
+      )
     }));
   }
 
+  componentDidUnMount() {
+    this.setState({
+      redirect: false,
+      orderedItem: {}
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({
+      redirect: true,
+      orderedItem: {
+        itemName: this.name,
+        itemSize: this.size,
+        itemVariation: this.colour
+      }
+    });
+  }
+
   render() {
+    const { redirect } = this.state;
     const description = [];
+
+    if (redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/cart",
+            state: { orderedItem: this.state.orderedItem }
+          }}
+        />
+      );
+    }
 
     for (var i = 0; i < this.state.productDescription.length; i++) {
       description.push(
@@ -75,8 +112,8 @@ export class ProductInfo extends Component {
                 <h4 className="text-muted">{this.colour}</h4>
                 <h5>$30</h5>
               </div>
-                <p>{description}</p>
-              <form>
+              <p>{description}</p>
+              <form onSubmit={this.handleSubmit}>
                 <div className="form-group uk-margin uk-form-width-medium">
                   <select className="uk-select">
                     <option>MEDIUM</option>

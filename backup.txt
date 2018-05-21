@@ -1,8 +1,8 @@
 /*render() {
-  const pages = ['about', 'lookbook', 'shop'];
+  const pages = ["about", "lookbook", "shop"];
   const navLinks = pages.map(page => {
     return (<NavItem key={page}>
-      <NavLink strict='strict' path={'/' + page + '/'} to={'/' + page} activeClassName='text-dark' className='NavLink text-uppercase text-muted mx-auto' tag={RRNavLink}>{page}</NavLink>
+      <NavLink strict="strict" path={"/" + page + "/"} to={"/" + page} activeClassName="text-dark" className="NavLink text-uppercase text-muted mx-auto" tag={RRNavLink}>{page}</NavLink>
     </NavItem>)
   });
 
@@ -10,15 +10,15 @@
     <Container>
       <hr/>
       <Row>
-        <Col xs='6'>
+        <Col xs="6">
           <h3>BY FORTE</h3>
           <p>We are By Forte.</p>
         </Col>
-        <Col xs='6'>
+        <Col xs="6">
           <h4>LINKS</h4>
-          <Nav className='ml-auto' navbar={true}>
-            <NavItem key='home'>
-              <NavLink strict='strict' to='/' activeClassName='text-dark' className='NavLink text-uppercase text-muted mx-auto' tag={RRNavLink}>Home</NavLink>
+          <Nav className="ml-auto" navbar={true}>
+            <NavItem key="home">
+              <NavLink strict="strict" to="/" activeClassName="text-dark" className="NavLink text-uppercase text-muted mx-auto" tag={RRNavLink}>Home</NavLink>
             </NavItem>
             {navLinks}
           </Nav>
@@ -44,25 +44,25 @@ toggle() {
 }
 
 render() {
-  const pages = ['about', 'lookbook', 'shop'];
+  const pages = ["about", "lookbook", "shop"];
   const navLinks = pages.map(page => {
     return (
       <NavItem key={page}>
-        <NavLink to={'/' + page} activeClassName='text-dark' className='NavLink text-uppercase text-muted mx-auto' tag={RRNavLink}>{page}</NavLink>
+        <NavLink to={"/" + page} activeClassName="text-dark" className="NavLink text-uppercase text-muted mx-auto" tag={RRNavLink}>{page}</NavLink>
       </NavItem>)
   });
 
   return (
     <div>
-    <Navbar className='NavBar mx-auto' color='faded' light={true} expand='md'>
-      <NavbarBrand href='/'>
-        <img src={logo} width='60' height='40' alt='by forte'/>
+    <Navbar className="NavBar mx-auto" color="faded" light={true} expand="md">
+      <NavbarBrand href="/">
+        <img src={logo} width="60" height="40" alt="by forte"/>
       </NavbarBrand>
       <NavbarToggler onClick={this.toggle}/>
       <Collapse isOpen={this.state.isOpen} navbar={true}>
-        <Nav className='ml-auto' navbar={true}>
+        <Nav className="ml-auto" navbar={true}>
           <NavItem>
-            <NavLink to='/#' activeClassName='text-dark' className='NavLink text-uppercase text-muted mx-auto' tag={RRNavLink}>Home</NavLink>
+            <NavLink to="/#" activeClassName="text-dark" className="NavLink text-uppercase text-muted mx-auto" tag={RRNavLink}>Home</NavLink>
           </NavItem>
           {navLinks}
         </Nav>
