@@ -20,7 +20,6 @@ export class Shop extends Component {
 
     // Assign new password
     if (value === "a") {
-      // console.log("logged in!");
       this.setState({ validPassword: true });
     }
   }

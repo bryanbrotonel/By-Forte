@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Redirect } from "react-router";
 import PropTypes from "prop-types";
 
+import Cookies from "universal-cookie";
+
 export class ProductInfo extends Component {
   constructor(props) {
     super(props);
@@ -14,11 +16,19 @@ export class ProductInfo extends Component {
       colour: colour.toUpperCase(),
       image: image,
       productDescription: [],
-      orderedItem: [],
+      orderedItem: {
+        itemName: name,
+        itemSize: "Medium",
+        itemVariation: colour,
+        itemQuantity: 1
+      },
       redirect: false
     };
 
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.findItem = this.findItem.bind(this);
+    this.updateCart = this.updateCart.bind(this);
   }
 
   componentDidMount() {
@@ -54,21 +64,54 @@ export class ProductInfo extends Component {
 
   componentDidUnMount() {
     this.setState({
-      redirect: false,
-      orderedItem: {}
+      redirect: false
     });
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    this.setState({
-      redirect: true,
+  handleChange(event) {
+    const selectValue = event.target.value;
+
+    this.setState(prevState => ({
       orderedItem: {
-        itemName: this.name,
-        itemSize: this.size,
-        itemVariation: this.colour
+        ...prevState.orderedItem,
+        itemSize: selectValue
       }
+    }));
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const cart = this.updateCart();
+    this.setState({
+      redirect: true
     });
+    const cookies = new Cookies();
+    cookies.set("My Cart", cart, { path: "/" });
+  }
+
+  updateCart() {
+    const cookies = new Cookies();
+
+    let previousCart = cookies.get("My Cart");
+    let currentCart = previousCart !== undefined ? previousCart : [];
+    const duplicateItem = currentCart.findIndex(this.findItem);
+
+    if (duplicateItem === -1) {
+      currentCart.push(this.state.orderedItem);
+    } else {
+      currentCart[duplicateItem].itemQuantity++;
+    }
+    return currentCart;
+  }
+
+  findItem(currentitem) {
+    let orderedItem = this.state.orderedItem;
+
+    return (
+      currentitem.itemName === orderedItem.itemName &&
+      currentitem.itemSize === orderedItem.itemSize &&
+      currentitem.itemVariation === orderedItem.itemVariation
+    );
   }
 
   render() {
@@ -76,14 +119,7 @@ export class ProductInfo extends Component {
     const description = [];
 
     if (redirect) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/cart",
-            state: { orderedItem: this.state.orderedItem }
-          }}
-        />
-      );
+      return <Redirect to="/cart" />;
     }
 
     for (var i = 0; i < this.state.productDescription.length; i++) {
@@ -115,14 +151,20 @@ export class ProductInfo extends Component {
               <p>{description}</p>
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group uk-margin uk-form-width-medium">
-                  <select className="uk-select">
-                    <option>MEDIUM</option>
-                    <option>LARGE</option>
+                  <select
+                    className="uk-select"
+                    value={this.state.orderedItem.itemSize}
+                    onChange={this.handleChange}
+                  >
+                    <option value="Medium">MEDIUM</option>
+                    <option value="Large">LARGE</option>
                   </select>
                 </div>
-                <button className="uk-button uk-button-default uk-form-width-medium text-center">
-                  ADD TO CART
-                </button>
+                <input
+                  type="submit"
+                  className="uk-button uk-button-default uk-form-width-medium text-center"
+                  value="ADD TO CART"
+                />
               </form>
             </div>
           </div>

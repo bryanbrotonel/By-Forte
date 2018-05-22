@@ -42,7 +42,7 @@ export class NavBar extends React.Component {
   }
 
   render() {
-    const pages = ["home", "about", "lookbook", "shop"];
+    const pages = ["home", "about", "lookbook", "shop", "cart"];
     const navLinks = pages.map(page => {
       return (
         <NavItem key={page}>

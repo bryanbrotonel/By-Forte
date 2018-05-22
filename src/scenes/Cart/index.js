@@ -17,53 +17,38 @@ export class Cart extends Component {
     super(props);
 
     this.state = {
-      newItem: this.props.location.state.orderedItem,
-      cart: []
+      cart: this.getCart()
     };
-
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.componentWillUnmount = this.componentWillUnmount.bind(this);
   }
 
-  componentDidMount() {
-    this.getCookies();
-  }
-
-  componentWillUnmount() {
-    this.setCookies();
-  }
-
-  getCookies() {
+  getCart() {
     const cookies = new Cookies();
-    let currentCart = [];
-
-    if (cookies.get("My Cart") !== undefined) {
-      // Assign current state of cart to cookie
-      currentCart = cookies.get("My Cart");
-    }
-
-    currentCart.push(this.state.newItem);
-
-    // Assign updated cart to state
-    this.setState({
-      cart: currentCart
-    });
-
-    console.log(currentCart);
-  }
-
-  setCookies() {
-    const cookies = new Cookies();
-
-    cookies.set("My Cart", this.state.cart, { path: "/" });
-    console.log(cookies.get("My Cart"));
+    let currentCart = cookies.get("My Cart");
+    return currentCart;
   }
 
   render() {
+    const productItemsCart = this.state.cart ? (
+      this.state.cart.map(product => (
+        <div
+          key={`${product.itemName} - ${product.itemVariation}: ${
+            product.itemSize
+          }`}
+        >
+          <p>
+            {product.itemName} - {product.itemVariation}: {product.itemSize} x{" "}
+            {product.itemQuantity}
+          </p>
+        </div>
+      ))
+    ) : (
+      <p>Cart empty</p>
+    );
+
     return (
       <div className="container">
-        <h1>Cart Page</h1>
-        {/* <p>{this.state.cart}</p> */}
+        <h1>Cart</h1>
+        {productItemsCart}
       </div>
     );
   }
