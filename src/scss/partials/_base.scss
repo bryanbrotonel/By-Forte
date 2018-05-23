@@ -98,6 +98,18 @@ li {
   }
 }
 
+// Remove number input spinner
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  padding: 0;
+}
+
 // Medium devices (tablets, 768px and up)
 @media (min-width: 576px) {
   .content {
