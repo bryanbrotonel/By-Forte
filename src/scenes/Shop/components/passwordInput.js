@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export class PasswordInput extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      passwordValue: '',
+      passwordValue: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -18,14 +18,14 @@ export class PasswordInput extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('Final Password: ' + this.state.passwordValue);
+    console.log("Final Password: " + this.state.passwordValue);
     this.props.validatePassword(this.state.passwordValue);
   }
 
   render() {
     return (<React.Fragment>
       <form onSubmit={this.handleSubmit}>
-        <input className='form-control' type='password' name='password' value={this.state.passwordValue} onChange={this.handleChange}/>
+        <input className="form-control" type="password" name="password" value={this.state.passwordValue} onChange={this.handleChange}/>
       </form>
     </React.Fragment>);
   }

@@ -4,9 +4,10 @@ import { Home } from "scenes/Home";
 import { About } from "scenes/About";
 import { Lookbook } from "scenes/Lookbook";
 import { Shop } from "scenes/Shop";
-import { ProductInfo } from "./scenes/Shop/components/Product Info";
+import { ProductInfo } from "./scenes/Product Info";
+import { Cart } from "./scenes/Cart";
 
-export default () => (
+const Routes = () => (
   <Switch>
     <Redirect from="/home" to="/" />
     <Route exact={true} path="/" component={Home} />
@@ -17,5 +18,8 @@ export default () => (
       path="/shop/collections/tops/products/:itemId"
       component={ProductInfo}
     />
+    <Route path="/cart" component={Cart} />
   </Switch>
 );
+
+export default Routes;
