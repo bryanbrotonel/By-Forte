@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import firebase from "firebase";
 import Cookies from "universal-cookie";
+
+import { CartRow } from "./components/Cart Row";
 
 import whiteForte from "images/Mock Ups/By Forte - Mock Up (White).png";
 import yellowForte from "images/Mock Ups/By Forte - Mock Up (Yellow).png";
@@ -15,7 +18,6 @@ import "./styles.css";
 export class Cart extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       cart: this.getCart()
     };
@@ -30,24 +32,44 @@ export class Cart extends Component {
   render() {
     const productItemsCart = this.state.cart ? (
       this.state.cart.map(product => (
-        <div
+        <CartRow
           key={`${product.itemName} - ${product.itemVariation}: ${
             product.itemSize
           }`}
-        >
-          <p>
-            {product.itemName} - {product.itemVariation}: {product.itemSize} x{" "}
-            {product.itemQuantity}
-          </p>
-        </div>
+          itemImage={whiteForte}
+          itemName={product.itemName}
+          itemSize={product.itemSize}
+          itemVariation={product.itemVariation}
+        />
       ))
     ) : (
-      <p>Cart empty</p>
+      <h1>Cart empty</h1>
     );
 
     return (
       <div className="container">
         <h1>Cart</h1>
+        <br />
+        <div className="row text-muted">
+          <div className="col-9 d-none d-md-block">
+            <div className="row">
+              <div className="col-12">
+                <h6>ITEM</h6>
+              </div>
+            </div>
+          </div>
+          <div className="col-3 text-center d-none d-md-block">
+            <div className="row">
+              <div className="col ml-auto">
+                <h6>QUANTITY</h6>
+              </div>
+              <div className="col">
+                <h6>PRICE</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
         {productItemsCart}
       </div>
     );

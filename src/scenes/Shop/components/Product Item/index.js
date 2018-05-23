@@ -25,7 +25,7 @@ export class ProductItem extends Component {
           }}
         >
           <img
-            className="display-image mx-auto d-block"
+            className="mx-auto d-block"
             src={image}
             alt={`${name} - ${colour}`}
           />
