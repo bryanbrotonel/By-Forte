@@ -1,19 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import firebase from "firebase";
+// import firebase from "firebase";
 import { NavLink } from "react-router-dom";
 import Cookies from "universal-cookie";
 
-import { CartHeader } from "./components/Cart Header";
-import { CartRow } from "./components/Cart Row";
-
-import whiteForte from "images/Mock Ups/By Forte - Mock Up (White).png";
-import yellowForte from "images/Mock Ups/By Forte - Mock Up (Yellow).png";
-// import ashMantraFront from "images/Mock Ups/Mantra Forte (Front) - Mock Up (Ash).png";
-import ashMantraBack from "images/Mock Ups/Mantra Forte (Back) - Mock Up (Ash).png";
-// import ncBlueMantraFront from "./../../images/Mock Ups/Mantra Forte (Front) - Mock Up (NC Blue).png";
-import ncBlueMantraBack from "images/Mock Ups/Mantra Forte (Back) - Mock Up (NC Blue).png";
+import { FullCart } from "./components/FullCart";
 
 import "./styles.css";
 
@@ -23,7 +15,6 @@ export class Cart extends Component {
     this.state = {
       cart: this.getCart()
     };
-    console.log(this.state.cart);
   }
 
   getCart() {
@@ -33,26 +24,12 @@ export class Cart extends Component {
   }
 
   render() {
-    const cartContent = [];
+    let cartContent = undefined;
 
     if (this.state.cart) {
-      cartContent.push(<CartHeader key="Cart Header" />);
-      cartContent.push(
-        this.state.cart.map(product => (
-          <CartRow
-            key={`${product.itemName} - ${product.itemVariation}: ${
-              product.itemSize
-            }`}
-            itemImage={whiteForte}
-            itemName={product.itemName}
-            itemSize={product.itemSize}
-            itemVariation={product.itemVariation}
-            itemQuantity={product.itemQuantity}
-          />
-        ))
-      );
+      cartContent = <FullCart cart={this.state.cart} />;
     } else {
-      cartContent.push(
+      cartContent = (
         <React.Fragment>
           <br />
           <h5 className="text-muted">
@@ -67,8 +44,8 @@ export class Cart extends Component {
     }
 
     return (
-      <div className="container">
-        <h1>CART</h1>
+      <div className="container d-flex align-items-start flex-column">
+        <h1>Cart</h1>
         {cartContent}
       </div>
     );

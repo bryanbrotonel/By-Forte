@@ -33,7 +33,7 @@ export class CartRow extends Component {
       <div className="row cart-row">
         <div className="col-md-1 align-self-center d-none d-md-block">
           <button onClick={this.hanldeRemoveItem} className="uk-button">
-            <h3 className="text-muted">x</h3>
+            <h3>x</h3>
           </button>
         </div>
         <div className="col-5 col-md-2">
@@ -53,7 +53,7 @@ export class CartRow extends Component {
             <div className="col-6 py-2 py-md-0 col-md-2 ml-md-auto">
               <input
                 type="number"
-                className="col-6 col-md-4 text-center"
+                className="col-6 col-md-4 text-center border border-dark"
                 defaultValue={this.itemQuantity}
                 onChange={this.handleQuantityChange}
               />
