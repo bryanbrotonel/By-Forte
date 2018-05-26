@@ -162,7 +162,7 @@ export class ProductInfo extends Component {
                 </div>
                 <input
                   type="submit"
-                  className="uk-button uk-button-default uk-form-width-medium text-center"
+                  className="uk-button uk-button-default uk-form-width-medium"
                   value="ADD TO CART"
                 />
               </form>

@@ -1,21 +1,17 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+// import firebase from "firebase";
+import { NavLink } from "react-router-dom";
 import Cookies from "universal-cookie";
 
-import whiteForte from "images/Mock Ups/By Forte - Mock Up (White).png";
-import yellowForte from "images/Mock Ups/By Forte - Mock Up (Yellow).png";
-// import ashMantraFront from "images/Mock Ups/Mantra Forte (Front) - Mock Up (Ash).png";
-import ashMantraBack from "images/Mock Ups/Mantra Forte (Back) - Mock Up (Ash).png";
-// import ncBlueMantraFront from "./../../images/Mock Ups/Mantra Forte (Front) - Mock Up (NC Blue).png";
-import ncBlueMantraBack from "images/Mock Ups/Mantra Forte (Back) - Mock Up (NC Blue).png";
+import { FullCart } from "./components/FullCart";
 
 import "./styles.css";
 
 export class Cart extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       cart: this.getCart()
     };
@@ -28,27 +24,29 @@ export class Cart extends Component {
   }
 
   render() {
-    const productItemsCart = this.state.cart ? (
-      this.state.cart.map(product => (
-        <div
-          key={`${product.itemName} - ${product.itemVariation}: ${
-            product.itemSize
-          }`}
-        >
-          <p>
-            {product.itemName} - {product.itemVariation}: {product.itemSize} x{" "}
-            {product.itemQuantity}
-          </p>
-        </div>
-      ))
-    ) : (
-      <p>Cart empty</p>
-    );
+    let cartContent = undefined;
+
+    if (this.state.cart) {
+      cartContent = <FullCart cart={this.state.cart} />;
+    } else {
+      cartContent = (
+        <React.Fragment>
+          <br />
+          <h5 className="text-muted">
+            Your cart is empty,{" "}
+            <NavLink to="/shop" className="text-dark">
+              continue shopping
+            </NavLink>
+            .
+          </h5>
+        </React.Fragment>
+      );
+    }
 
     return (
-      <div className="container">
+      <div className="container d-flex align-items-start flex-column">
         <h1>Cart</h1>
-        {productItemsCart}
+        {cartContent}
       </div>
     );
   }
