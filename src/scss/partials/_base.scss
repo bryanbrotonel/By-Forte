@@ -71,29 +71,15 @@ li {
 
 // UIKit Compoennts
 
-.uk-button-default {
-  border: 1px solid $black;
-  color: $black;
-
-  &:hover,
-  &:active,
-  &:visited {
-    background-color: $black;
-    border: 1px solid $black;
-    color: $white;
-  }
-}
-
+.uk-button-default,
 .uk-select {
-  border: 1px solid $black;
+  background-color: #ffffff;
   color: $black;
   text-align-last: center;
-
   &:hover,
   &:enabled {
-    border: 1px solid $black;
     color: $black;
-    text-align-last: center;
+    border: 1px solid #e5e5e5;
   }
 }
 

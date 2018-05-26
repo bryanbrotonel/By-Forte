@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import "./styles.css";
 
-export class CartRow extends Component {
+export class CartItemRow extends Component {
   constructor(props) {
     super(props);
 
@@ -46,9 +46,9 @@ export class CartRow extends Component {
         <div className="col-7 col-md-9">
           <div className="row text-center">
             <div className="col-8 h-100">
-              <h5 className="row"> {this.itemName}</h5>
-              <h6 className="row text-muted">COLOUR: {this.itemVariation}</h6>
-              <h6 className="row text-muted">SIZE: {this.itemSize}</h6>
+              <h5 className="row text-justify"> {this.itemName}</h5>
+              <h6 className="row text-justify text-muted">COLOUR: {this.itemVariation}</h6>
+              <h6 className="row text-justify text-muted">SIZE: {this.itemSize}</h6>
             </div>
             <div className="col-6 py-2 py-md-0 col-md-2 ml-md-auto">
               <input
@@ -74,7 +74,7 @@ export class CartRow extends Component {
   }
 }
 
-CartRow.propTypes = {
+CartItemRow.propTypes = {
   itemName: PropTypes.string.isRequired,
   itemSize: PropTypes.string.isRequired,
   itemVariation: PropTypes.string.isRequired,
