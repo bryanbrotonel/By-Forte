@@ -6,6 +6,7 @@ import { Lookbook } from "scenes/Lookbook";
 import { Shop } from "scenes/Shop";
 import { ProductInfo } from "./scenes/Product Info";
 import { Cart } from "./scenes/Cart";
+import { Checkout } from "./scenes/Checkout";
 
 const Routes = () => (
   <Switch>
@@ -19,6 +20,7 @@ const Routes = () => (
       component={ProductInfo}
     />
     <Route path="/cart" component={Cart} />
+    <Route path="/checkout" component={Checkout} />
   </Switch>
 );
 

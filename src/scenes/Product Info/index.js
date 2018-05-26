@@ -62,12 +62,6 @@ export class ProductInfo extends Component {
     }));
   }
 
-  componentDidUnMount() {
-    this.setState({
-      redirect: false
-    });
-  }
-
   handleChange(event) {
     const selectValue = event.target.value;
 
@@ -162,7 +156,7 @@ export class ProductInfo extends Component {
                 </div>
                 <input
                   type="submit"
-                  className="uk-button uk-button-default uk-form-width-medium"
+                  className="uk-button uk-button-default uk-form-width-medium text-center"
                   value="ADD TO CART"
                 />
               </form>

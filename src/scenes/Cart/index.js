@@ -45,7 +45,7 @@ export class Cart extends Component {
 
     return (
       <div className="container d-flex align-items-start flex-column">
-        <h1>Cart</h1>
+        <h1>CART</h1>
         {cartContent}
       </div>
     );
