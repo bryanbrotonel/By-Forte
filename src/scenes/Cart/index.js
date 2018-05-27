@@ -22,15 +22,26 @@ export class Cart extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      cart: this.getCart()
-    });
+    let currentCart = this.getCart();
+
+    if (currentCart) {
+      this.setState({
+        cart: currentCart
+      });
+    } else {
+      this.updateCart(this.state.cart);
+    }
   }
 
   getCart() {
     const cookies = new Cookies();
     let currentCart = cookies.get("My Cart");
     return currentCart;
+  }
+
+  removeCart() {
+    const cookies = new Cookies();
+    cookies.remove("My Cart");
   }
 
   updateCart(cartObject) {
@@ -42,34 +53,32 @@ export class Cart extends Component {
   }
 
   render() {
-    let cartContent = [];
-    let cartEmpty = true;
-    if (this.state.cart !== "undefined") {
-      if (this.state.cart.length !== 0) {
-        cartEmpty = false;
-      }
-    }
+    let cartContent = undefined;
 
-    cartContent = !cartEmpty ? (
-      (cartContent = (
-        <FullCart
-          cart={this.state.cart}
-          getCart={this.getCart}
-          updateCart={this.updateCart}
-        />
-      ))
-    ) : (
-      <React.Fragment>
-        <br />
-        <h5 className="text-muted">
-          Your cart is empty,{" "}
-          <NavLink to="/shop" className="text-dark">
-            continue shopping
-          </NavLink>
-          .
-        </h5>
-      </React.Fragment>
-    );
+    cartContent =
+      this.state.cart !== undefined &&
+      this.state.cart !== "undefined" &&
+      this.state.cart.length !== 0 ? (
+        (cartContent = (
+          <FullCart
+            cart={this.state.cart}
+            getCart={this.getCart}
+            updateCart={this.updateCart}
+            removeCart={this.removeCart}
+          />
+        ))
+      ) : (
+        <React.Fragment>
+          <br />
+          <h5 className="text-muted">
+            Your cart is empty,{" "}
+            <NavLink to="/shop" className="text-dark">
+              continue shopping
+            </NavLink>
+            .
+          </h5>
+        </React.Fragment>
+      );
 
     return (
       <div className="container d-flex align-items-start flex-column">

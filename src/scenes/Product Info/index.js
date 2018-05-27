@@ -64,7 +64,6 @@ export class ProductInfo extends Component {
   }
 
   handleOrderedItemChange = ({ target: { id, value } }) => {
-
     this.setState(prevState => ({
       orderedItem: {
         ...prevState.orderedItem,
@@ -87,7 +86,9 @@ export class ProductInfo extends Component {
     const cookies = new Cookies();
 
     let previousCart = cookies.get("My Cart");
-    let currentCart = previousCart !== "undefined" ? previousCart : [];
+
+    let currentCart = previousCart !== undefined ? previousCart : [];
+
     if (currentCart === undefined) {
       return;
     }
@@ -166,7 +167,7 @@ export class ProductInfo extends Component {
                       id="itemQuantity"
                       type="number"
                       className="uk-input"
-                      defaultValue= "1"
+                      min="1"
                       value={this.state.orderedItem.itemQuantity}
                       onChange={this.handleOrderedItemChange}
                     />

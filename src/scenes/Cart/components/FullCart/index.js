@@ -14,13 +14,13 @@ export class FullCart extends Component {
     super(props);
 
     this.state = {
-      cart: this.props.cart
+      cart: this.props.getCart()
     };
   }
 
   render() {
     const productItemsCart =
-      this.props.getCart() !== "undefined" ? (
+      this.state.cart !== "undefined" ? (
         this.props.cart.map(product => (
           <CartItemRow
             key={`${product.itemName} - ${product.itemVariation}: ${
@@ -33,6 +33,7 @@ export class FullCart extends Component {
             itemQuantity={product.itemQuantity}
             getCart={this.props.getCart}
             updateCart={this.props.updateCart}
+            removeCart={this.props.removeCart}
           />
         ))
       ) : (
@@ -56,5 +57,6 @@ export class FullCart extends Component {
 FullCart.propTypes = {
   cart: PropTypes.array,
   updateCart: PropTypes.func,
-  getCart: PropTypes.func
+  getCart: PropTypes.func,
+  removeCart: PropTypes.func
 };

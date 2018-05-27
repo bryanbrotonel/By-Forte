@@ -28,7 +28,7 @@ export class CartItemRow extends Component {
   }
 
   hanldeRemoveItem(event) {
-    let currentCart = this.getCart();
+    let currentCart = this.props.getCart();
 
     if (this.removeItem(currentCart)) {
       this.props.updateCart(currentCart);
@@ -43,6 +43,9 @@ export class CartItemRow extends Component {
 
     if (currentItem !== undefined) {
       cartObject.splice(currentItemIndex, 1);
+      if (cartObject.length === 0) {
+        this.props.removeCart();
+      }
       return true;
     }
     return false;
@@ -55,12 +58,6 @@ export class CartItemRow extends Component {
       currentitem.itemVariation === this.state.item.itemVariation &&
       currentitem.itemQuantity === this.state.item.itemQuantity
     );
-  }
-
-  getCart() {
-    const cookies = new Cookies();
-    let currentCart = cookies.get("My Cart");
-    return currentCart;
   }
 
   render() {
@@ -121,5 +118,6 @@ CartItemRow.propTypes = {
   itemImage: PropTypes.string,
   totalCost: PropTypes.number,
   updateCart: PropTypes.func,
-  getCart: PropTypes.func
+  getCart: PropTypes.func,
+  removeCart: PropTypes.func
 };
