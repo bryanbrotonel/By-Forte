@@ -16,28 +16,28 @@ export class FullCart extends Component {
     this.state = {
       cart: this.props.cart
     };
-
-    this.cart = this.state.cart;
-
-    console.log(this.cart);
   }
+
   render() {
-    const productItemsCart = this.cart ? (
-      this.state.cart.map(product => (
-        <CartItemRow
-          key={`${product.itemName} - ${product.itemVariation}: ${
-            product.itemSize
-          }`}
-          itemImage={whiteForte}
-          itemName={product.itemName}
-          itemSize={product.itemSize}
-          itemVariation={product.itemVariation}
-          itemQuantity= {1}
-        />
-      ))
-    ) : (
-      <h1>Cart empty</h1>
-    );
+    const productItemsCart =
+      this.props.getCart() !== "undefined" ? (
+        this.props.cart.map(product => (
+          <CartItemRow
+            key={`${product.itemName} - ${product.itemVariation}: ${
+              product.itemSize
+            }`}
+            itemImage={whiteForte}
+            itemName={product.itemName}
+            itemSize={product.itemSize}
+            itemVariation={product.itemVariation}
+            itemQuantity={product.itemQuantity}
+            getCart={this.props.getCart}
+            updateCart={this.props.updateCart}
+          />
+        ))
+      ) : (
+        <h3>Cart empty</h3>
+      );
 
     return (
       <React.Fragment>
@@ -54,5 +54,7 @@ export class FullCart extends Component {
 }
 
 FullCart.propTypes = {
-  cart: PropTypes.array
+  cart: PropTypes.array,
+  updateCart: PropTypes.func,
+  getCart: PropTypes.func
 };

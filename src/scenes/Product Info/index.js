@@ -18,14 +18,15 @@ export class ProductInfo extends Component {
       productDescription: [],
       orderedItem: {
         itemName: name,
-        itemSize: "Medium",
+        itemSize: "MEDIUM",
         itemVariation: colour,
-        itemQuantity: 1
+        itemQuantity: 1,
+        itemPrice: 30
       },
       redirect: false
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleOrderedItemChange = this.handleOrderedItemChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.findItem = this.findItem.bind(this);
     this.updateCart = this.updateCart.bind(this);
@@ -62,16 +63,15 @@ export class ProductInfo extends Component {
     }));
   }
 
-  handleChange(event) {
-    const selectValue = event.target.value;
+  handleOrderedItemChange = ({ target: { id, value } }) => {
 
     this.setState(prevState => ({
       orderedItem: {
         ...prevState.orderedItem,
-        itemSize: selectValue
+        [id]: value
       }
     }));
-  }
+  };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -87,7 +87,11 @@ export class ProductInfo extends Component {
     const cookies = new Cookies();
 
     let previousCart = cookies.get("My Cart");
-    let currentCart = previousCart !== undefined ? previousCart : [];
+    let currentCart = previousCart !== "undefined" ? previousCart : [];
+    if (currentCart === undefined) {
+      return;
+    }
+
     const duplicateItem = currentCart.findIndex(this.findItem);
 
     if (duplicateItem === -1) {
@@ -144,15 +148,29 @@ export class ProductInfo extends Component {
               </div>
               <p>{description}</p>
               <form onSubmit={this.handleSubmit}>
-                <div className="form-group uk-margin uk-form-width-medium">
-                  <select
-                    className="uk-select"
-                    value={this.state.orderedItem.itemSize}
-                    onChange={this.handleChange}
-                  >
-                    <option value="Medium">MEDIUM</option>
-                    <option value="Large">LARGE</option>
-                  </select>
+                <div className="form-row">
+                  <div className="form-group col-3">
+                    {" "}
+                    <select
+                      id="itemSize"
+                      className="uk-select"
+                      value={this.state.orderedItem.itemSize}
+                      onChange={this.handleOrderedItemChange}
+                    >
+                      <option value="Medium">MEDIUM</option>
+                      <option value="Large">LARGE</option>
+                    </select>
+                  </div>
+                  <div className="form-group col-2">
+                    <input
+                      id="itemQuantity"
+                      type="number"
+                      className="uk-input"
+                      defaultValue= "1"
+                      value={this.state.orderedItem.itemQuantity}
+                      onChange={this.handleOrderedItemChange}
+                    />
+                  </div>
                 </div>
                 <input
                   type="submit"

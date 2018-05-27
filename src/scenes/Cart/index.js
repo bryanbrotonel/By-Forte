@@ -13,8 +13,18 @@ export class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: this.getCart()
+      cart: []
     };
+
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.getCart = this.getCart.bind(this);
+    this.updateCart = this.updateCart.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      cart: this.getCart()
+    });
   }
 
   getCart() {
@@ -23,25 +33,43 @@ export class Cart extends Component {
     return currentCart;
   }
 
-  render() {
-    let cartContent = undefined;
+  updateCart(cartObject) {
+    this.setState({
+      cart: cartObject
+    });
+    const cookies = new Cookies();
+    cookies.set("My Cart", cartObject, { path: "/" });
+  }
 
-    if (this.state.cart) {
-      cartContent = <FullCart cart={this.state.cart} />;
-    } else {
-      cartContent = (
-        <React.Fragment>
-          <br />
-          <h5 className="text-muted">
-            Your cart is empty,{" "}
-            <NavLink to="/shop" className="text-dark">
-              continue shopping
-            </NavLink>
-            .
-          </h5>
-        </React.Fragment>
-      );
+  render() {
+    let cartContent = [];
+    let cartEmpty = true;
+    if (this.state.cart !== "undefined") {
+      if (this.state.cart.length !== 0) {
+        cartEmpty = false;
+      }
     }
+
+    cartContent = !cartEmpty ? (
+      (cartContent = (
+        <FullCart
+          cart={this.state.cart}
+          getCart={this.getCart}
+          updateCart={this.updateCart}
+        />
+      ))
+    ) : (
+      <React.Fragment>
+        <br />
+        <h5 className="text-muted">
+          Your cart is empty,{" "}
+          <NavLink to="/shop" className="text-dark">
+            continue shopping
+          </NavLink>
+          .
+        </h5>
+      </React.Fragment>
+    );
 
     return (
       <div className="container d-flex align-items-start flex-column">

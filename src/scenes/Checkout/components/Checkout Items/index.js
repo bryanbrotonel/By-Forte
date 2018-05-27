@@ -59,7 +59,7 @@ export class CheckoutItems extends Component {
         <hr />
         {productItemsCart}
         <hr/>
-        <div className="text-right">
+        <div className="text-right text-dark">
           <h6>SUBTOTAL: </h6>
           <h3>TOTAL: </h3>
         </div>
