@@ -11,8 +11,19 @@ export class Checkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: this.getCart()
+      cart: this.getCart(),
+      customerInfo: {}
     };
+
+    this.handleCheckoutSubmit = this.handleCheckoutSubmit.bind(this)
+  }
+
+  handleCheckoutSubmit(formInfo) {
+    console.log('handleCheckoutSubmit');
+    console.log(formInfo);
+    this.setState({
+      customerInfo: formInfo
+    })
   }
 
   getCart() {
@@ -22,11 +33,12 @@ export class Checkout extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="container">
         <div className="d-flex flex-md-row flex-column-reverse justify-content-md-between checkout-container">
           <div className="checkout-form-wrapper pb-3 pb-md-0">
-            <CheckoutForm />
+            <CheckoutForm handleCheckoutSubmit={this.handleCheckoutSubmit}/>
           </div>
           <div className="checkout-items-wrapper pb-3 pb-md-0">
             <CheckoutItems />

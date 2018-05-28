@@ -84,9 +84,7 @@ export class ProductInfo extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const cookies = new Cookies();
-
-    var myForm = document.getElementById('productForm');
-
+    
     const cart = this.updateCart();
     this.setState({
       redirect: true
