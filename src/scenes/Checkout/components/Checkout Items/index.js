@@ -27,8 +27,11 @@ export class CheckoutItems extends Component {
 
   render() {
 
-    const productItemsCart = this.cart ? (
-      this.state.cart.map(product => (
+    const cart = this.state.cart;
+    console.log(cart.items)
+
+    const productItemsCart = cart.items ? (
+      cart.items.map(product => (
         <CheckoutItemRow
           key={`${product.itemName} - ${product.itemVariation}: ${
             product.itemSize
@@ -37,7 +40,7 @@ export class CheckoutItems extends Component {
           itemName={product.itemName}
           itemSize={product.itemSize}
           itemVariation={product.itemVariation}
-          itemQuantity= {1}
+          itemQuantity= {product.itemQuantity}
         />
       ))
     ) : (
@@ -47,7 +50,7 @@ export class CheckoutItems extends Component {
     return (
       <div className="uk-card uk-card-default uk-card-body">
         <div className="row justify-content-between align-text-bottom align-bottom">
-          <h3 className="col-5 uk-card-title">{this.cart.length} ITEMS</h3>
+          <h3 className="col-5 uk-card-title">{cart.items.length} ITEMS</h3>
           <Link
             className="col-5 text-right align-self-center text-muted"
             to="/cart"
@@ -60,8 +63,8 @@ export class CheckoutItems extends Component {
         {productItemsCart}
         <hr/>
         <div className="text-right text-dark">
-          <h6>SUBTOTAL: </h6>
-          <h3>TOTAL: </h3>
+          <h6>SUBTOTAL: ${cart.total}</h6>
+          <h3>TOTAL: ${cart.total}</h3>
         </div>
       </div>
     );

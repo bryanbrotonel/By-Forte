@@ -36,8 +36,8 @@ export class CheckoutForm extends Component {
           </div>
           <input
             type="submit"
-            className="uk-button uk-button-default uk-form-width-small text-center"
-            value="SUBMIT"
+            className="uk-button uk-button-default uk-form-width-medium text-center"
+            value="PLACE YOUR ORDER"
           />
         </form>
       </div>

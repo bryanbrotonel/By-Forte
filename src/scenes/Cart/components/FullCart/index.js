@@ -14,14 +14,15 @@ export class FullCart extends Component {
     super(props);
 
     this.state = {
-      cart: this.props.getCart()
+      cart: []
     };
   }
 
   render() {
+    this.cart = this.props.getCart();
     const productItemsCart =
-      this.state.cart !== "undefined" ? (
-        this.props.cart.map(product => (
+      this.cart.items !== "undefined" ? (
+        this.props.cart.items.map(product => (
           <CartItemRow
             key={`${product.itemName} - ${product.itemVariation}: ${
               product.itemSize
@@ -47,7 +48,7 @@ export class FullCart extends Component {
           {productItemsCart}
         </div>
         <div className="mt-auto p-2 w-100">
-          <CartFooter />
+          <CartFooter cart={this.cart}/>
         </div>
       </React.Fragment>
     );
@@ -55,7 +56,7 @@ export class FullCart extends Component {
 }
 
 FullCart.propTypes = {
-  cart: PropTypes.array,
+  cart: PropTypes.object,
   updateCart: PropTypes.func,
   getCart: PropTypes.func,
   removeCart: PropTypes.func

@@ -19,9 +19,11 @@ export class Cart extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.getCart = this.getCart.bind(this);
     this.updateCart = this.updateCart.bind(this);
+    this.removeCart = this.removeCart.bind(this);
   }
 
   componentDidMount() {
+    this.cookies = new Cookies();
     let currentCart = this.getCart();
 
     if (currentCart) {
@@ -34,31 +36,30 @@ export class Cart extends Component {
   }
 
   getCart() {
-    const cookies = new Cookies();
-    let currentCart = cookies.get("My Cart");
+    let currentCart = this.cookies.get("My Cart");
     return currentCart;
   }
 
   removeCart() {
-    const cookies = new Cookies();
-    cookies.remove("My Cart");
+    this.cookies.remove("My Cart", { path: "/" });
   }
 
   updateCart(cartObject) {
     this.setState({
       cart: cartObject
     });
-    const cookies = new Cookies();
-    cookies.set("My Cart", cartObject, { path: "/" });
+
+    this.cookies.set("My Cart", cartObject, { path: "/" });
   }
 
   render() {
     let cartContent = undefined;
+    let cartItems = this.state.cart.items
 
     cartContent =
-      this.state.cart !== undefined &&
-      this.state.cart !== "undefined" &&
-      this.state.cart.length !== 0 ? (
+      cartItems !== undefined &&
+      cartItems !== "undefined" &&
+      cartItems.length !== 0 ? (
         (cartContent = (
           <FullCart
             cart={this.state.cart}

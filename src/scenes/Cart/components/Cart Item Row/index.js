@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import Cookies from "universal-cookie";
-
 import "./styles.css";
 
 export class CartItemRow extends Component {
@@ -38,12 +36,17 @@ export class CartItemRow extends Component {
   }
 
   removeItem(cartObject) {
-    const currentItemIndex = cartObject.findIndex(this.findItem);
-    const currentItem = cartObject[currentItemIndex];
+    let cartItems = cartObject.items
+
+    const currentItemIndex = cartItems.findIndex(this.findItem);
+    const currentItem = cartItems[currentItemIndex];
 
     if (currentItem !== undefined) {
-      cartObject.splice(currentItemIndex, 1);
-      if (cartObject.length === 0) {
+      cartObject.total -= (currentItem.itemPrice * currentItem.itemQuantity)
+      cartItems.splice(currentItemIndex, 1);
+      this.props.updateCart(cartObject);
+      if (cartItems.length === 0) {
+        cartObject.total = 0;
         this.props.removeCart();
       }
       return true;
