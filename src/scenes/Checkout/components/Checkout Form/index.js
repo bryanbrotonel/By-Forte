@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import {removeCart } from "./../../../../helpers/cartCookieHelpers";
+import { removeCart } from "./../../../../helpers/cartCookieHelpers";
+
+import { CheckoutFAQ } from "./../Checkout FAQ";
 
 export class CheckoutForm extends Component {
   constructor(props) {
@@ -104,6 +106,7 @@ export class CheckoutForm extends Component {
             required
           />
         </form>
+        <CheckoutFAQ />
       </div>
     );
   }

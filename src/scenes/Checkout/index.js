@@ -40,11 +40,9 @@ export class Checkout extends Component {
 
   render() {
     if (!getCart() && !this.state.orderPlaced) {
-      console.log('redirect to shop');
       return <Redirect to="/shop" />;
     } else {
       if (this.state.orderPlaced) {
-        console.log('thank you');
         return <ThankYou />;
       } else
         return (
