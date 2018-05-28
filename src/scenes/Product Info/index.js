@@ -18,14 +18,15 @@ export class ProductInfo extends Component {
       productDescription: [],
       orderedItem: {
         itemName: name,
-        itemSize: "Medium",
+        itemSize: "MEDIUM",
         itemVariation: colour,
-        itemQuantity: 1
+        itemQuantity: 1,
+        itemPrice: 30
       },
       redirect: false
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleOrderedItemChange = this.handleOrderedItemChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.findItem = this.findItem.bind(this);
     this.updateCart = this.updateCart.bind(this);
@@ -62,39 +63,64 @@ export class ProductInfo extends Component {
     }));
   }
 
-  handleChange(event) {
-    const selectValue = event.target.value;
+  handleOrderedItemChange = ({ target: { id, value } }) => {
+    if (id === "itemQuantity") {
+      value = parseInt(value, 10);
+      console.log(isNaN(value));
+
+      if (isNaN(value)) {
+        value = 0;
+      }
+    }
 
     this.setState(prevState => ({
       orderedItem: {
         ...prevState.orderedItem,
-        itemSize: selectValue
+        [id]: value
       }
     }));
-  }
+  };
 
   handleSubmit(event) {
     event.preventDefault();
+    const cookies = new Cookies();
+
+    var myForm = document.getElementById('productForm');
+
     const cart = this.updateCart();
     this.setState({
       redirect: true
     });
-    const cookies = new Cookies();
     cookies.set("My Cart", cart, { path: "/" });
   }
 
   updateCart() {
     const cookies = new Cookies();
+    const previousCart = cookies.get("My Cart");
 
-    let previousCart = cookies.get("My Cart");
-    let currentCart = previousCart !== undefined ? previousCart : [];
-    const duplicateItem = currentCart.findIndex(this.findItem);
+    const currentCart =
+      previousCart !== undefined ? previousCart : { total: 0, items: [] };
+
+    const currentCartItems = currentCart.items;
+
+    if (currentCart === undefined) {
+      return;
+    }
+    const duplicateItem =
+      currentCartItems.length !== 0
+        ? currentCartItems.findIndex(this.findItem)
+        : -1;
+
+    let orderedItem = this.state.orderedItem;
 
     if (duplicateItem === -1) {
-      currentCart.push(this.state.orderedItem);
+      currentCartItems.push(orderedItem);
     } else {
-      currentCart[duplicateItem].itemQuantity++;
+      currentCartItems[duplicateItem].itemQuantity += orderedItem.itemQuantity;
     }
+
+    currentCart.total += orderedItem.itemPrice * orderedItem.itemQuantity;
+
     return currentCart;
   }
 
@@ -143,16 +169,32 @@ export class ProductInfo extends Component {
                 <h5>$30</h5>
               </div>
               <p>{description}</p>
-              <form onSubmit={this.handleSubmit}>
-                <div className="form-group uk-margin uk-form-width-medium">
-                  <select
-                    className="uk-select"
-                    value={this.state.orderedItem.itemSize}
-                    onChange={this.handleChange}
-                  >
-                    <option value="Medium">MEDIUM</option>
-                    <option value="Large">LARGE</option>
-                  </select>
+              <form id="productForm" name="productForm" onSubmit={this.handleSubmit}>
+                <div className="form-row">
+                  <div className="form-group col-3">
+                    {" "}
+                    <select
+                      id="itemSize"
+                      name="itemSize"
+                      className="uk-select"
+                      value={this.state.orderedItem.itemSize}
+                      onChange={this.handleOrderedItemChange}
+                    >
+                      <option value="MEDIUM">MEDIUM</option>
+                      <option value="LARGE">LARGE</option>
+                    </select>
+                  </div>
+                  <div className="form-group col-2">
+                    <input
+                      id="itemQuantity"
+                      name="itemQuantity"
+                      type="number"
+                      className="uk-input"
+                      min="1"
+                      value={this.state.orderedItem.itemQuantity}
+                      onChange={this.handleOrderedItemChange}
+                    />
+                  </div>
                 </div>
                 <input
                   type="submit"

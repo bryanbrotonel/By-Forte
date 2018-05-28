@@ -26,12 +26,16 @@ export class Shop extends Component {
 
   render() {
     return (
-      <div className="middle-align container">
-        {this.state.validPassword ? (
-          <ProductShop />
-        ) : (
-          <PasswordInput validatePassword={this.validatePassword} />
-        )}
+      <div className="container d-flex">
+        <h1>SHOP</h1>
+        <br/>
+        <div>
+          {this.state.validPassword ? (
+            <ProductShop />
+          ) : (
+            <PasswordInput validatePassword={this.validatePassword} />
+          )}
+        </div>
       </div>
     );
   }

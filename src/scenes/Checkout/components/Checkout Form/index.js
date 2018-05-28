@@ -9,14 +9,18 @@ export class CheckoutForm extends Component {
           <div className="form-row">
             <div className="form-group col-md-6">
               <label htmlFor="firstName">First Name</label>
-              <input type="text" className="uk-input" placeholder="Last Name" />
+              <input
+                type="text"
+                className="uk-input"
+                placeholder="First Name"
+              />
             </div>
             <div className="form-group col-md-6">
               <label htmlFor="firstName">Last Name</label>
               <input
                 type="text"
                 className="uk-input"
-                placeholder="First Name"
+                placeholder="Last Name"
               />
             </div>
           </div>
@@ -26,13 +30,14 @@ export class CheckoutForm extends Component {
           </div>
           <div className="form-group">
             <label>
-              <input className="uk-checkbox" type="checkbox"/> I agree with the terms and conditions
+              <input className="uk-checkbox" type="checkbox" /> I agree with the
+              terms and conditions
             </label>
           </div>
           <input
             type="submit"
-            className="uk-button uk-button-default uk-form-width-small text-center"
-            value="SUBMIT"
+            className="uk-button uk-button-default uk-form-width-medium text-center"
+            value="PLACE YOUR ORDER"
           />
         </form>
       </div>

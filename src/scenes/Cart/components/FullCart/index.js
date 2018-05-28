@@ -14,30 +14,32 @@ export class FullCart extends Component {
     super(props);
 
     this.state = {
-      cart: this.props.cart
+      cart: []
     };
-
-    this.cart = this.state.cart;
-
-    console.log(this.cart);
   }
+
   render() {
-    const productItemsCart = this.cart ? (
-      this.state.cart.map(product => (
-        <CartItemRow
-          key={`${product.itemName} - ${product.itemVariation}: ${
-            product.itemSize
-          }`}
-          itemImage={whiteForte}
-          itemName={product.itemName}
-          itemSize={product.itemSize}
-          itemVariation={product.itemVariation}
-          itemQuantity= {1}
-        />
-      ))
-    ) : (
-      <h1>Cart empty</h1>
-    );
+    this.cart = this.props.getCart();
+    const productItemsCart =
+      this.cart.items !== "undefined" ? (
+        this.props.cart.items.map(product => (
+          <CartItemRow
+            key={`${product.itemName} - ${product.itemVariation}: ${
+              product.itemSize
+            }`}
+            itemImage={whiteForte}
+            itemName={product.itemName}
+            itemSize={product.itemSize}
+            itemVariation={product.itemVariation}
+            itemQuantity={product.itemQuantity}
+            getCart={this.props.getCart}
+            updateCart={this.props.updateCart}
+            removeCart={this.props.removeCart}
+          />
+        ))
+      ) : (
+        <h3>Cart empty</h3>
+      );
 
     return (
       <React.Fragment>
@@ -46,7 +48,7 @@ export class FullCart extends Component {
           {productItemsCart}
         </div>
         <div className="mt-auto p-2 w-100">
-          <CartFooter />
+          <CartFooter cart={this.cart}/>
         </div>
       </React.Fragment>
     );
@@ -54,5 +56,8 @@ export class FullCart extends Component {
 }
 
 FullCart.propTypes = {
-  cart: PropTypes.array
+  cart: PropTypes.object,
+  updateCart: PropTypes.func,
+  getCart: PropTypes.func,
+  removeCart: PropTypes.func
 };

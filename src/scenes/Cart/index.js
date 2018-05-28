@@ -13,23 +13,62 @@ export class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: this.getCart()
+      cart: []
     };
+
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.getCart = this.getCart.bind(this);
+    this.updateCart = this.updateCart.bind(this);
+    this.removeCart = this.removeCart.bind(this);
+  }
+
+  componentDidMount() {
+    this.cookies = new Cookies();
+    let currentCart = this.getCart();
+
+    if (currentCart) {
+      this.setState({
+        cart: currentCart
+      });
+    } else {
+      this.updateCart(this.state.cart);
+    }
   }
 
   getCart() {
-    const cookies = new Cookies();
-    let currentCart = cookies.get("My Cart");
+    let currentCart = this.cookies.get("My Cart");
     return currentCart;
+  }
+
+  removeCart() {
+    this.cookies.remove("My Cart", { path: "/" });
+  }
+
+  updateCart(cartObject) {
+    this.setState({
+      cart: cartObject
+    });
+
+    this.cookies.set("My Cart", cartObject, { path: "/" });
   }
 
   render() {
     let cartContent = undefined;
+    let cartItems = this.state.cart.items
 
-    if (this.state.cart) {
-      cartContent = <FullCart cart={this.state.cart} />;
-    } else {
-      cartContent = (
+    cartContent =
+      cartItems !== undefined &&
+      cartItems !== "undefined" &&
+      cartItems.length !== 0 ? (
+        (cartContent = (
+          <FullCart
+            cart={this.state.cart}
+            getCart={this.getCart}
+            updateCart={this.updateCart}
+            removeCart={this.removeCart}
+          />
+        ))
+      ) : (
         <React.Fragment>
           <br />
           <h5 className="text-muted">
@@ -41,7 +80,6 @@ export class Cart extends Component {
           </h5>
         </React.Fragment>
       );
-    }
 
     return (
       <div className="container d-flex align-items-start flex-column">
