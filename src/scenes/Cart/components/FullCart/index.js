@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { getCart, removeCart } from "./../../../../helpers/cartCookieHelpers";
+
 import whiteForte from "images/Mock Ups/By Forte - Mock Up (White).png";
 
 import { CartHeader } from "../Cart Header";
@@ -19,7 +21,7 @@ export class FullCart extends Component {
   }
 
   render() {
-    this.cart = this.props.getCart();
+    this.cart = getCart();
     const productItemsCart =
       this.cart.items !== "undefined" ? (
         this.props.cart.items.map(product => (
@@ -32,9 +34,9 @@ export class FullCart extends Component {
             itemSize={product.itemSize}
             itemVariation={product.itemVariation}
             itemQuantity={product.itemQuantity}
-            getCart={this.props.getCart}
+            getCart={getCart}
             updateCart={this.props.updateCart}
-            removeCart={this.props.removeCart}
+            removeCart={removeCart}
           />
         ))
       ) : (

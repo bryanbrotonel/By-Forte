@@ -1,35 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { Redirect } from "react-router";
+import { NavLink } from "react-router-dom";
 
 import "./styles.css";
 
 export class CartFooter extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      redirect: false
-    };
-
-    this.handleCheckout = this.handleCheckout.bind(this);
-  }
-
-  handleCheckout(event) {
-    event.preventDefault();
-    this.setState({
-      redirect: true
-    });
-  }
-
   render() {
-    const { redirect } = this.state;
-
-    if (redirect) {
-      return <Redirect to="/checkout" />;
-    }
-
     return (
       <React.Fragment>
         <br />
@@ -44,13 +21,11 @@ export class CartFooter extends Component {
             </div>
           </div>
           <div className="row justify-content-end">
-            <button
-              className="col-5 col-md-2 uk-button uk-button-default"
-              onClick={this.handleCheckout}
-            >
-              {" "}
-              <h5>CHECKOUT</h5>
-            </button>
+            <NavLink to="/checkout">
+              <button className="uk-button uk-button-default">
+                <h5>CHECKOUT</h5>
+              </button>
+            </NavLink>
           </div>
         </div>
       </React.Fragment>

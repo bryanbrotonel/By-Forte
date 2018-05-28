@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 
 import Cookies from "universal-cookie";
 
+import { getCart } from "../../helpers/cartCookieHelpers";
+
 export class ProductInfo extends Component {
   constructor(props) {
     super(props);
@@ -85,8 +87,6 @@ export class ProductInfo extends Component {
     event.preventDefault();
     const cookies = new Cookies();
 
-    var myForm = document.getElementById('productForm');
-
     const cart = this.updateCart();
     this.setState({
       redirect: true
@@ -95,17 +95,15 @@ export class ProductInfo extends Component {
   }
 
   updateCart() {
-    const cookies = new Cookies();
-    const previousCart = cookies.get("My Cart");
+    const previousCart = getCart();
 
     const currentCart =
-      previousCart !== undefined ? previousCart : { total: 0, items: [] };
+      !previousCart || previousCart === undefined || previousCart.length === 0
+        ? { total: 0, items: [] }
+        : previousCart;
 
     const currentCartItems = currentCart.items;
 
-    if (currentCart === undefined) {
-      return;
-    }
     const duplicateItem =
       currentCartItems.length !== 0
         ? currentCartItems.findIndex(this.findItem)
@@ -169,7 +167,11 @@ export class ProductInfo extends Component {
                 <h5>$30</h5>
               </div>
               <p>{description}</p>
-              <form id="productForm" name="productForm" onSubmit={this.handleSubmit}>
+              <form
+                id="productForm"
+                name="productForm"
+                onSubmit={this.handleSubmit}
+              >
                 <div className="form-row">
                   <div className="form-group col-3">
                     {" "}
