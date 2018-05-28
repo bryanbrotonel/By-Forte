@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { getCart } from "./../../../../helpers/cartCookieHelpers";
+
 import "./styles.css";
 
 export class CartItemRow extends Component {
@@ -8,7 +10,7 @@ export class CartItemRow extends Component {
     super(props);
 
     this.state = {
-      cart: this.props.getCart(),
+      cart: getCart(),
       item: {
         itemName: this.props.itemName,
         itemSize: this.props.itemSize,
@@ -26,7 +28,7 @@ export class CartItemRow extends Component {
   }
 
   hanldeRemoveItem(event) {
-    let currentCart = this.props.getCart();
+    let currentCart = getCart();
 
     if (this.removeItem(currentCart)) {
       this.props.updateCart(currentCart);

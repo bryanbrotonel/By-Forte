@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import {removeCart } from "./../../../../helpers/cartCookieHelpers";
+
 export class CheckoutForm extends Component {
   constructor(props) {
     super(props);
@@ -31,6 +33,7 @@ export class CheckoutForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log("--FORM SUBMITTED--");
+    removeCart();
     this.props.handleCheckoutSubmit(this.state);
   }
 
@@ -50,6 +53,7 @@ export class CheckoutForm extends Component {
                 placeholder="First Name"
                 value={this.state.firstName}
                 onChange={this.handleFormChange}
+                required
               />
             </div>
             <div className="form-group col-md-6">
@@ -62,6 +66,7 @@ export class CheckoutForm extends Component {
                 placeholder="Last Name"
                 value={this.state.lastName}
                 onChange={this.handleFormChange}
+                required
               />
             </div>
           </div>
@@ -75,6 +80,7 @@ export class CheckoutForm extends Component {
               placeholder="Email"
               value={this.state.email}
               onChange={this.handleFormChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -86,6 +92,7 @@ export class CheckoutForm extends Component {
                 type="checkbox"
                 value={this.state.termsAndConditions}
                 onChange={this.handleFormChange}
+                required
               />{" "}
               I agree with the terms and conditions
             </label>
@@ -94,6 +101,7 @@ export class CheckoutForm extends Component {
             type="submit"
             className="uk-button uk-button-default uk-form-width-medium text-center"
             value="PLACE YOUR ORDER"
+            required
           />
         </form>
       </div>
