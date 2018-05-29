@@ -99,14 +99,16 @@ export class CheckoutForm extends Component {
               I agree with the terms and conditions
             </label>
           </div>
-          <input
-            type="submit"
-            className="uk-button uk-button-default uk-form-width-medium text-center"
-            value="PLACE YOUR ORDER"
-            required
-          />
+          <CheckoutFAQ />
+          <div className="align-items-right d-flex flex-row-reverse">
+            <input
+              type="submit"
+              className="uk-button uk-button-default uk-form-width-medium text-center"
+              value="PLACE YOUR ORDER"
+              required
+            />
+          </div>
         </form>
-        <CheckoutFAQ />
       </div>
     );
   }

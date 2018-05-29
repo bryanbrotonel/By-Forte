@@ -17,7 +17,7 @@ export class CheckoutFAQ extends Component {
           <strong>Who do I pay?</strong>
           <p>
             All payments should be directed to either Trisha or Bryan. If you
-            don't know who either Bryan or Trisha are, you shouldn't be here.
+            don't know who either Bryan or Trisha are, please find someone who does.
           </p>
         </div>
       </React.Fragment>
