@@ -39,14 +39,46 @@ export class Checkout extends Component {
 
     return new Promise(function(resolve, reject) {
       thisRef.getOrderID().then(function(orderID) {
+        const timeStamp = thisRef.getOrderTimeStamp()
         var order = {
           cart: thisRef.state.cart,
           customerInfo: formInfo,
-          orderID: orderID
+          orderID: orderID,
+          date: timeStamp[0],
+          time: timeStamp[1]
         };
         return order ? resolve(order) : reject();
       });
     });
+  }
+
+  addOrderToDB(order) {
+    const firebaseDB = firebase.database();
+
+    var updates = {};
+    updates[
+      "orderList/" +
+        firebaseDB.ref("orderList").push().key +
+        "-" +
+        order.orderID
+    ] = order;
+
+    firebaseDB.ref().update(updates);
+  }
+
+  getOrderTimeStamp() {
+    const date = new Date();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    var strTime = hours + ":" + minutes + " " + ampm;
+    return [
+      date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear(),
+      strTime
+    ];
   }
 
   getOrderID() {
@@ -63,20 +95,6 @@ export class Checkout extends Component {
           return orderID ? resolve(orderID) : reject();
         });
     });
-  }
-
-  addOrderToDB(order) {
-    const firebaseDB = firebase.database();
-
-    var updates = {};
-    updates[
-      "orderList/" +
-        firebaseDB.ref("orderList").push().key +
-        "-" +
-        order.orderID
-    ] = order;
-
-    firebaseDB.ref().update(updates);
   }
 
   pad_with_zeroes(number, length = 4) {
