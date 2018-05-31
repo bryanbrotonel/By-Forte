@@ -8,7 +8,7 @@ export class Shop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      validPassword: true
+      validPassword: false
     };
 
     this.validatePassword = this.validatePassword.bind(this);
@@ -25,17 +25,14 @@ export class Shop extends Component {
   }
 
   render() {
-    return (
-      <div className="container d-flex">
-        <h1>SHOP</h1>
-        <br/>
-        <div>
-          {this.state.validPassword ? (
-            <ProductShop />
-          ) : (
-            <PasswordInput validatePassword={this.validatePassword} />
-          )}
-        </div>
+    return this.state.validPassword ? (
+      <div className="container-d-flex">
+        <br />
+        <ProductShop />
+      </div>
+    ) : (
+      <div className="container middle-align">
+        <PasswordInput validatePassword={this.validatePassword} />
       </div>
     );
   }

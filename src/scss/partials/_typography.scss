@@ -1,6 +1,6 @@
 body {
   font-family: $base-font-family;
-  // @include font-size-map($body-font-size);
+  @include font-size-map($body-font-size);
 }
 
 h1 {

@@ -1,8 +1,7 @@
 // footer.scss
 
 .footer {
-  min-height: 75px;
-  padding: 30px;
+  margin-bottom: 50px;
   position: relative;
   width: 100; // Set the fixed height of the footer here
 
@@ -10,10 +9,16 @@
     margin-top: 0;
   }
 
+  .footer-menu > li {
+    display: block;
+  }
+
   // Medium devices (tablets, 768px and up)
   @media (min-width: 576px) {
-    .col-sm {
-      margin-right: 60px;
+
+    .footer-menu > li {
+      display: inline;
+      padding-right: 10px;
     }
   }
 }
