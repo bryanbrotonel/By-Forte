@@ -105,7 +105,6 @@ export class CheckoutForm extends Component {
               type="submit"
               className="uk-button uk-button-default uk-form-width-medium text-center"
               value="PLACE YOUR ORDER"
-              required
             />
           </div>
         </form>

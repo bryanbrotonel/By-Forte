@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { getCart } from "./../../../../helpers/cartCookieHelpers";
+import { getCart, removeCart } from "./../../../../helpers/cartCookieHelpers";
+import { getProductInfo } from "./../../../../helpers/dbHelpers";
 
 import "./styles.css";
 
@@ -12,19 +13,46 @@ export class CartItemRow extends Component {
     this.state = {
       cart: getCart(),
       item: {
-        itemName: this.props.itemName,
+        productName: this.props.productName,
+        productVariation: this.props.productVariation,
+        productImage:
+          "https://raw.githubusercontent.com/diegocsandrim/sharp-test/master/output1.png",
+        productPrice: 0,
         itemSize: this.props.itemSize,
-        itemVariation: this.props.itemVariation,
-        itemQuantity: this.props.itemQuantity,
-        itemImage: this.props.itemImage,
-        itemPrice: 30,
-        totalCost: this.props.totalCost ? this.props.totalCost : this.itemPrice
-      }
+        itemQuantity: this.props.itemQuantity
+      },
+      isLoading: true
     };
 
+    this.componentDidMount = this.componentDidMount.bind(this);
     this.hanldeRemoveItem = this.hanldeRemoveItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.findItem = this.findItem.bind(this);
+  }
+
+  componentDidMount() {
+    const thisRef = this;
+    const productName = this.props.productName;
+    const productVariation = this.props.productVariation;
+
+    getProductInfo(productName, productVariation)
+      .then(function(productInfo) {
+        const productImage = productInfo.productImages[0];
+        const productPrice = productInfo.productPrice;
+
+        thisRef.setState(prevState => ({
+          item: {
+            ...prevState.item,
+            productImage: productImage,
+            productPrice: productPrice
+          },
+          isLoading: false
+        }));
+      })
+      .catch(function() {
+        // TODO: redirect to error page
+        console.log("error page");
+      });
   }
 
   hanldeRemoveItem(event) {
@@ -38,18 +66,18 @@ export class CartItemRow extends Component {
   }
 
   removeItem(cartObject) {
-    let cartItems = cartObject.items
+    let cartItems = cartObject.items;
 
     const currentItemIndex = cartItems.findIndex(this.findItem);
     const currentItem = cartItems[currentItemIndex];
 
     if (currentItem !== undefined) {
-      cartObject.total -= (currentItem.itemPrice * currentItem.itemQuantity)
+      cartObject.total -= currentItem.itemPrice * currentItem.itemQuantity;
       cartItems.splice(currentItemIndex, 1);
       this.props.updateCart(cartObject);
       if (cartItems.length === 0) {
         cartObject.total = 0;
-        this.props.removeCart();
+        removeCart();
       }
       return true;
     }
@@ -66,7 +94,13 @@ export class CartItemRow extends Component {
   }
 
   render() {
-    return (
+    const { item, isLoading } = this.state;
+    var productName = item.productName;
+    var productVariation = item.productVariation;
+
+    return isLoading ? (
+      <p className="text-center text-muted">Loading...</p>
+    ) : (
       <div className="row cart-row">
         <div className="col-md-1 align-self-center d-none d-md-block">
           <button
@@ -79,18 +113,16 @@ export class CartItemRow extends Component {
         <div className="col-5 col-md-2">
           <img
             className="d-block"
-            src={this.state.item.itemImage}
-            alt={`${this.state.item.itemName} - ${
-              this.state.item.itemVariation
-            }`}
+            src={this.state.item.productImage}
+            alt={`${productName} - ${productVariation}`}
           />
         </div>
         <div className="col-7 col-md-9">
           <div className="row text-center">
             <div className="col-8 h-100">
-              <h5 className="row text-justify"> {this.state.item.itemName}</h5>
+              <h5 className="row text-justify"> {productName.toUpperCase()}</h5>
               <h6 className="row text-justify text-muted">
-                COLOUR: {this.state.item.itemVariation}
+                COLOUR: {productVariation.toUpperCase()}
               </h6>
               <h6 className="row text-justify text-muted">
                 SIZE: {this.state.item.itemSize}
@@ -100,7 +132,7 @@ export class CartItemRow extends Component {
               <span>{this.state.item.itemQuantity}</span>
             </div>
             <div className="col-6 py-2 py-md-0 col-md-2">
-              <span>${this.state.item.itemPrice}</span>
+              <span>${this.state.item.productPrice}</span>
             </div>
             <div
               className="d-md-none d-lg text-left pt-1 text-danger"
@@ -116,13 +148,11 @@ export class CartItemRow extends Component {
 }
 
 CartItemRow.propTypes = {
-  itemName: PropTypes.string.isRequired,
+  productName: PropTypes.string.isRequired,
+  productVariation: PropTypes.string.isRequired,
   itemSize: PropTypes.string.isRequired,
-  itemVariation: PropTypes.string.isRequired,
   itemQuantity: PropTypes.number.isRequired,
   itemImage: PropTypes.string,
-  totalCost: PropTypes.number,
   updateCart: PropTypes.func,
-  getCart: PropTypes.func,
-  removeCart: PropTypes.func
+  getCart: PropTypes.func
 };

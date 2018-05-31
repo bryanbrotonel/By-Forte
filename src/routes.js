@@ -16,7 +16,7 @@ const Routes = () => (
     <Route exact={true} path="/lookbook" component={Lookbook} />
     <Route exact={true} path="/shop" component={Shop} />
     <Route
-      path="/shop/collections/tops/products/:itemId"
+      path="/shop/collections/tops/products/:itemName/:itemVariation"
       component={ProductInfo}
     />
     <Route path="/cart" component={Cart} />

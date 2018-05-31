@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
-import Cookies from "universal-cookie";
 import { Link } from "react-router-dom";
+
+import { getCart } from "../../../../helpers/cartCookieHelpers";
 
 import whiteForte from "./../../../../images/Mock Ups/By Forte - Mock Up (White).png";
 
@@ -13,20 +14,15 @@ export class CheckoutItems extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: this.getCart()
+      cart: getCart()
     };
 
     this.cart = this.state.cart;
   }
 
-  getCart() {
-    const cookies = new Cookies();
-    let currentCart = cookies.get("My Cart");
-    return currentCart;
-  }
-
   render() {
     const cart = this.state.cart;
+    console.log(cart);
 
     const productItemsCart = cart.items ? (
       cart.items.map(product => (
@@ -35,9 +31,9 @@ export class CheckoutItems extends Component {
             product.itemSize
           }`}
           itemImage={whiteForte}
-          itemName={product.itemName}
+          itemName={product.productName}
           itemSize={product.itemSize}
-          itemVariation={product.itemVariation}
+          itemVariation={product.productVariation}
           itemQuantity= {product.itemQuantity}
         />
       ))

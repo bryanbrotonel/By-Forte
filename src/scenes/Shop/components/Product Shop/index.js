@@ -1,31 +1,81 @@
 import React, { Component } from "react";
 import { ProductItem } from "./../Product Item";
 
-import whiteForte from "images/Mock Ups/By Forte - Mock Up (White).png";
-import yellowForte from "images/Mock Ups/By Forte - Mock Up (Yellow).png";
-// import ashMantraFront from "./../../images/Mock Ups/Mantra Forte (Front) - Mock Up (Ash).png";
-import ashMantraBack from "images/Mock Ups/Mantra Forte (Back) - Mock Up (Ash).png";
-// import ncBlueMantraFront from "./../../images/Mock Ups/Mantra Forte (Front) - Mock Up (NC Blue).png";
-import ncBlueMantraBack from "images/Mock Ups/Mantra Forte (Back) - Mock Up (NC Blue).png";
+import * as firebase from "firebase";
+
 import "./styles.css";
 
 export class ProductShop extends Component {
+  constructor() {
+    super();
+    this.state = {
+      productList: [],
+      isLoading: true
+    };
+  }
+
+  componentDidMount() {
+    const thisRef = this;
+    this.getProducts()
+      .then(function(productList) {
+        console.log("getProducts: then", productList);
+        thisRef.setState({
+          productList: productList,
+          isLoading: false
+        });
+      })
+      .catch(function(productList) {
+        console.log("getProducts: catch", productList);
+      });
+  }
+
+  getProducts() {
+    const thisRef = this;
+    this.productList = [];
+
+    return new Promise(function(resolve, reject) {
+      firebase
+        .database()
+        .ref("productList")
+        .once("value", function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+            var childData = childSnapshot.val();
+
+            const productItem = {
+              productName: childData.productName,
+              productVariation: childData.productVariation,
+              productImages: childData.productImages
+            };
+
+            thisRef.productList.push(productItem);
+            return thisRef.productList
+              ? resolve(thisRef.productList)
+              : reject(thisRef.productList);
+          });
+        });
+    });
+  }
+
   render() {
+    const { isLoading } = this.state;
+
+    const productList = this.state.productList.map(product => (
+      <ProductItem
+        key={`${product.productName} - ${product.productVariation}`}
+        name={product.productName}
+        variation={product.productVariation}
+        image={product.productImages[0]}
+      />
+    ));
+
     return (
       <div className="w-100">
         <div className="row justify-content-between text-center">
-          <ProductItem name="BY FORTE TEE" colour="WHITE" image={whiteForte} />
-          <ProductItem name="BY FORTE TEE" colour="YELLOW" image={yellowForte} />
-          <ProductItem
-            name="MANTRA TEE"
-            colour="NORTH CAROLINA BLUE"
-            image={ncBlueMantraBack}
-          />
-          <ProductItem
-            name="MANTRA TEE"
-            colour="GREY"
-            image={ashMantraBack}
-          />
+          {isLoading ? (
+            <h1 className="mx-auto text-muted">Loading...</h1>
+          ) : (
+            productList
+          )}
         </div>
       </div>
     );

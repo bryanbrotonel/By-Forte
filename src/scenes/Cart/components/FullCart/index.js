@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { getCart, removeCart } from "./../../../../helpers/cartCookieHelpers";
+import { getCart } from "./../../../../helpers/cartCookieHelpers";
 
 import whiteForte from "images/Mock Ups/By Forte - Mock Up (White).png";
 
@@ -21,22 +21,21 @@ export class FullCart extends Component {
   }
 
   render() {
-    this.cart = getCart();
+    const cart = getCart();
+    console.log(cart);
     const productItemsCart =
-      this.cart.items !== "undefined" ? (
-        this.props.cart.items.map(product => (
+      cart.items !== "undefined" ? (
+        cart.items.map(product => (
           <CartItemRow
-            key={`${product.itemName} - ${product.itemVariation}: ${
+            key={`${product.productName} - ${product.productVariation}: ${
               product.itemSize
             }`}
+            productName={product.productName}
+            productVariation={product.productVariation}
             itemImage={whiteForte}
-            itemName={product.itemName}
             itemSize={product.itemSize}
-            itemVariation={product.itemVariation}
             itemQuantity={product.itemQuantity}
-            getCart={getCart}
             updateCart={this.props.updateCart}
-            removeCart={removeCart}
           />
         ))
       ) : (
@@ -45,12 +44,12 @@ export class FullCart extends Component {
 
     return (
       <React.Fragment>
-        <div className="p-2">
+        <div className="p-2 w-100">
           <CartHeader key="Cart Header" />
           {productItemsCart}
         </div>
         <div className="mt-auto p-2 w-100">
-          <CartFooter cart={this.cart}/>
+          <CartFooter cart={cart} />
         </div>
       </React.Fragment>
     );
@@ -60,6 +59,4 @@ export class FullCart extends Component {
 FullCart.propTypes = {
   cart: PropTypes.object,
   updateCart: PropTypes.func,
-  getCart: PropTypes.func,
-  removeCart: PropTypes.func
 };

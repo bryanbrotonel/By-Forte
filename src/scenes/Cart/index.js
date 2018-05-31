@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import Cookies from "universal-cookie";
 
-import { getCart, removeCart } from "./../../helpers/cartCookieHelpers";
+import { getCart } from "./../../helpers/cartCookieHelpers";
 
 import { FullCart } from "./components/FullCart";
 
@@ -54,9 +54,8 @@ export class Cart extends Component {
         (cartContent = (
           <FullCart
             cart={this.state.cart}
-            getCart={this.getCart}
+            getCart={getCart}
             updateCart={this.updateCart}
-            removeCart={removeCart}
           />
         ))
       ) : (

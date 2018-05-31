@@ -6,7 +6,6 @@ export function getCart() {
   return cookies.get("My Cart");
 }
 
-
 export function removeCart() {
   cookies.remove("My Cart", { path: "/" });
 }

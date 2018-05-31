@@ -58,8 +58,6 @@ export class NavBar extends React.Component {
   }
 
   render() {
-    console.log(this.state.width);
-    console.log(this.state.length);
     const pages = ["home", "about", "lookbook", "shop", "cart"];
     const navLinks = pages.map(page => {
       return (
