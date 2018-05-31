@@ -63,7 +63,6 @@ li {
 .middle-align {
   align-items: center;
   justify-content: center;
-  margin-bottom: 25vh;
 }
 
 .content {
@@ -99,5 +98,8 @@ input[type="number"] {
 @media (min-width: 576px) {
   .content {
     width: 50%;
+  }
+  .middle-align {
+    margin-bottom: 15vh;
   }
 }

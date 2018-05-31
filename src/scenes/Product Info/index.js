@@ -31,7 +31,7 @@ export class ProductInfo extends Component {
   }
 
   componentDidMount() {
-    const thisRef = this;
+    const self = this;
     const { match: { params } } = this.props;
     console.log(params);
 
@@ -51,7 +51,7 @@ export class ProductInfo extends Component {
           productInfo.productFeature
         ];
 
-        thisRef.setState({
+        self.setState({
           productName: productName,
           productVariation: productVariation,
           productImage: productImage,

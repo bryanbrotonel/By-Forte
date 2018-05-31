@@ -23,25 +23,36 @@ export class Checkout extends Component {
   }
 
   handleCheckoutSubmit(formInfo) {
-    let thisRef = this;
+    let self = this;
 
     this.formatOrder(formInfo).then(function(order) {
-      thisRef.addOrderToDB(order);
+      self.addOrderToDB(order);
 
-      thisRef.setState({
-        orderPlaced: true
-      });
+      firebase
+        .auth()
+        .signOut()
+        .then(function() {
+          self.setState({
+            orderPlaced: true
+          });
+        })
+        .catch(function(error) {
+          // An error happened.
+          console.log(error.code, error.message);
+        });
     });
   }
 
+  shopLogOut() {}
+
   formatOrder(formInfo) {
-    let thisRef = this;
+    let self = this;
 
     return new Promise(function(resolve, reject) {
-      thisRef.getOrderID().then(function(orderID) {
-        const timeStamp = thisRef.getOrderTimeStamp()
+      self.getOrderID().then(function(orderID) {
+        const timeStamp = self.getOrderTimeStamp();
         var order = {
-          cart: thisRef.state.cart,
+          cart: self.state.cart,
           customerInfo: formInfo,
           orderID: orderID,
           date: timeStamp[0],
@@ -82,7 +93,7 @@ export class Checkout extends Component {
   }
 
   getOrderID() {
-    let thisRef = this;
+    let self = this;
 
     return new Promise(function(resolve, reject) {
       firebase
@@ -91,7 +102,7 @@ export class Checkout extends Component {
         .once("value")
         .then(function(snapshot) {
           var orderID = snapshot.numChildren();
-          orderID = thisRef.pad_with_zeroes(++orderID);
+          orderID = self.pad_with_zeroes(++orderID);
           return orderID ? resolve(orderID) : reject();
         });
     });
@@ -106,7 +117,7 @@ export class Checkout extends Component {
   }
 
   render() {
-    return !getCart() && !this.state.orderPlaced ? (
+    return (!getCart() && !this.state.orderPlaced) ? (
       <Redirect to="/shop" />
     ) : this.state.orderPlaced ? (
       <ThankYou />

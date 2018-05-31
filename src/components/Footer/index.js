@@ -7,7 +7,7 @@ export class Footer extends React.Component {
     return (
       <div className="footer container">
         <hr />
-        <ul className="footer-menu">
+        <ul className="footer-menu pl-0">
           <li>CONTACT</li>
           <li>TERMS AND CONDITIONS</li>
           <li>INSTAGRAM</li>

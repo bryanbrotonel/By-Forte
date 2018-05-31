@@ -15,11 +15,11 @@ export class ProductShop extends Component {
   }
 
   componentDidMount() {
-    const thisRef = this;
+    const self = this;
     this.getProducts()
       .then(function(productList) {
         console.log("getProducts: then", productList);
-        thisRef.setState({
+        self.setState({
           productList: productList,
           isLoading: false
         });
@@ -30,7 +30,7 @@ export class ProductShop extends Component {
   }
 
   getProducts() {
-    const thisRef = this;
+    const self = this;
     this.productList = [];
 
     return new Promise(function(resolve, reject) {
@@ -47,10 +47,10 @@ export class ProductShop extends Component {
               productImages: childData.productImages
             };
 
-            thisRef.productList.push(productItem);
-            return thisRef.productList
-              ? resolve(thisRef.productList)
-              : reject(thisRef.productList);
+            self.productList.push(productItem);
+            return self.productList
+              ? resolve(self.productList)
+              : reject(self.productList);
           });
         });
     });

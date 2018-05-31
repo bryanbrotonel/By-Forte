@@ -31,7 +31,7 @@ export class CartItemRow extends Component {
   }
 
   componentDidMount() {
-    const thisRef = this;
+    const self = this;
     const productName = this.props.productName;
     const productVariation = this.props.productVariation;
 
@@ -40,7 +40,7 @@ export class CartItemRow extends Component {
         const productImage = productInfo.productImages[0];
         const productPrice = productInfo.productPrice;
 
-        thisRef.setState(prevState => ({
+        self.setState(prevState => ({
           item: {
             ...prevState.item,
             productImage: productImage,

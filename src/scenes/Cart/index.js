@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-// import firebase from "firebase";
+import firebase from "firebase";
 import { NavLink } from "react-router-dom";
+import { Redirect } from "react-router";
 import Cookies from "universal-cookie";
 
 import { getCart } from "./../../helpers/cartCookieHelpers";
@@ -15,7 +16,8 @@ export class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: []
+      cart: [],
+      validShopper: false
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -44,6 +46,11 @@ export class Cart extends Component {
   }
 
   render() {
+    if (!firebase.auth().currentUser) {
+      console.log('not Valid');
+      return <Redirect to="/shop" />;
+    }
+
     let cartContent = undefined;
     let cartItems = this.state.cart.items;
 
