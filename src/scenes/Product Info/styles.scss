@@ -1,2 +1,13 @@
 // Product Info
 // styles.scss
+
+.slick-dots {
+  bottom: 0;
+  position: relative;
+
+  li {
+    height: 75px;
+    margin-top: 10px;
+    width: 75px;
+  }
+}

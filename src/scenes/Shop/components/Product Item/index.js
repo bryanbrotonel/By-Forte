@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export class ProductItem extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       productName: this.props.name,
       productVariation: this.props.variation,
@@ -14,12 +13,17 @@ export class ProductItem extends Component {
         .split(" ")
         .join("-")
         .toLowerCase()
-    }
+    };
   }
 
   render() {
-    const { productName, productVariation, productImages, productLink } = this.state;
-    
+    const {
+      productName,
+      productVariation,
+      productImages,
+      productLink
+    } = this.state;
+
     return (
       <div className="col-6 col-lg-3">
         <Link

@@ -4,18 +4,23 @@ import PropTypes from "prop-types";
 
 import Cookies from "universal-cookie";
 
+import Slider from "react-slick";
+
 import { getCart } from "../../helpers/cartCookieHelpers";
 import { getProductInfo } from "../../helpers/dbHelpers";
+
+import "./styles.css";
 
 export class ProductInfo extends Component {
   constructor(props) {
     super(props);
 
-    this.productName = this.state = {
+    this.state = {
       productName: "",
       productVariation: "",
-      productImage:
-        "https://raw.githubusercontent.com/diegocsandrim/sharp-test/master/output1.png",
+      productImages: [
+        "https://raw.githubusercontent.com/diegocsandrim/sharp-test/master/output1.png"
+      ],
       productPrice: 0,
       itemSize: "MEDIUM",
       itemQuantity: 1,
@@ -43,7 +48,7 @@ export class ProductInfo extends Component {
         console.log(productInfo);
         const productName = productInfo.productName;
         const productVariation = productInfo.productVariation;
-        const productImage = productInfo.productImages[0];
+        const productImages = productInfo.productImages;
         const productPrice = productInfo.productPrice;
         const productDescription = [
           productInfo.productMaterial,
@@ -54,7 +59,7 @@ export class ProductInfo extends Component {
         self.setState({
           productName: productName,
           productVariation: productVariation,
-          productImage: productImage,
+          productImages: productImages,
           productPrice: productPrice,
           productDescription: productDescription,
           isLoading: false
@@ -128,18 +133,20 @@ export class ProductInfo extends Component {
   findItem(currentitem) {
     const orderedItem = this.state;
 
-    console.log(currentitem);
-    console.log(orderedItem);
-
     return (
       currentitem.itemName === orderedItem.itemName &&
       currentitem.itemSize === orderedItem.itemSize &&
       currentitem.productVariation === orderedItem.productVariation
     );
   }
-
   render() {
-    const { redirect, isLoading } = this.state;
+    const {
+      redirect,
+      isLoading,
+      productName,
+      productVariation,
+      productImages
+    } = this.state;
     const productDescription = [];
 
     if (redirect) {
@@ -155,70 +162,92 @@ export class ProductInfo extends Component {
       );
     }
 
+    const productImagesDisplay = productImages.map(image => {
+      console.log(image);
+      return (
+        <div key={image}>
+          <img src={image} alt={`${productName} - ${productVariation}`} />
+        </div>
+      );
+    });
+
+    const settings = {
+      customPaging: function(i) {
+        return (
+          <a>
+            <img src={productImages[i]} />
+          </a>
+        );
+      },
+      arrows: false,
+      dots: true,
+      lazyLoad: true,
+      dotsClass: "slick-dots slick-thumb",
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
+
     return (
-      <div className="container middle-align">
+      <div className="container">
         {isLoading ? (
           <h1 className="text-muted">Loading...</h1>
         ) : (
-          <div>
-            <div className="row justify-content-md-center">
-              <div className="col-md-5 pb-5 pb-md-0">
-                <img
-                  src={this.state.productImage}
-                  alt={`${this.productName} - ${this.state.productVariation}`}
-                />
+          <div className="row justify-content-md-center align-items-center">
+            <div className="col-md-5 p-4">
+              <Slider {...settings}>{productImagesDisplay}</Slider>
+            </div>
+            <div className="col-md-5">
+              <div>
+                <h2>{this.state.productName.toUpperCase()}</h2>
+                <h4 className="text-muted">
+                  {this.state.productVariation.toUpperCase()}
+                </h4>
+                <h5>${this.state.productPrice}</h5>
               </div>
-              <div className="col-md-5">
-                <div>
-                  <h2>{this.state.productName.toUpperCase()}</h2>
-                  <h4 className="text-muted">
-                    {this.state.productVariation.toUpperCase()}
-                  </h4>
-                  <h5>${this.state.productPrice}</h5>
+              <p>{productDescription}</p>
+              <form
+                id="productForm"
+                name="productForm"
+                onSubmit={this.handleSubmit}
+              >
+                <div className="row">
+                  <div className="form-group col-5">
+                    {" "}
+                    <select
+                      id="itemSize"
+                      name="itemSize"
+                      className="uk-select"
+                      value={this.state.itemSize}
+                      onChange={this.handleOrderedItemChange}
+                    >
+                      <option value="MEDIUM">MEDIUM</option>
+                      <option value="LARGE">LARGE</option>
+                    </select>
+                  </div>
+                  <div className="col-3 h-100">
+                    <input
+                      id="itemQuantity"
+                      name="itemQuantity"
+                      type="number"
+                      className="uk-input"
+                      min="1"
+                      value={this.state.itemQuantity}
+                      onChange={this.handleOrderedItemChange}
+                    />
+                  </div>
                 </div>
-                <p>{productDescription}</p>
-                <form
-                  id="productForm"
-                  name="productForm"
-                  onSubmit={this.handleSubmit}
-                >
-                  <div className="row">
-                    <div className="form-group col-5">
-                      {" "}
-                      <select
-                        id="itemSize"
-                        name="itemSize"
-                        className="uk-select"
-                        value={this.state.itemSize}
-                        onChange={this.handleOrderedItemChange}
-                      >
-                        <option value="MEDIUM">MEDIUM</option>
-                        <option value="LARGE">LARGE</option>
-                      </select>
-                    </div>
-                    <div className="col-3 h-100">
-                      <input
-                        id="itemQuantity"
-                        name="itemQuantity"
-                        type="number"
-                        className="uk-input"
-                        min="1"
-                        value={this.state.itemQuantity}
-                        onChange={this.handleOrderedItemChange}
-                      />
-                    </div>
+                <div className="row">
+                  <div className="form-group col-md-5 col-8">
+                    <input
+                      type="submit"
+                      className="uk-button uk-button-default uk-form-width-medium text-center w-100"
+                      value="ADD TO CART"
+                    />
                   </div>
-                  <div className="row">
-                    <div className="form-group col-md-5 col-8">
-                      <input
-                        type="submit"
-                        className="uk-button uk-button-default uk-form-width-medium text-center w-100"
-                        value="ADD TO CART"
-                      />
-                    </div>
-                  </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
           </div>
         )}
