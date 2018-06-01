@@ -1,0 +1,17 @@
+.checkout-form-wrapper {
+  width: 62.5%;
+}
+
+.checkout-items-wrapper {
+  width: 35%;
+}
+
+@media (max-width: 1199.98px) {
+  .checkout-form-wrapper {
+    width: 100%;
+  }
+
+  .checkout-items-wrapper {
+    width: 100%;
+  }
+}
