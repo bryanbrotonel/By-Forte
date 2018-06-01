@@ -1,6 +1,6 @@
 body {
   font-family: $base-font-family;
-  // @include font-size-map($body-font-size);
+  @include font-size-map($body-font-size);
 }
 
 h1 {
@@ -22,4 +22,8 @@ h6 {
 .NavLink {
   font-family: $header-font-family;
   font-size: 18px;
+}
+
+a, a:hover {
+  color: black;
 }

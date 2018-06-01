@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { removeCart } from "./../../../../helpers/cartCookieHelpers";
+import { NavLink } from "react-router-dom";
+import { removeCart } from "./../../../../helpers/cookieHelpers";
 
 import { CheckoutFAQ } from "./../Checkout FAQ";
 
@@ -34,7 +35,6 @@ export class CheckoutForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("--FORM SUBMITTED--");
     removeCart();
     this.props.handleCheckoutSubmit(this.state);
   }
@@ -52,7 +52,6 @@ export class CheckoutForm extends Component {
                 name="firstName"
                 type="text"
                 className="uk-input"
-                placeholder="First Name"
                 value={this.state.firstName}
                 onChange={this.handleFormChange}
                 required
@@ -65,7 +64,6 @@ export class CheckoutForm extends Component {
                 name="lastName"
                 type="text"
                 className="uk-input"
-                placeholder="Last Name"
                 value={this.state.lastName}
                 onChange={this.handleFormChange}
                 required
@@ -79,7 +77,6 @@ export class CheckoutForm extends Component {
               name="email"
               type="email"
               className="uk-input"
-              placeholder="Email"
               value={this.state.email}
               onChange={this.handleFormChange}
               required
@@ -96,7 +93,10 @@ export class CheckoutForm extends Component {
                 onChange={this.handleFormChange}
                 required
               />{" "}
-              I agree with the terms and conditions
+              I agree with the{" "}
+              <NavLink to="/terms-and-conditions" className="text-muted ">
+                <u>terms and conditions</u>
+              </NavLink>
             </label>
           </div>
           <CheckoutFAQ />
@@ -105,7 +105,6 @@ export class CheckoutForm extends Component {
               type="submit"
               className="uk-button uk-button-default uk-form-width-medium text-center"
               value="PLACE YOUR ORDER"
-              required
             />
           </div>
         </form>

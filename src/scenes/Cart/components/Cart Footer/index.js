@@ -11,12 +11,12 @@ export class CartFooter extends Component {
       <React.Fragment>
         <br />
         <hr />
-        <div className="w-100">
+        <div className="w-100 container">
           <div className="row pb-md-3 pb-3 justify-content-end">
-            <div className="pr-3 pl-3 text-center border border-dark">
+            <div className="pr-3 pl-3 text-center text-white total-title-box">
               <h5>TOTAL</h5>
             </div>
-            <div className="pr-3 pl-3 text-center h-100 border border-dark">
+            <div className="pr-3 pl-3 text-center total-box">
               <h5>{this.props.cart.total}</h5>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ProductShop } from "./components/Product Shop";
 import { PasswordInput } from "./components/passwordInput";
+import * as firebase from "firebase";
 
 import "./styles.css";
 
@@ -8,34 +9,51 @@ export class Shop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      validPassword: true
+      validShopper: false
     };
 
-    this.validatePassword = this.validatePassword.bind(this);
+    this.signIn = this.signIn.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    const self = this;
+
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        self.setState({ validShopper: true });
+      }
+    });
   }
 
   // Get password callback function
-  validatePassword(value) {
-    // Validate password
+  signIn(value) {
+    // Validate
+    const self = this;
+    const email = "shop@byforte.store";
 
-    // Assign new password
-    if (value === "a") {
-      this.setState({ validPassword: true });
-    }
+    firebase
+      .auth()
+      .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(function() {
+        return firebase
+          .auth()
+          .signInWithEmailAndPassword(email, value)
+          .then(function() {
+            self.setState({ validShopper: true });
+          });
+      });
   }
 
   render() {
-    return (
+    return this.state.validShopper ? (
       <div className="container d-flex">
-        <h1>SHOP</h1>
-        <br/>
-        <div>
-          {this.state.validPassword ? (
-            <ProductShop />
-          ) : (
-            <PasswordInput validatePassword={this.validatePassword} />
-          )}
-        </div>
+        <br />
+        <ProductShop />
+      </div>
+    ) : (
+      <div className="container middle-align">
+        <PasswordInput signIn={this.signIn} />
       </div>
     );
   }

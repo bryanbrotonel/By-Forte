@@ -3,36 +3,44 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export class ProductItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      productName: this.props.name,
+      productVariation: this.props.variation,
+      productImages: this.props.image,
+      productLink: `${this.props.name}/${this.props.variation}`
+        .split(" ")
+        .join("-")
+        .toLowerCase()
+    };
+  }
+
   render() {
-    let name = this.props.name;
-    let colour = this.props.colour;
-    let image = this.props.image;
-    let url = `${name}-${colour}`
-      .split(" ")
-      .join("-")
-      .toLowerCase();
+    const {
+      productName,
+      productVariation,
+      productImages,
+      productLink
+    } = this.state;
 
     return (
       <div className="col-6 col-lg-3">
         <Link
           to={{
-            pathname: `/shop/collections/tops/products/${url}`,
-            state: {
-              name: name,
-              colour: colour,
-              image: image
-            }
+            pathname: `/shop/collections/tops/products/${productLink}`
           }}
         >
           <img
             className="mx-auto d-block"
-            src={image}
-            alt={`${name} - ${colour}`}
+            src={productImages}
+            alt={`${productName} - ${productVariation}`}
           />
         </Link>
+        <br />
         <p>
-          {name} <br />
-          <span className="text-muted">{colour}</span>
+          {productName.toUpperCase()} <br />
+          <span className="text-muted">{productVariation.toUpperCase()}</span>
         </p>
       </div>
     );
@@ -42,5 +50,5 @@ export class ProductItem extends Component {
 ProductItem.propTypes = {
   name: PropTypes.string.isRequired,
   image: PropTypes.string,
-  colour: PropTypes.string
+  variation: PropTypes.string
 };

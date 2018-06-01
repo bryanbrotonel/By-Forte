@@ -1,24 +1,36 @@
 import React from "react";
-// import {NavLink as RRNavLink} from "react-router-dom";
-import "./styles.css"
+import { NavLink } from "react-router-dom";
+
+import "./styles.css";
 
 export class Footer extends React.Component {
   render() {
     return (
       <div className="footer container">
-          <hr/>
-          <div className="row">
-            <div className="col-sm">
-              <br/>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget diam finibus, consectetur est vitae, porttitor sapien</p>
-            </div>
-            <div className="col-sm">
-              <h2>LINKS</h2>
-              <li>Test</li>
-              <li>Test</li>
-              <li>Test</li>
-            </div>
-        </div>
-    </div>)
+        <hr />
+        <ul className="footer-menu pl-0">
+          <NavLink to="/contact">
+            <li>CONTACT</li>
+          </NavLink>
+          <NavLink to="/terms-and-conditions">
+            <li>TERMS AND CONDITIONS</li>
+          </NavLink>
+          <a
+            href="https://www.instagram.com/supplybyforte/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <li>INSTAGRAM</li>
+          </a>
+          <a
+            href="https://www.facebook.com/supplybyforte"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <li>FACEBOOK</li>
+          </a>
+        </ul>
+      </div>
+    );
   }
 }

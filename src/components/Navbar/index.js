@@ -9,6 +9,9 @@ import {
   NavLink
 } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
+
+import * as firebase from "firebase";
+
 import logo from "images/By Forte Primary (Black).png";
 import "./styles.css";
 
@@ -20,18 +23,42 @@ export class NavBar extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       isOpen: false,
+      pages: ["home", "about", "lookbook", "shop"],
       width: 0
     };
 
+    this.validateShopper = this.validateShopper.bind(this);
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
   componentDidMount() {
+    this.validateShopper();
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
   }
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateWindowDimensions);
+  }
+
+  validateShopper() {
+    const self = this;
+
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        self.setState(prevState => ({
+          pages: prevState.pages.concat(["cart"])
+        }));
+      } else {
+        var navbarPages = self.state.pages;
+        var index = navbarPages.indexOf("cart");
+        if (index > -1) {
+          navbarPages.splice(index, 1);
+        }
+        self.setState({
+          pages: navbarPages
+        });
+      }
+    });
   }
 
   handleClick() {
@@ -58,10 +85,7 @@ export class NavBar extends React.Component {
   }
 
   render() {
-    console.log(this.state.width);
-    console.log(this.state.length);
-    const pages = ["home", "about", "lookbook", "shop", "cart"];
-    const navLinks = pages.map(page => {
+    const navLinks = this.state.pages.map(page => {
       return (
         <NavItem key={page}>
           <NavLink
