@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 import { getCart } from "../../../../helpers/cartCookieHelpers";
 
-import whiteForte from "./../../../../images/Mock Ups/By Forte - Mock Up (White).png";
-
 import { CheckoutItemRow } from "../Checkout Item Row";
 
 import "./styles.css";
@@ -30,7 +28,7 @@ export class CheckoutItems extends Component {
           key={`${product.itemName} - ${product.itemVariation}: ${
             product.itemSize
           }`}
-          itemImage={whiteForte}
+          itemImage="https://raw.githubusercontent.com/diegocsandrim/sharp-test/master/output1.png"
           itemName={product.productName}
           itemSize={product.itemSize}
           itemVariation={product.productVariation}

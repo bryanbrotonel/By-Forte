@@ -175,7 +175,7 @@ export class ProductInfo extends Component {
       customPaging: function(i) {
         return (
           <a>
-            <img src={productImages[i]} />
+            <img src={productImages[i]} alt={`${productName} - ${productVariation}`}/>
           </a>
         );
       },

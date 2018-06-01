@@ -52,7 +52,6 @@ export class CheckoutForm extends Component {
                 name="firstName"
                 type="text"
                 className="uk-input"
-                placeholder="First Name"
                 value={this.state.firstName}
                 onChange={this.handleFormChange}
                 required
@@ -65,7 +64,6 @@ export class CheckoutForm extends Component {
                 name="lastName"
                 type="text"
                 className="uk-input"
-                placeholder="Last Name"
                 value={this.state.lastName}
                 onChange={this.handleFormChange}
                 required
@@ -79,7 +77,6 @@ export class CheckoutForm extends Component {
               name="email"
               type="email"
               className="uk-input"
-              placeholder="Email"
               value={this.state.email}
               onChange={this.handleFormChange}
               required

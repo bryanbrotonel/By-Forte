@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 
 import { getCart } from "./../../../../helpers/cartCookieHelpers";
 
-import whiteForte from "images/Mock Ups/By Forte - Mock Up (White).png";
-
 import { CartHeader } from "../Cart Header";
 import { CartItemRow } from "../Cart Item Row";
 import { CartFooter } from "../Cart Footer";
@@ -32,7 +30,7 @@ export class FullCart extends Component {
             }`}
             productName={product.productName}
             productVariation={product.productVariation}
-            itemImage={whiteForte}
+            itemImage="https://raw.githubusercontent.com/diegocsandrim/sharp-test/master/output1.png"
             itemSize={product.itemSize}
             itemQuantity={product.itemQuantity}
             updateCart={this.props.updateCart}

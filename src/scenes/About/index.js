@@ -6,27 +6,15 @@ export class About extends Component {
     return (
       <div className="container">
         <h1>ABOUT</h1>
+        <br />
         <div className="content">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            vel magna nec turpis tempor vehicula eu et leo. Nulla porta, quam in
-            mollis aliquet, urna sapien pharetra tellus, ut scelerisque metus
-            erat congue metus. Curabitur nec lacus accumsan, lobortis sapien et,
-            elementum nunc. Curabitur vel purus sed nisi malesuada egestas.
+            Club Forte Supply is a streetwear brand based in Vancouver, Canada.
           </p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            vel magna nec turpis tempor vehicula eu et leo. Nulla porta, quam in
-            mollis aliquet, urna sapien pharetra tellus, ut scelerisque metus
-            erat congue metus. Curabitur nec lacus accumsan, lobortis sapien et,
-            elementum nunc. Curabitur vel purus sed nisi malesuada egestas.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            vel magna nec turpis tempor vehicula eu et leo. Nulla porta, quam in
-            mollis aliquet, urna sapien pharetra tellus, ut scelerisque metus
-            erat congue metus. Curabitur nec lacus accumsan, lobortis sapien et,
-            elementum nunc. Curabitur vel purus sed nisi malesuada egestas.
+            We represent what it means to bring the ideas that we visualize in
+            our minds to life. By Forte embraces the creative process by creating in
+            silence and let our products speak for themselves.
           </p>
         </div>
       </div>
