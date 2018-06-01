@@ -44,9 +44,7 @@ export class NavBar extends React.Component {
     const self = this;
 
     firebase.auth().onAuthStateChanged(function(user) {
-      console.log("addCartNavLink: onAuthStateChanged");
       if (user) {
-        console.log("addCartNavLink: user");
         self.setState(prevState => ({
           pages: prevState.pages.concat(["cart"])
         }));

@@ -47,7 +47,6 @@ export class Cart extends Component {
 
   render() {
     if (!firebase.auth().currentUser) {
-      console.log('not Valid');
       return <Redirect to="/shop" />;
     }
 

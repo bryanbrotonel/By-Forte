@@ -26,7 +26,6 @@ export class CheckoutItemRow extends Component {
 
   componentDidMount() {
     const self = this;
-    console.log(this.props.itemName, this.props.itemVariation);
     getProductInfo(this.props.itemName, this.props.itemVariation).then(function(
       productInfo
     ) {
@@ -40,7 +39,6 @@ export class CheckoutItemRow extends Component {
         },
         isLoading: false
       }));
-      console.log(productInfo);
     });
   }
 

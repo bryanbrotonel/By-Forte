@@ -18,7 +18,6 @@ export class ProductShop extends Component {
     const self = this;
     this.getProducts()
       .then(function(productList) {
-        console.log("getProducts: then", productList);
         self.setState({
           productList: productList,
           isLoading: false

@@ -30,7 +30,6 @@ export class Contact extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("--CONTACT FORM SUBMITTED--");
   }
 
   render() {

@@ -20,8 +20,7 @@ export class CheckoutItems extends Component {
 
   render() {
     const cart = this.state.cart;
-    console.log(cart);
-
+    
     const productItemsCart = cart.items ? (
       cart.items.map(product => (
         <CheckoutItemRow

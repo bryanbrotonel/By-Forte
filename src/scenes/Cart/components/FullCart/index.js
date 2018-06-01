@@ -20,7 +20,6 @@ export class FullCart extends Component {
 
   render() {
     const cart = getCart();
-    console.log(cart);
     const productItemsCart =
       cart.items !== "undefined" ? (
         cart.items.map(product => (

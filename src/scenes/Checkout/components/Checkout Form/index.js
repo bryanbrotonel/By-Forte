@@ -35,7 +35,6 @@ export class CheckoutForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("--FORM SUBMITTED--");
     removeCart();
     this.props.handleCheckoutSubmit(this.state);
   }

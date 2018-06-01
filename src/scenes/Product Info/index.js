@@ -38,14 +38,12 @@ export class ProductInfo extends Component {
   componentDidMount() {
     const self = this;
     const { match: { params } } = this.props;
-    console.log(params);
 
     getProductInfo(
       params.itemName.replace(/-/g, " "),
       params.itemVariation.replace(/-/g, " ")
     )
       .then(function(productInfo) {
-        console.log(productInfo);
         const productName = productInfo.productName;
         const productVariation = productInfo.productVariation;
         const productImages = productInfo.productImages;
@@ -163,7 +161,6 @@ export class ProductInfo extends Component {
     }
 
     const productImagesDisplay = productImages.map(image => {
-      console.log(image);
       return (
         <div key={image}>
           <img src={image} alt={`${productName} - ${productVariation}`} />

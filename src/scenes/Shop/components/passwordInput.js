@@ -19,7 +19,6 @@ export class PasswordInput extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("Final Password: " + this.state.passwordValue);
     this.props.signIn(this.state.passwordValue);
   }
 
