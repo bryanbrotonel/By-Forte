@@ -204,11 +204,9 @@ export class ProductInfo extends Component {
               <Slider {...settings}>{productImagesDisplay}</Slider>
             </div>
             <div className="col-md-5">
-              <div>
-                <h2>{this.state.productName.toUpperCase()}</h2>
-                <h4 className="text-muted">
-                  {this.state.productVariation.toUpperCase()}
-                </h4>
+              <div className="text-uppercase">
+                <h2>{this.state.productName}</h2>
+                <h4 className="text-muted">{this.state.productVariatio}</h4>
                 <h5>${this.state.productPrice}</h5>
               </div>
               <p>{productDescription}</p>

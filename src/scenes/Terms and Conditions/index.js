@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export class TermsAndConditions extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container text-justify">
         <h1>TERMS AND CONDITIONS</h1>
 
         <p>----</p>

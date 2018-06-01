@@ -95,7 +95,7 @@ export class NavBar extends React.Component {
             activeStyle={{
               fontWeight: "bold"
             }}
-            className="NavLink text-uppercase mx-auto"
+            className="nav-link text-uppercase mx-auto"
             tag={RRNavLink}
           >
             {page}
@@ -105,7 +105,7 @@ export class NavBar extends React.Component {
     });
 
     return (
-      <div className="container">
+      <div className="container p-0">
         <Navbar light={true} expand="md">
           <NavbarBrand to="/" className="navbar-brand mr-auto" tag={RRNavLink}>
             <img id="logo" src={logo} alt="By Forte" />

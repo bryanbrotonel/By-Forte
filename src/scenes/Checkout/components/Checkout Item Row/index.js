@@ -44,6 +44,14 @@ export class CheckoutItemRow extends Component {
 
   render() {
     const { isLoading, item } = this.state;
+    const {
+      itemName,
+      itemVariation,
+      itemImage,
+      itemSize,
+      itemQuantity,
+      itemPrice
+    } = item;
 
     return isLoading ? (
       <p className="text-center text-muted">Loading...</p>
@@ -52,18 +60,18 @@ export class CheckoutItemRow extends Component {
         <div className="col">
           <img
             className="d-block"
-            src={item.itemImage}
-            alt={`${item.itemName} - ${item.itemVariation}`}
+            src={itemImage}
+            alt={`${itemName} - ${itemVariation}`}
           />{" "}
         </div>
-        <div className="col text-muted text-truncate">
+        <div className="col text-muted text-truncate text-uppercase">
           {" "}
-          <h5 className="text-dark">${item.itemPrice}</h5>
-          <span> {item.itemName.toUpperCase()}</span>
+          <h5 className="text-dark">${itemPrice}</h5>
+          <span> {itemName}</span>
           <br />
-          <span> {item.itemSize.toUpperCase()}</span>
+          <span> {itemSize}</span>
           <br />
-          <span> QTY: {item.itemQuantity}</span>
+          <span> QTY: {itemQuantity}</span>
         </div>
       </div>
     );

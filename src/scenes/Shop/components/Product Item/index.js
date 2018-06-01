@@ -38,9 +38,9 @@ export class ProductItem extends Component {
           />
         </Link>
         <br />
-        <p>
-          {productName.toUpperCase()} <br />
-          <span className="text-muted">{productVariation.toUpperCase()}</span>
+        <p className="text-uppercase">
+          {productName} <br />
+          <span className="text-muted">{productVariation}</span>
         </p>
       </div>
     );

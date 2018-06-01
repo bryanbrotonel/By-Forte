@@ -99,6 +99,7 @@ export class CartItemRow extends Component {
 
   render() {
     const { item, isLoading, redirect } = this.state;
+    const { productImage, productPrice, itemSize, itemQuantity } = item;
     var productName = item.productName;
     var productVariation = item.productVariation;
 
@@ -119,30 +120,28 @@ export class CartItemRow extends Component {
         <div className="col-5 col-md-2">
           <img
             className="d-block"
-            src={this.state.item.productImage}
+            src={productImage}
             alt={`${productName} - ${productVariation}`}
           />
         </div>
         <div className="col-7 col-md-9">
           <div className="row text-center">
-            <div className="col-8 h-100">
-              <h5 className="row text-justify"> {productName.toUpperCase()}</h5>
+            <div className="col-8 h-100 text-uppercase">
+              <h5 className="row text-justify"> {productName}</h5>
               <h6 className="row text-justify text-muted">
-                COLOUR: {productVariation.toUpperCase()}
+                COLOUR: {productVariation}
               </h6>
-              <h6 className="row text-justify text-muted">
-                SIZE: {this.state.item.itemSize}
-              </h6>
+              <h6 className="row text-justify text-muted">SIZE: {itemSize}</h6>
             </div>
             <div className="col-6 py-2 py-md-0 col-md-2 ml-md-auto">
-              <span>{this.state.item.itemQuantity}</span>
+              <span>{itemQuantity}</span>
             </div>
             <div className="col-6 py-2 py-md-0 col-md-2">
-              <span>${this.state.item.productPrice}</span>
+              <span>${productPrice}</span>
             </div>
             <div
               className="d-md-none d-lg text-left pt-1 text-danger"
-              onClick={this.state.item.hanldeRemoveItem}
+              onClick={this.hanldeRemoveItem}
             >
               <span className="text-danger">REMOVE</span>
             </div>

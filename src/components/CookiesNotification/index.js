@@ -6,7 +6,7 @@ import "./styles.css";
 export class CookiesNotification extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       cookiesMessage: "This website uses cookies, do you happily accept?",
       confirmText: "YES",
@@ -31,19 +31,19 @@ export class CookiesNotification extends Component {
             <div className="col-12 pb-2">
               <h6>{cookiesMessage}</h6>
             </div>
-            <div className="col-4 col-md-1">
+            <div className="col-4 col-md-1 text-uppercase">
               <input
                 type="button"
                 className="uk-button cookies-prompt-button"
-                value={confirmText.toUpperCase()}
+                value={confirmText}
                 onClick={this.handleSelect}
               />
             </div>
-            <div className="col-4 col-md-1">
+            <div className="col-4 col-md-1 text-uppercase">
               <input
                 type="button"
                 className="uk-button cookies-prompt-button"
-                value={refuteText.toUpperCase()}
+                value={refuteText}
                 onClick={this.handleSelect}
               />
             </div>
