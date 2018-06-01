@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { Redirect } from "react-router";
+
 import { getCart, removeCart } from "./../../../../helpers/cartCookieHelpers";
 import { getProductInfo } from "./../../../../helpers/dbHelpers";
 
@@ -21,7 +23,8 @@ export class CartItemRow extends Component {
         itemSize: this.props.itemSize,
         itemQuantity: this.props.itemQuantity
       },
-      isLoading: true
+      isLoading: true,
+      redirect: false
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -50,8 +53,9 @@ export class CartItemRow extends Component {
         }));
       })
       .catch(function() {
-        // TODO: redirect to error page
-        console.log("error page");
+        self.setState({
+          redirect: true
+        });
       });
   }
 
@@ -94,11 +98,13 @@ export class CartItemRow extends Component {
   }
 
   render() {
-    const { item, isLoading } = this.state;
+    const { item, isLoading, redirect } = this.state;
     var productName = item.productName;
     var productVariation = item.productVariation;
 
-    return isLoading ? (
+    return redirect ? (
+      <Redirect to="/error" />
+    ) : isLoading ? (
       <p className="text-center text-muted">Loading...</p>
     ) : (
       <div className="row cart-row">

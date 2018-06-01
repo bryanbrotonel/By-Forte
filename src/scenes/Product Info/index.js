@@ -60,12 +60,15 @@ export class ProductInfo extends Component {
           productImages: productImages,
           productPrice: productPrice,
           productDescription: productDescription,
-          isLoading: false
+          isLoading: false,
+          redirect: false
         });
       })
       .catch(function() {
         // TODO: redirect to error page
-        console.log("error page");
+        self.setState({
+          redirect: true
+        });
       });
   }
 
@@ -172,7 +175,10 @@ export class ProductInfo extends Component {
       customPaging: function(i) {
         return (
           <a>
-            <img src={productImages[i]} alt={`${productName} - ${productVariation}`}/>
+            <img
+              src={productImages[i]}
+              alt={`${productName} - ${productVariation}`}
+            />
           </a>
         );
       },
@@ -186,7 +192,9 @@ export class ProductInfo extends Component {
       slidesToScroll: 1
     };
 
-    return (
+    return redirect ? (
+      <Redirect to="/error" />
+    ) : (
       <div className="container">
         {isLoading ? (
           <h1 className="text-muted">Loading...</h1>
