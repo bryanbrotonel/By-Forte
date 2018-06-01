@@ -6,7 +6,7 @@ import Cookies from "universal-cookie";
 
 import Slider from "react-slick";
 
-import { getCart } from "../../helpers/cartCookieHelpers";
+import { getCart } from "../../helpers/cookieHelpers";
 import { getProductInfo } from "../../helpers/dbHelpers";
 
 import "./styles.css";

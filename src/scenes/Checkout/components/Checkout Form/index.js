@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { NavLink } from "react-router-dom";
-import { removeCart } from "./../../../../helpers/cartCookieHelpers";
+import { removeCart } from "./../../../../helpers/cookieHelpers";
 
 import { CheckoutFAQ } from "./../Checkout FAQ";
 

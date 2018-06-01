@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 
-import { getCart } from "../../../../helpers/cartCookieHelpers";
+import { getCart } from "../../../../helpers/cookieHelpers";
 
 import { CheckoutItemRow } from "../Checkout Item Row";
 

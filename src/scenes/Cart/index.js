@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { Redirect } from "react-router";
 import Cookies from "universal-cookie";
 
-import { getCart } from "./../../helpers/cartCookieHelpers";
+import { getCart } from "./../../helpers/cookieHelpers";
 
 import { FullCart } from "./components/FullCart";
 

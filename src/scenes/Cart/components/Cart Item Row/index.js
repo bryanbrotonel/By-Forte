@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { Redirect } from "react-router";
 
-import { getCart, removeCart } from "./../../../../helpers/cartCookieHelpers";
+import { getCart, removeCart } from "./../../../../helpers/cookieHelpers";
 import { getProductInfo } from "./../../../../helpers/dbHelpers";
 
 import "./styles.css";

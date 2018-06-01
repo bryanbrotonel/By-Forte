@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { getCart } from "../../../../helpers/cartCookieHelpers";
+import { getCart } from "../../../../helpers/cookieHelpers";
 import { getProductInfo } from "../../../../helpers/dbHelpers";
 
 export class CheckoutItemRow extends Component {

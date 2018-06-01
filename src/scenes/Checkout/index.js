@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import firebase from "firebase";
 import { Redirect } from "react-router";
 
-import { getCart } from "./../../helpers/cartCookieHelpers";
+import { getCart } from "./../../helpers/cookieHelpers";
 
 import { CheckoutItems } from "./components/Checkout Items";
 import { CheckoutForm } from "./components/Checkout Form";
