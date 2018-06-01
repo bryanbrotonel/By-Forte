@@ -1,24 +1,31 @@
 // footer.scss
 
 .footer {
-  margin: 25px 0 50px;
+  margin: 25px 0 0px;
+  min-height: 75px;
   position: relative;
   width: 100; // Set the fixed height of the footer here
+  text-transform: uppercase;
 
   hr {
     margin-top: 0;
   }
+}
 
-  .footer-menu > li {
+.footer-menu {
+  padding: 0;
+  li {
     display: block;
   }
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 576px) {
-
-  .footer-menu > li {
-    display: inline;
-    padding-right: 10px;
+  .footer-menu {
+    padding: 0;
+    li {
+      margin: 10px;
+      display: inline;
+    }
   }
 }

@@ -9,7 +9,8 @@ import { Cart } from "scenes/Cart";
 import { Checkout } from "scenes/Checkout";
 import { Contact } from "scenes/Contact";
 import { NotFound } from "./scenes/404 Not Found";
-import {TermsAndConditions} from "./scenes/Terms and Conditions"
+import { TermsAndConditions } from "./scenes/Terms and Conditions";
+import { RefundPolicy } from "./scenes/Refund Policy";
 
 const Routes = () => (
   <Switch>
@@ -26,7 +27,8 @@ const Routes = () => (
     <Route path="/checkout" component={Checkout} />
     <Route path="/contact" component={Contact} />
     <Route path="/terms-and-conditions" component={TermsAndConditions} />
-    <Route path='*' exact={true} component={NotFound} />
+    <Route path="/refund-policy" component={RefundPolicy} />
+    <Route path="*" exact={true} component={NotFound} />
   </Switch>
 );
 
