@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { NavLink } from "react-router-dom";
 import { removeCart } from "./../../../../helpers/cartCookieHelpers";
 
 import { CheckoutFAQ } from "./../Checkout FAQ";
@@ -93,7 +94,10 @@ export class CheckoutForm extends Component {
                 onChange={this.handleFormChange}
                 required
               />{" "}
-              I agree with the terms and conditions
+              I agree with the{" "}
+              <NavLink to="/terms-and-conditions" className="text-muted ">
+                <u>terms and conditions</u>
+              </NavLink>
             </label>
           </div>
           <CheckoutFAQ />
