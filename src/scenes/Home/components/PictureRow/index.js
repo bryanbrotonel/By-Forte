@@ -1,30 +1,31 @@
 import React, { Component } from "react";
-import placeholderOne from "images/PlaceholderOne.png";
-import placeholderTwo from "images/PlaceholderTwo.png";
-import placeholderThree from "images/PlaceholderThree.jpg";
+
 import "./styles.css";
 
 export class PictureRow extends Component {
   render() {
     return (
       <div className="mx-auto">
-        <div className="d-flex flex-column flex-lg-row">
+        <div className="d-flex flex-column flex-md-row">
           <div
             className="picture"
             style={{
-              backgroundImage: "url(" + placeholderOne + ")"
+              backgroundImage:
+                "url(https://source.unsplash.com/aGn1w5kPRps/300x300)"
             }}
           />
           <div
             className="picture"
             style={{
-              backgroundImage: "url(" + placeholderTwo + ")"
+              backgroundImage:
+                "url(https://source.unsplash.com/k4ozvu8gTX8/300x300)"
             }}
           />
           <div
             className="picture"
             style={{
-              backgroundImage: "url(" + placeholderThree + ")"
+              backgroundImage:
+                "url(https://source.unsplash.com/LOg6ZdaepTU/300x300)"
             }}
           />
         </div>
