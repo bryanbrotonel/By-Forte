@@ -20,7 +20,6 @@ class App extends Component {
     super();
 
     this.state = {
-      redirect: false,
       cookiesEnabled: getEnabledCookies()
     };
 
@@ -42,7 +41,6 @@ class App extends Component {
   }
 
   render() {
-    const { redirect } = this.state;
 
     return (
       <div id="app">
@@ -55,11 +53,13 @@ class App extends Component {
         <div id="Footer">
           <Footer />
         </div>
-        <Fade in={!getEnabledCookies()}>
-          <CookiesNotification
-            handleConfirmCookies={this.handleConfirmCookies}
-          />
-        </Fade>
+        {!getEnabledCookies() ? (
+          <Fade in={!getEnabledCookies()}>
+            <CookiesNotification
+              handleConfirmCookies={this.handleConfirmCookies}
+            />
+          </Fade>
+        ) : null}
       </div>
     );
   }

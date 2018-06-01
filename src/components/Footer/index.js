@@ -8,7 +8,7 @@ export class Footer extends React.Component {
     return (
       <div className="footer container">
         <hr />
-        <ul className="footer-menu pl-0">
+        <ul className="footer-menu pl-0 text-dark">
           <NavLink to="/contact">
             <li>CONTACT</li>
           </NavLink>

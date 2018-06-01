@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { ProductShop } from "./components/Product Shop";
 import { PasswordInput } from "./components/passwordInput";
-import * as firebase from "firebase";
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 import "./styles.css";
 

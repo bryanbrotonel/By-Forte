@@ -10,7 +10,8 @@ import {
 } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
 
-import * as firebase from "firebase";
+import firebase from "firebase/app";
+import 'firebase/auth';
 
 import logo from "images/By Forte Primary (Black).png";
 import "./styles.css";

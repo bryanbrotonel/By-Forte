@@ -42,6 +42,10 @@ li {
   list-style: none;
 }
 
+a {
+  color: $black;
+}
+
 .fill-height-or-more {
   min-height: 100%;
   display: flex;

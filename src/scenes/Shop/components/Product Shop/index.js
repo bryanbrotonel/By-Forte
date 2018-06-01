@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ProductItem } from "./../Product Item";
 
-import * as firebase from "firebase";
+import firebase from 'firebase/app';
 
 import "./styles.css";
 

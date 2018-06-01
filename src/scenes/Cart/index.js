@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import firebase from "firebase";
+import 'firebase/auth';
+
 import { NavLink } from "react-router-dom";
 import { Redirect } from "react-router";
 import Cookies from "universal-cookie";
