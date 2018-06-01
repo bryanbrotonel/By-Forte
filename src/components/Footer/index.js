@@ -1,5 +1,6 @@
 import React from "react";
-// import {NavLink as RRNavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 import "./styles.css";
 
 export class Footer extends React.Component {
@@ -8,10 +9,26 @@ export class Footer extends React.Component {
       <div className="footer container">
         <hr />
         <ul className="footer-menu pl-0">
-          <li>CONTACT</li>
-          <li>TERMS AND CONDITIONS</li>
-          <li>INSTAGRAM</li>
-          <li>FACEBOOK</li>
+          <NavLink to="/contact">
+            <li>CONTACT</li>
+          </NavLink>
+          <NavLink to="/terms-and-conditions">
+            <li>TERMS AND CONDITIONS</li>
+          </NavLink>
+          <a
+            href="https://www.instagram.com/supplybyforte/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <li>INSTAGRAM</li>
+          </a>
+          <a
+            href="https://www.facebook.com/supplybyforte"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <li>FACEBOOK</li>
+          </a>
         </ul>
       </div>
     );
