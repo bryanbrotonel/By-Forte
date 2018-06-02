@@ -35,7 +35,7 @@ export class Shop extends Component {
 
     firebase
       .auth()
-      .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
       .then(function() {
         return firebase
           .auth()
