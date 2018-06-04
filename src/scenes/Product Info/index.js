@@ -221,12 +221,12 @@ export class ProductInfo extends Component {
                     <select
                       id="itemSize"
                       name="itemSize"
-                      className="uk-select"
+                      className="uk-select text-uppercase"
                       value={this.state.itemSize}
                       onChange={this.handleOrderedItemChange}
                     >
-                      <option value="MEDIUM">MEDIUM</option>
-                      <option value="LARGE">LARGE</option>
+                      <option value="MEDIUM">Medium</option>
+                      <option value="LARGE">Large</option>
                     </select>
                   </div>
                   <div className="col-3 h-100">
