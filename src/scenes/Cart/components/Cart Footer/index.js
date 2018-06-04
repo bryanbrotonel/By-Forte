@@ -17,7 +17,7 @@ export class CartFooter extends Component {
               <h5>TOTAL</h5>
             </div>
             <div className="pr-3 pl-3 text-center total-box">
-              <h5>{this.props.cart.total}</h5>
+              <h5>${this.props.cart.total}</h5>
             </div>
           </div>
           <div className="row justify-content-end">

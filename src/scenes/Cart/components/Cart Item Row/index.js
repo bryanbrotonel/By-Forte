@@ -126,12 +126,12 @@ export class CartItemRow extends Component {
         </div>
         <div className="col-7 col-md-9">
           <div className="row text-center">
-            <div className="col-8 h-100 text-uppercase">
-              <h5 className="row text-justify"> {productName}</h5>
-              <h6 className="row text-justify text-muted">
+            <div className="col-8 h-100">
+              <h5 className="row text-justify text-uppercase"> {productName}</h5>
+              <h6 className="row text-justify text-muted text-uppercase">
                 COLOUR: {productVariation}
               </h6>
-              <h6 className="row text-justify text-muted">SIZE: {itemSize}</h6>
+              <h6 className="row text-justify text-muted text-uppercase">SIZE: {itemSize}</h6>
             </div>
             <div className="col-6 py-2 py-md-0 col-md-2 ml-md-auto">
               <span>{itemQuantity}</span>
