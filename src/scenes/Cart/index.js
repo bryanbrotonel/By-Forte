@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import firebase from "firebase/app";
-import 'firebase/auth';
+import "firebase/auth";
 
 import { NavLink } from "react-router-dom";
 import { Redirect } from "react-router";
@@ -28,14 +28,16 @@ export class Cart extends Component {
 
   componentDidMount() {
     this.cookies = new Cookies();
+    const { cart } = this.state;
     let currentCart = getCart();
 
     if (currentCart) {
       this.setState({
         cart: currentCart
       });
+      this.updateCartDocumentTitle(currentCart.items.length);
     } else {
-      this.updateCart(this.state.cart);
+      this.updateCart(cart);
     }
   }
 
@@ -44,7 +46,13 @@ export class Cart extends Component {
       cart: cartObject
     });
 
+    this.updateCartDocumentTitle(cartObject.items.length);
+
     this.cookies.set("My Cart", cartObject, { path: "/" });
+  }
+
+  updateCartDocumentTitle(cartLength) {
+    document.title = "By Forte | Cart (" + cartLength + ")";
   }
 
   render() {

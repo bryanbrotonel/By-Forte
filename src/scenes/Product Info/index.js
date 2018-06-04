@@ -63,6 +63,8 @@ export class ProductInfo extends Component {
           isLoading: false,
           redirect: false
         });
+
+        document.title = "By Forte | " + productName + " - " + productVariation;
       })
       .catch(function() {
         // TODO: redirect to error page
@@ -206,7 +208,7 @@ export class ProductInfo extends Component {
             <div className="col-md-5">
               <div className="text-uppercase">
                 <h2>{this.state.productName}</h2>
-                <h4 className="text-muted">{this.state.productVariatio}</h4>
+                <h4 className="text-muted">{this.state.productVariation}</h4>
                 <h5>${this.state.productPrice}</h5>
               </div>
               <p>{productDescription}</p>

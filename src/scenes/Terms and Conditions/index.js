@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 
 export class TermsAndConditions extends Component {
+  constructor() {
+    super();
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    document.title = "By Forte | Terms and Conditions";
+  }
+
   render() {
     return (
       <div className="container text-justify">

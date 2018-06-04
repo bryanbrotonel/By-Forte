@@ -18,8 +18,14 @@ export class Checkout extends Component {
       cart: getCart(),
       orderPlaced: false
     };
+
     this.handleCheckoutSubmit = this.handleCheckoutSubmit.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
     this.formatOrder = this.formatOrder.bind(this);
+  }
+
+  componentDidMount() {
+    document.title = "By Forte | Checkout";
   }
 
   handleCheckoutSubmit(formInfo) {

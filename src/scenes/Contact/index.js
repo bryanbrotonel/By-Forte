@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 
 export class Contact extends Component {
+  constructor() {
+    super();
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    document.title = "By Forte | Contact";
+  }
+
   render() {
     return (
       <div className="container">

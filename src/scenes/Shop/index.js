@@ -17,9 +17,10 @@ export class Shop extends Component {
     this.signIn = this.signIn.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
   }
-
   componentDidMount() {
     const self = this;
+
+    document.title = "By Forte | Shop";
 
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {

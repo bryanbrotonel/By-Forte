@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 
 export class RefundPolicy extends Component {
+  constructor() {
+    super();
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    document.title = "By Forte | Refund Policy";
+  }
+
   render() {
     return (
       <div className="container text-justify">
