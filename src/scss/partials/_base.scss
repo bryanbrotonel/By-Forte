@@ -42,7 +42,9 @@ li {
   list-style: none;
 }
 
-a {
+a,
+&:hover,
+&:visited {
   color: $black;
 
   &:hover,
@@ -79,15 +81,20 @@ a {
 }
 
 // UIKit Compoennts
+.uk-button-default,
+.uk-select,
+&:hover,
+&:enabled {
+  color: $black;
+}
 
 .uk-button-default,
 .uk-select {
   background-color: #ffffff;
-  color: $black;
   text-align-last: center;
+
   &:hover,
   &:enabled {
-    color: $black;
     border: 1px solid #e5e5e5;
   }
 }
