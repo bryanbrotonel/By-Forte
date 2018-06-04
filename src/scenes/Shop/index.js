@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { ProductShop } from "./components/Product Shop";
 import { PasswordInput } from "./components/passwordInput";
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from "firebase/app";
+import "firebase/auth";
 
 import "./styles.css";
 
@@ -10,7 +10,8 @@ export class Shop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      validShopper: false
+      validShopper: false,
+      validPassword: true
     };
 
     this.signIn = this.signIn.bind(this);
@@ -31,7 +32,7 @@ export class Shop extends Component {
   signIn(value) {
     // Validate
     const self = this;
-    const email = "shop@byforte.store";
+    const shopEmail = "shop@byforte.store";
 
     firebase
       .auth()
@@ -39,14 +40,20 @@ export class Shop extends Component {
       .then(function() {
         return firebase
           .auth()
-          .signInWithEmailAndPassword(email, value)
+          .signInWithEmailAndPassword(shopEmail, value)
           .then(function() {
             self.setState({ validShopper: true });
           });
+      })
+      .catch(function() {
+        self.setState({
+          validPassword: false
+        });
       });
   }
 
   render() {
+    const { validPassword, errorMessage } = this.state;
     return this.state.validShopper ? (
       <div className="container d-flex">
         <br />
@@ -54,7 +61,11 @@ export class Shop extends Component {
       </div>
     ) : (
       <div className="container middle-align">
-        <PasswordInput signIn={this.signIn} />
+        <PasswordInput
+          signIn={this.signIn}
+          validPassword={validPassword}
+          errorMessage={errorMessage}
+        />
       </div>
     );
   }
