@@ -22,8 +22,6 @@ export class CheckoutForm extends Component {
   }
 
   handleFormChange(event) {
-    event.preventDefault();
-
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
@@ -89,7 +87,7 @@ export class CheckoutForm extends Component {
                 name="termsAndConditions"
                 className="uk-checkbox"
                 type="checkbox"
-                value={this.state.termsAndConditions}
+                checked={this.state.termsAndConditions}
                 onChange={this.handleFormChange}
                 required
               />{" "}

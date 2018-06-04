@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export class ThankYou extends Component {
   render() {
     var divStyle = {
-      width: "300px",
+      width: "300px"
     };
 
     return (
@@ -13,8 +13,9 @@ export class ThankYou extends Component {
         <h4 className="text-muted">Your order is being processed</h4>
         <div className="text-center" style={divStyle}>
           <p>
-            On behalf of the By Forte team, Trisha and Bryan would like to thank you for rocking with By Forte from the very start.
-            Your support is greatly appreciated.
+            On behalf of the By Forte team, Trisha and Bryan would like to thank
+            you for rocking with By Forte from the very start. Your support is
+            greatly appreciated.
           </p>
           <div className="text-center font-italic">
             <p>Prosper Through Noise</p>

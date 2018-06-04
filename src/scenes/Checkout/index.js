@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { Redirect } from "react-router";
 
 import { getCart } from "./../../helpers/cookieHelpers";

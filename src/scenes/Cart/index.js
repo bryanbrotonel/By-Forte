@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import firebase from "firebase";
+import firebase from "firebase/app";
 import 'firebase/auth';
 
 import { NavLink } from "react-router-dom";

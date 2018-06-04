@@ -27,11 +27,12 @@ export class PasswordInput extends Component {
       <React.Fragment>
         <form onSubmit={this.handleSubmit}>
           <input
-            className="form-control"
+            className="uk-input"
             type="password"
             name="password"
             value={this.state.passwordValue}
             onChange={this.handleChange}
+            placeholder="Password"
           />
         </form>
       </React.Fragment>
