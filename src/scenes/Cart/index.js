@@ -31,11 +31,12 @@ export class Cart extends Component {
     const { cart } = this.state;
     let currentCart = getCart();
 
+    document.title = "By Forte | Cart";
+
     if (currentCart) {
       this.setState({
         cart: currentCart
       });
-      this.updateCartDocumentTitle(currentCart.items.length);
     } else {
       this.updateCart(cart);
     }
@@ -46,13 +47,7 @@ export class Cart extends Component {
       cart: cartObject
     });
 
-    this.updateCartDocumentTitle(cartObject.items.length);
-
     this.cookies.set("My Cart", cartObject, { path: "/" });
-  }
-
-  updateCartDocumentTitle(cartLength) {
-    document.title = "By Forte | Cart (" + cartLength + ")";
   }
 
   render() {
