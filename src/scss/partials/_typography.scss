@@ -5,16 +5,19 @@ body {
   font-family: $base-font-family;
 }
 
-h1 {
-  @include font-size-map($h1-font-size);
+h1,
+h2,
+h3 {
   font-family: $header-font-family;
   text-transform: uppercase;
 }
 
+h1 {
+  @include font-size-map($h1-font-size);
+}
+
 h2 {
   @include font-size-map($h2-font-size);
-  font-family: $header-font-family;
-  text-transform: uppercase;
 }
 
 h4,

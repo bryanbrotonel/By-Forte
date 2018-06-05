@@ -9,7 +9,7 @@ import { CartFooter } from "../Cart Footer";
 
 import "./styles.css";
 
-export class FullCart extends Component {
+export default class FullCart extends Component {
   constructor(props) {
     super(props);
 

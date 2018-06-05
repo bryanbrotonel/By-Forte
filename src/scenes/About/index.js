@@ -1,14 +1,15 @@
 import React, { Component } from "react";
+
 import "./styles.scss";
 
-export class About extends Component {
+export default class About extends Component {
   constructor() {
     super();
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount() {
-    document.title =  "By Forte | About";
+    document.title = "By Forte | About";
   }
 
   render() {

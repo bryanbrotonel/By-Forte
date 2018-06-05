@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ProductItem } from "./../Product Item";
 
-import firebase from 'firebase/app';
+import firebase from "firebase/app";
 
 import "./styles.css";
 
@@ -67,14 +67,14 @@ export class ProductShop extends Component {
       />
     ));
 
-    return (
+    return isLoading ? (
+      <div className="middle-align text-muted text-center">
+        <h2>LOADING</h2>
+      </div>
+    ) : (
       <div className="w-100">
         <div className="row justify-content-between text-center">
-          {isLoading ? (
-            <h1 className="mx-auto text-muted">Loading...</h1>
-          ) : (
-            productList
-          )}
+          {productList}
         </div>
       </div>
     );

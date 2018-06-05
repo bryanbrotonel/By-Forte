@@ -11,7 +11,7 @@ import { getProductInfo } from "../../helpers/dbHelpers";
 
 import "./styles.css";
 
-export class ProductInfo extends Component {
+export default class ProductInfo extends Component {
   constructor(props) {
     super(props);
 

@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import { ProductShop } from "./components/Product Shop";
-import { PasswordInput } from "./components/passwordInput";
+
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/database";
+
+import { ProductShop } from "./components/Product Shop";
+import { PasswordInput } from "./components/passwordInput";
 
 import "./styles.css";
 
-export class Shop extends Component {
+export default class Shop extends Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -114,7 +114,7 @@ export class CartItemRow extends Component {
             onClick={this.hanldeRemoveItem}
             className="uk-button uk-button-default"
           >
-            <h3>x</h3>
+            <h4>x</h4>
           </button>
         </div>
         <div className="col-5 col-md-2">

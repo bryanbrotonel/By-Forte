@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { PictureRow } from "./components/PictureRow";
 import "./styles.css";
 
-export class Home extends Component {
+export default class Home extends Component {
   constructor() {
     super();
     this.componentDidMount = this.componentDidMount.bind(this);

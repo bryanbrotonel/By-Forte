@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export class TermsAndConditions extends Component {
+export default class TermsAndConditions extends Component {
   constructor() {
     super();
     this.componentDidMount = this.componentDidMount.bind(this);

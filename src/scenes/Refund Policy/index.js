@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export class RefundPolicy extends Component {
+export default class RefundPolicy extends Component {
   constructor() {
     super();
     this.componentDidMount = this.componentDidMount.bind(this);

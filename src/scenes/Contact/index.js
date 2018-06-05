@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export class Contact extends Component {
+export default class Contact extends Component {
   constructor() {
     super();
     this.componentDidMount = this.componentDidMount.bind(this);

@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Loadable from "react-loadable";
 
 import firebase from "firebase/app";
 import "firebase/auth";
 
-import { NavLink } from "react-router-dom";
 import { Redirect } from "react-router";
 import Cookies from "universal-cookie";
 
 import { getCart } from "./../../helpers/cookieHelpers";
 
-import { FullCart } from "./components/FullCart";
+import Loading from "./../../components/Loading";
 
 import "./styles.css";
 
-export class Cart extends Component {
+export default class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,41 +51,41 @@ export class Cart extends Component {
   }
 
   render() {
+    const { cart } = this.state;
+    const self = this;
     if (!firebase.auth().currentUser) {
       return <Redirect to="/shop" />;
     }
 
-    let cartContent = undefined;
-    let cartItems = this.state.cart.items;
+    let cartItems = cart.items;
 
-    cartContent =
+    const CartContent =
       cartItems !== undefined &&
       cartItems !== "undefined" &&
-      cartItems.length !== 0 ? (
-        (cartContent = (
-          <FullCart
-            cart={this.state.cart}
-            getCart={getCart}
-            updateCart={this.updateCart}
-          />
-        ))
-      ) : (
-        <React.Fragment>
-          <br />
-          <h5 className="text-muted">
-            Your cart is empty,{" "}
-            <NavLink to="/shop" className="text-dark">
-              continue shopping
-            </NavLink>
-            .
-          </h5>
-        </React.Fragment>
-      );
+      cartItems.length !== 0
+        ? Loadable({
+            loader: () => import("./components/Full Cart"),
+            render(loaded) {
+              let Component = loaded.default;
+              return (
+                <Component
+                  cart={cart}
+                  getCart={getCart}
+                  updateCart={self.updateCart}
+                />
+              );
+            },
+            loading: Loading
+          })
+        : Loadable({
+            loader: () => import("./components/Empty Cart"),
+            loading: Loading
+          });
 
     return (
       <div className="container d-flex align-items-start flex-column">
         <h1>CART</h1>
-        {cartContent}
+        <CartContent />
       </div>
     );
   }

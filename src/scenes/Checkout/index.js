@@ -11,7 +11,7 @@ import { ThankYou } from "./components/Thank You";
 
 import "./styles.css";
 
-export class Checkout extends Component {
+export default class Checkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,8 +48,6 @@ export class Checkout extends Component {
         });
     });
   }
-
-  shopLogOut() {}
 
   formatOrder(formInfo) {
     let self = this;
@@ -123,7 +121,7 @@ export class Checkout extends Component {
   }
 
   render() {
-    return (!getCart() && !this.state.orderPlaced) ? (
+    return !getCart() && !this.state.orderPlaced ? (
       <Redirect to="/shop" />
     ) : this.state.orderPlaced ? (
       <ThankYou />

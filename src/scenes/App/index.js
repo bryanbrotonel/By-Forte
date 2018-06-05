@@ -45,7 +45,7 @@ class App extends Component {
           <Footer />
         </div>
         {!getEnabledCookies() ? (
-          <Fade in={!getEnabledCookies()}>
+          <Fade in={!getEnabledCookies()} out={getEnabledCookies()}>
             <CookiesNotification
               handleConfirmCookies={this.handleConfirmCookies}
             />

@@ -1,17 +1,24 @@
 import React, { Component } from "react";
-import {ComingSoon} from "../../components/ComingSoon";
+import Loadable from "react-loadable";
 
-export class Editorial extends Component {
+import Loading from "./../../components/Loading";
+
+const ComingSoon = Loadable({
+  loader: () => import("../../components/ComingSoon"),
+  loading: Loading
+});
+
+export default class Editorial extends Component {
   constructor() {
     super();
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount() {
-    document.title =  "By Forte | Editorial";
+    document.title = "By Forte | Editorial";
   }
 
   render() {
-    return ( <ComingSoon/> )
+    return <ComingSoon />;
   }
 }
