@@ -26,18 +26,9 @@ class App extends Component {
     this.handleConfirmCookies = this.handleConfirmCookies.bind(this);
   }
 
-  handleConfirmCookies(value) {
-    switch (value) {
-      case "yes":
-        setEnabledCookies();
-        this.forceUpdate();
-        break;
-      case "no":
-        window.location.replace("http://google.ca");
-        break;
-      default:
-        break;
-    }
+  handleConfirmCookies() {
+    setEnabledCookies();
+    this.forceUpdate();
   }
 
   render() {

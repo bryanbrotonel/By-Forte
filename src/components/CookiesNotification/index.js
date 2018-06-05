@@ -8,27 +8,29 @@ export class CookiesNotification extends Component {
     super(props);
 
     this.state = {
-      cookiesMessage: "This website uses cookies, do you happily accept?",
-      confirmText: "YES",
-      refuteText: "NO"
+      cookiesMessage:
+        "We use cookies to store information on your computer. By continuing, you agree with our use of cookies.",
+      confirmText: "OK"
     };
-
-    this.handleSelect = this.handleSelect.bind(this);
   }
 
-  handleSelect(event) {
+  static propTypes = {
+    handleConfirmCookies: PropTypes.func.isRequired
+  };
+
+  handleSelect = event => {
     event.preventDefault();
-    this.props.handleConfirmCookies(event.target.value.toLowerCase());
-  }
+    this.props.handleConfirmCookies();
+  };
 
   render() {
-    const { cookiesMessage, confirmText, refuteText } = this.state;
+    const { cookiesMessage, confirmText } = this.state;
 
     return (
       <div className="cookie-prompt">
         <div className="container">
-          <div className="row">
-            <div className="col-12 pb-2">
+          <div className="row justify-content-between align-items-center">
+            <div className="col-9r">
               <h6>{cookiesMessage}</h6>
             </div>
             <div className="col-4 col-md-1 text-uppercase">
@@ -39,21 +41,9 @@ export class CookiesNotification extends Component {
                 onClick={this.handleSelect}
               />
             </div>
-            <div className="col-4 col-md-1 text-uppercase">
-              <input
-                type="button"
-                className="uk-button cookies-prompt-button"
-                value={refuteText}
-                onClick={this.handleSelect}
-              />
-            </div>
           </div>
         </div>
       </div>
     );
   }
 }
-
-CookiesNotification.proptypes = {
-  handleConfirmCookies: PropTypes.func.isRequired
-};
