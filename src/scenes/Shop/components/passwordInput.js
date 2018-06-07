@@ -34,8 +34,7 @@ export class PasswordInput extends Component {
     return (
       <React.Fragment>
         <form onSubmit={this.handleSubmit} className="row">
-          <div className="col-6 p-0">
-            <div className="row">
+          <div className="col-8 p-0">
               <input
                 className="uk-input"
                 type="password"
@@ -44,17 +43,18 @@ export class PasswordInput extends Component {
                 onChange={this.handleChange}
                 placeholder="Password"
               />
-            </div>
-            {invalidPassword}
           </div>
-          <div className="col-6">
+          <div className="col-4 align-self-center p-0">
             <input
               type="submit"
-              className="uk-button uk-button-default"
+              className="uk-button uk-button-default w-100 p-0"
               value="SUBMIT"
             />
           </div>
         </form>
+        <div>
+          <p>{invalidPassword}</p>
+        </div>
       </React.Fragment>
     );
   }

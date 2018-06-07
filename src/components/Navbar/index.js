@@ -108,7 +108,7 @@ export class NavBar extends React.Component {
       <div className="container p-0">
         <Navbar light={true} expand="md">
           <NavbarBrand to="/" className="navbar-brand mr-auto" tag={RRNavLink}>
-            <img id="logo" src={logo} alt="By Forte" />
+            <img className="navbar-logo" src={logo} alt="By Forte" />
           </NavbarBrand>
           <NavbarToggler onClick={this.handleClick} />
           <Collapse isOpen={this.state.isOpen} navbar={true}>
