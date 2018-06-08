@@ -206,9 +206,9 @@ export default class ProductInfo extends Component {
               <Slider {...settings}>{productImagesDisplay}</Slider>
             </div>
             <div className="col-md-5">
-              <div className="text-uppercase">
+              <div>
                 <h2>{this.state.productName}</h2>
-                <h4 className="text-muted">{this.state.productVariation}</h4>
+                <h4 className="text-muted text-uppercase">{this.state.productVariation}</h4>
                 <h5>${this.state.productPrice}</h5>
               </div>
               <p>{productDescription}</p>
