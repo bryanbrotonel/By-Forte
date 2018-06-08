@@ -1,0 +1,15 @@
+@import 'scss/modules/colours';
+
+.cookie-prompt {
+  background-color: $black;
+  bottom: 0;
+  color: $white;
+  padding: 2vh;
+  position: fixed;
+  width: 100vw;
+}
+
+.cookies-prompt-button {
+  background-color: $black;
+  border: solid $white 1px;
+}
