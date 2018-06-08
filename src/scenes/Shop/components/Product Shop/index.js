@@ -9,7 +9,7 @@ export class ProductShop extends Component {
   constructor() {
     super();
     this.state = {
-      productList: [],
+      inventory: [],
       isLoading: true
     };
   }
@@ -17,25 +17,25 @@ export class ProductShop extends Component {
   componentDidMount() {
     const self = this;
     this.getProducts()
-      .then(function(productList) {
+      .then(function(inventory) {
         self.setState({
-          productList: productList,
+          inventory: inventory,
           isLoading: false
         });
       })
-      .catch(function(productList) {
-        console.log("getProducts: catch", productList);
+      .catch(function(inventory) {
+        console.log("getProducts: catch", inventory);
       });
   }
 
   getProducts() {
     const self = this;
-    this.productList = [];
+    this.inventory = [];
 
     return new Promise(function(resolve, reject) {
       firebase
         .database()
-        .ref("productList")
+        .ref("inventory")
         .once("value", function(snapshot) {
           snapshot.forEach(function(childSnapshot) {
             var childData = childSnapshot.val();
@@ -46,10 +46,10 @@ export class ProductShop extends Component {
               productImages: childData.productImages
             };
 
-            self.productList.push(productItem);
-            return self.productList
-              ? resolve(self.productList)
-              : reject(self.productList);
+            self.inventory.push(productItem);
+            return self.inventory
+              ? resolve(self.inventory)
+              : reject(self.inventory);
           });
         });
     });
@@ -58,7 +58,7 @@ export class ProductShop extends Component {
   render() {
     const { isLoading } = this.state;
 
-    const productList = this.state.productList.map(product => (
+    const inventory = this.state.inventory.map(product => (
       <ProductItem
         key={`${product.productName} - ${product.productVariation}`}
         name={product.productName}
@@ -74,7 +74,7 @@ export class ProductShop extends Component {
     ) : (
       <div className="w-100">
         <div className="row justify-content-between text-center">
-          {productList}
+          {inventory}
         </div>
       </div>
     );

@@ -22,7 +22,7 @@ export default class ProductInfo extends Component {
         "https://raw.githubusercontent.com/diegocsandrim/sharp-test/master/output1.png"
       ],
       productPrice: 0,
-      itemSize: "MEDIUM",
+      itemSize: "SMALL",
       itemQuantity: 1,
       productDescription: [],
       redirect: false,
@@ -67,7 +67,6 @@ export default class ProductInfo extends Component {
         document.title = "By Forte | " + productName + " - " + productVariation;
       })
       .catch(function() {
-        // TODO: redirect to error page
         self.setState({
           redirect: true
         });
@@ -227,6 +226,7 @@ export default class ProductInfo extends Component {
                       value={this.state.itemSize}
                       onChange={this.handleOrderedItemChange}
                     >
+                      <option value="SMALL">Small</option>
                       <option value="MEDIUM">Medium</option>
                       <option value="LARGE">Large</option>
                     </select>
