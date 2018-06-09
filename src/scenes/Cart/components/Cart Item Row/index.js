@@ -76,8 +76,15 @@ export class CartItemRow extends Component {
     const currentItem = cartItems[currentItemIndex];
 
     if (currentItem !== undefined) {
-      cartObject.total -= currentItem.itemPrice * currentItem.itemQuantity;
+      const itemQuantity = currentItem.itemQuantity;
+
+      cartObject.subtotal -= currentItem.itemPrice * itemQuantity;
+      cartObject.total = cartObject.subtotal;
+
+      cartObject.itemCount -= itemQuantity;
+
       cartItems.splice(currentItemIndex, 1);
+
       this.props.updateCart(cartObject);
       if (cartItems.length === 0) {
         cartObject.total = 0;
