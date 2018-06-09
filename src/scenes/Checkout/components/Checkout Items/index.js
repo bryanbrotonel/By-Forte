@@ -11,27 +11,53 @@ import "./styles.css";
 export class CheckoutItems extends Component {
   constructor(props) {
     super(props);
+
+    const cart = getCart();
+
     this.state = {
-      cart: getCart()
+      cart: cart,
+      subtotal: cart.subtotal,
+      total: cart.total
     };
 
-    this.cart = this.state.cart;
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.fnfSale = this.fnfSale.bind(this);
+  }
+
+  componentDidMount() {
+    this.fnfSale(5);
+  }
+
+  fnfSale(saleDeductPrice) {
+    var { cart } = this.state;
+
+    const saleDeduct = saleDeductPrice * 2 * Math.floor(cart.itemCount / 2);
+    console.log(Math.floor(cart.itemCount / 2));
+
+    console.log(saleDeduct);
+    cart.total -= saleDeduct;
+    console.log(cart);
+
+    this.setState({
+      cart: cart,
+      total: cart.total
+    });
   }
 
   render() {
-    const cart = this.state.cart;
-    
+    const { cart, subtotal, total } = this.state;
+
     const productItemsCart = cart.items ? (
       cart.items.map(product => (
         <CheckoutItemRow
-          key={`${product.itemName} - ${product.itemVariation}: ${
+          key={`${product.productName} - ${product.productVariation}: ${
             product.itemSize
           }`}
           itemImage="https://raw.githubusercontent.com/diegocsandrim/sharp-test/master/output1.png"
           itemName={product.productName}
           itemSize={product.itemSize}
           itemVariation={product.productVariation}
-          itemQuantity= {product.itemQuantity}
+          itemQuantity={product.itemQuantity}
         />
       ))
     ) : (
@@ -41,7 +67,7 @@ export class CheckoutItems extends Component {
     return (
       <div className="uk-card uk-card-default uk-card-body">
         <div className="row justify-content-between align-text-bottom align-bottom">
-          <h3 className="col-5 uk-card-title">{cart.items.length} ITEMS</h3>
+          <h3 className="col-5 uk-card-title">{cart.itemCount} ITEMS</h3>
           <Link
             className="col-5 text-right align-self-center text-muted"
             to="/cart"
@@ -52,10 +78,10 @@ export class CheckoutItems extends Component {
         </div>
         <hr />
         {productItemsCart}
-        <hr/>
+        <hr />
         <div className="text-right text-dark">
-          <h6>SUBTOTAL: ${cart.total}</h6>
-          <h3>TOTAL: ${cart.total}</h3>
+          <h6>SUBTOTAL: ${subtotal}</h6>
+          <h3>TOTAL: ${total}</h3>
         </div>
       </div>
     );

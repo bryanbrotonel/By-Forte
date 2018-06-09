@@ -37,7 +37,9 @@ export default class ProductInfo extends Component {
 
   componentDidMount() {
     const self = this;
-    const { match: { params } } = this.props;
+    const {
+      match: { params }
+    } = this.props;
 
     getProductInfo(
       params.itemName.replace(/-/g, " "),
@@ -111,7 +113,7 @@ export default class ProductInfo extends Component {
 
     const currentCart =
       !previousCart || previousCart === undefined || previousCart.length === 0
-        ? { total: 0, items: [] }
+        ? { total: 0, subtotal: 0, itemCount: 0, items: [] }
         : previousCart;
 
     const currentCartItems = currentCart.items;
@@ -121,13 +123,20 @@ export default class ProductInfo extends Component {
         ? currentCartItems.findIndex(this.findItem)
         : -1;
 
+    const itemQuantity = orderedItem.itemQuantity;
+
     if (duplicateItem === -1) {
       currentCartItems.push(orderedItem);
     } else {
-      currentCartItems[duplicateItem].itemQuantity += orderedItem.itemQuantity;
+      currentCartItems[duplicateItem].itemQuantity += itemQuantity
     }
 
-    currentCart.total += orderedItem.itemPrice * orderedItem.itemQuantity;
+    currentCart.itemCount += itemQuantity;
+
+    const itemTotal = orderedItem.itemPrice * itemQuantity;
+
+    currentCart.total += itemTotal;
+    currentCart.subtotal += itemTotal;
 
     return currentCart;
   }
@@ -207,7 +216,9 @@ export default class ProductInfo extends Component {
             <div className="col-md-5">
               <div>
                 <h2>{this.state.productName}</h2>
-                <h4 className="text-muted text-uppercase">{this.state.productVariation}</h4>
+                <h4 className="text-muted text-uppercase">
+                  {this.state.productVariation}
+                </h4>
                 <h5>${this.state.productPrice}</h5>
               </div>
               <p>{productDescription}</p>
