@@ -35,14 +35,14 @@ export class PasswordInput extends Component {
       <React.Fragment>
         <form onSubmit={this.handleSubmit} className="row">
           <div className="col-8 p-0">
-              <input
-                className="uk-input"
-                type="password"
-                name="password"
-                value={this.state.passwordValue}
-                onChange={this.handleChange}
-                placeholder="Password"
-              />
+            <input
+              className="uk-input"
+              type="password"
+              name="password"
+              value={this.state.passwordValue}
+              onChange={this.handleChange}
+              placeholder="Password"
+            />
           </div>
           <div className="col-4 align-self-center p-0">
             <input
@@ -52,9 +52,7 @@ export class PasswordInput extends Component {
             />
           </div>
         </form>
-        <div>
-          <p>{invalidPassword}</p>
-        </div>
+        {invalidPassword}
       </React.Fragment>
     );
   }
@@ -62,5 +60,5 @@ export class PasswordInput extends Component {
 
 PasswordInput.propTypes = {
   signIn: PropTypes.func.isRequired,
-  validPassword: PropTypes.bool.isRequired,
+  validPassword: PropTypes.bool.isRequired
 };
