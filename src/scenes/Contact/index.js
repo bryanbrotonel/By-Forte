@@ -47,11 +47,11 @@ export default class Contact extends Component {
             <b>FACEBOOK</b>
           </h5>
           <a
-            href="https://www.facebook.com/supplybyforte"
+            href="https://www.facebook.com/byforte"
             target="_blank"
             rel="noreferrer noopener"
           >
-            <p>Supply By Forte</p>
+            <p>By Forte</p>
           </a>
         </div>
       </div>
