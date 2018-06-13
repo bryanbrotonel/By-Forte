@@ -53,6 +53,7 @@ export class CheckoutForm extends Component {
                 value={this.state.firstName}
                 onChange={this.handleFormChange}
                 required
+                autoFocus
               />
             </div>
             <div className="form-group col-md-6">

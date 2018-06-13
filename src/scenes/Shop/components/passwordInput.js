@@ -42,6 +42,7 @@ export class PasswordInput extends Component {
               value={this.state.passwordValue}
               onChange={this.handleChange}
               placeholder="Password"
+              autoFocus
             />
           </div>
           <div className="col-4 align-self-center p-0">

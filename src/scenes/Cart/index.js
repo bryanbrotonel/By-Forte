@@ -8,7 +8,7 @@ import "firebase/auth";
 import { Redirect } from "react-router";
 import Cookies from "universal-cookie";
 
-import { getCart } from "./../../helpers/cookieHelpers";
+import { getCart, setCart } from "./../../helpers/cookieHelpers";
 
 import Loading from "./../../components/Loading";
 
@@ -47,7 +47,7 @@ export default class Cart extends Component {
       cart: cartObject
     });
 
-    this.cookies.set("My Cart", cartObject, { path: "/" });
+    setCart(cartObject)
   }
 
   render() {
