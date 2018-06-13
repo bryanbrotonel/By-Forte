@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 import firebase from "firebase/app";
 import { Redirect } from "react-router";
 
-import { getCart } from "./../../helpers/cookieHelpers";
+import { setCart, getCart } from "./../../helpers/cookieHelpers";
 
 import { CheckoutItems } from "./components/Checkout Items";
 import { CheckoutForm } from "./components/Checkout Form";
@@ -22,10 +23,12 @@ export default class Checkout extends Component {
     this.handleCheckoutSubmit = this.handleCheckoutSubmit.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.formatOrder = this.formatOrder.bind(this);
+    this.fnfSale = this.fnfSale.bind(this);
   }
 
   componentDidMount() {
     document.title = "By Forte | Checkout";
+    this.fnfSale(5);
   }
 
   handleCheckoutSubmit(formInfo) {
@@ -49,21 +52,47 @@ export default class Checkout extends Component {
     });
   }
 
+  getCurrentTimestamp() {
+    const timeStamp = moment();
+    const timeOffset = timeStamp.utcOffset();
+
+    return [timeStamp.valueOf(), timeOffset];
+  }
+
   formatOrder(formInfo) {
     let self = this;
 
+    const currentTimeStamp = this.getCurrentTimestamp()[0];
+    const currentTimeOffset = this.getCurrentTimestamp()[1];
+
     return new Promise(function(resolve, reject) {
       self.getOrderID().then(function(orderID) {
-        const timeStamp = self.getOrderTimeStamp();
         var order = {
           cart: self.state.cart,
           customerInfo: formInfo,
           orderID: orderID,
-          date: timeStamp[0],
-          time: timeStamp[1]
+          time: {
+            timeStamp: currentTimeStamp,
+            offset: currentTimeOffset
+          }
         };
         return order ? resolve(order) : reject();
       });
+    });
+  }
+
+  fnfSale(saleDeductPrice) {
+    var { cart } = this.state;
+
+    const saleDeduct = saleDeductPrice * 2 * Math.floor(cart.itemCount / 2);
+    cart.total = cart.subtotal - saleDeduct;
+
+    console.log(cart);
+
+    setCart(cart);
+
+    this.setState({
+      cart: cart
     });
   }
 
@@ -79,21 +108,6 @@ export default class Checkout extends Component {
     ] = order;
 
     firebaseDB.ref().update(updates);
-  }
-
-  getOrderTimeStamp() {
-    const date = new Date();
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    var strTime = hours + ":" + minutes + " " + ampm;
-    return [
-      date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear(),
-      strTime
-    ];
   }
 
   getOrderID() {
@@ -121,7 +135,9 @@ export default class Checkout extends Component {
   }
 
   render() {
-    return !getCart() && !this.state.orderPlaced ? (
+    const { cart, orderPlaced } = this.state;
+
+    return !cart && !orderPlaced ? (
       <Redirect to="/shop" />
     ) : this.state.orderPlaced ? (
       <ThankYou />
@@ -132,7 +148,11 @@ export default class Checkout extends Component {
             <CheckoutForm handleCheckoutSubmit={this.handleCheckoutSubmit} />
           </div>
           <div className="checkout-items-wrapper pb-3 pb-md-0">
-            <CheckoutItems />
+            <CheckoutItems
+              cart={cart}
+              subtotal={cart.subtotal}
+              total={cart.total}
+            />
           </div>
         </div>
       </div>

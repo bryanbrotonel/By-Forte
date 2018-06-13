@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import { Redirect } from "react-router";
 import PropTypes from "prop-types";
 
-import Cookies from "universal-cookie";
-
 import Slider from "react-slick";
 
-import { getCart } from "../../helpers/cookieHelpers";
+import { setCart, getCart } from "../../helpers/cookieHelpers";
 import { getProductInfo } from "../../helpers/dbHelpers";
 
 import "./styles.css";
@@ -91,13 +89,13 @@ export default class ProductInfo extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const cookies = new Cookies();
 
     const cart = this.updateCart();
     this.setState({
       redirect: true
     });
-    cookies.set("My Cart", cart, { path: "/" });
+
+    setCart(cart);
   }
 
   updateCart() {
@@ -128,7 +126,7 @@ export default class ProductInfo extends Component {
     if (duplicateItem === -1) {
       currentCartItems.push(orderedItem);
     } else {
-      currentCartItems[duplicateItem].itemQuantity += itemQuantity
+      currentCartItems[duplicateItem].itemQuantity += itemQuantity;
     }
 
     currentCart.itemCount += itemQuantity;

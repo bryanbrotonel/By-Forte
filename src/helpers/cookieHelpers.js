@@ -14,6 +14,11 @@ export function getCart() {
   return cookies.get("My Cart");
 }
 
+export function setCart(cart) {
+  return cookies.set("My Cart", cart, { path: "/" });
+}
+
+
 export function removeCart() {
   cookies.remove("My Cart", { path: "/" });
 }
