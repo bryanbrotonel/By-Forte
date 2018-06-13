@@ -28,13 +28,9 @@ export default class Checkout extends Component {
 
   componentDidMount() {
     document.title = "By Forte | Checkout";
-<<<<<<< HEAD
     if (this.state.cart) {
       this.fnfSale(5);
     }
-=======
-    this.fnfSale(5);
->>>>>>> 1b7107af67ec5ce89ca3ec9f72f437827ce64207
   }
 
   handleCheckoutSubmit(formInfo) {
