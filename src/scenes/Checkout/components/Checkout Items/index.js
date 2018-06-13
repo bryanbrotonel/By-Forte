@@ -1,8 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import { Link } from "react-router-dom";
-
-import { getCart } from "../../../../helpers/cookieHelpers";
 
 import { CheckoutItemRow } from "../Checkout Item Row";
 
@@ -11,37 +10,12 @@ import "./styles.css";
 export class CheckoutItems extends Component {
   constructor(props) {
     super(props);
-
-    const cart = getCart();
-
-    this.state = {
-      cart: cart,
-      subtotal: cart.subtotal,
-      total: cart.total
-    };
-
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.fnfSale = this.fnfSale.bind(this);
-  }
-
-  componentDidMount() {
-    this.fnfSale(5);
-  }
-
-  fnfSale(saleDeductPrice) {
-    var { cart } = this.state;
-
-    const saleDeduct = saleDeductPrice * 2 * Math.floor(cart.itemCount / 2);
-    cart.total -= saleDeduct;
-
-    this.setState({
-      cart: cart,
-      total: cart.total
-    });
   }
 
   render() {
-    const { cart, subtotal, total } = this.state;
+    const { cart, subtotal, total } = this.props;
+
+    console.log('checkout Items', cart);
 
     const productItemsCart = cart.items ? (
       cart.items.map(product => (
@@ -83,3 +57,9 @@ export class CheckoutItems extends Component {
     );
   }
 }
+
+CheckoutItems.propTypes = {
+  cart: PropTypes.object.isRequired,
+  subtotal: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired
+};
