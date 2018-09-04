@@ -11,7 +11,7 @@
     "jquery": "^3.3.1",
     "moment": "^2.22.2",
     "node-sass-chokidar": "^1.2.2",
-    "npm": "^6.1.0",
+    "npm": "^6.2.0",
     "npm-run-all": "^4.1.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",

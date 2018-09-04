@@ -89,8 +89,6 @@ export default class Checkout extends Component {
     const saleDeduct = saleDeductPrice * 2 * Math.floor(cart.itemCount / 2);
     cart.total = cart.subtotal - saleDeduct;
 
-    console.log(cart);
-
     setCart(cart);
 
     this.setState({

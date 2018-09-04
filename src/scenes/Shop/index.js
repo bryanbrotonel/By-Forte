@@ -5,7 +5,6 @@ import "firebase/auth";
 import "firebase/database";
 
 import { ProductShop } from "./components/Product Shop";
-import { PasswordInput } from "./components/passwordInput";
 
 import "./styles.css";
 
@@ -57,19 +56,10 @@ export default class Shop extends Component {
   }
 
   render() {
-    const { validPassword, errorMessage } = this.state;
-    return this.state.validShopper ? (
+    return (
       <div className="container d-flex">
         <br />
         <ProductShop />
-      </div>
-    ) : (
-      <div className="container middle-align">
-        <PasswordInput
-          signIn={this.signIn}
-          validPassword={validPassword}
-          errorMessage={errorMessage}
-        />
       </div>
     );
   }
