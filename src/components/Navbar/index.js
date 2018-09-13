@@ -24,7 +24,7 @@ export class NavBar extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       isOpen: false,
-      pages: ["home", "about", "editorial", "shop"],
+      pages: ["home", "about", "editorial", "shop", "cart"],
       width: 0
     };
 
@@ -32,7 +32,7 @@ export class NavBar extends React.Component {
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
   componentDidMount() {
-    this.validateShopper();
+    // this.validateShopper();
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
   }
