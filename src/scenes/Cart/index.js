@@ -53,9 +53,9 @@ export default class Cart extends Component {
   render() {
     const { cart } = this.state;
     const self = this;
-    if (!firebase.auth().currentUser) {
-      return <Redirect to="/shop" />;
-    }
+    // if (cart != null) {
+    //   return <Redirect to="/shop" />;
+    // }
 
     let cartItems = cart.items;
 
