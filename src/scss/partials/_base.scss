@@ -5,11 +5,11 @@ li {
 }
 
 a {
-  color: $black;
+  color: inherit;
 
   &:hover,
   &:visited {
-    color: $black;
+    color: inherit;
   }
 }
 

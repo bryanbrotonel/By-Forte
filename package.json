@@ -18,6 +18,7 @@
     "npm": "^6.4.1",
     "npm-run-all": "^4.1.2",
     "react": "^16.4.0",
+    "react-burger-menu": "^2.5.2",
     "react-dom": "^16.4.0",
     "react-loadable": "^5.4.0",
     "react-router-dom": "^4.2.2",
@@ -29,7 +30,7 @@
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
-    "start-js": "react-scripts start",
+    "start-js": "BROWSER='Firefox Developer Edition' react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",

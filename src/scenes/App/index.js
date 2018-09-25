@@ -32,9 +32,8 @@ class App extends Component {
   }
 
   render() {
-
     return (
-      <div id="app" className="uk-offcanvas-content">
+      <div id="app">
         <div id="NavBar">
           <NavBar />
         </div>
