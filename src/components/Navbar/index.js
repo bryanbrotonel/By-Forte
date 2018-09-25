@@ -18,7 +18,7 @@ export class NavBar extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       isOpen: false,
-      pages: ["Home", "About", "Editorial", "Shop", "Cart"],
+      pages: ["Home", "Editorial", "Shop", "About", "Cart"],
       width: 0
     };
 

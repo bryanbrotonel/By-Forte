@@ -26,15 +26,15 @@ a {
 }
 
 .center-align {
-  display: flex;
   align-items: center;
+  display: flex;
   flex: 1;
 }
 
 .hv-center {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .v-center {
@@ -87,8 +87,5 @@ input[type="number"] {
 @media (min-width: 576px) {
   .content {
     width: 50%;
-  }
-  .hv-center {
-    margin-bottom: 15vh;
   }
 }

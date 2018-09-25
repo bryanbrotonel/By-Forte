@@ -6,7 +6,7 @@ export class DesktopNavbar extends React.Component {
 
     return (
       <div className=" d-none d-md-block">
-        <nav className="uk-navbar uk-margin" uk-navbar="true">
+        <nav className="uk-navbar" uk-navbar="true">
           <div className="uk-navbar-left ml-4">
             <a href="/" className="uk-logo">
               {" "}
