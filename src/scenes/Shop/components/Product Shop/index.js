@@ -68,7 +68,7 @@ export class ProductShop extends Component {
     ));
 
     return isLoading ? (
-      <div className="middle-align text-muted text-center">
+      <div className="hv-center text-muted text-center">
         <h2>LOADING</h2>
       </div>
     ) : (

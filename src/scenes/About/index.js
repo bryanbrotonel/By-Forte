@@ -15,7 +15,7 @@ export default class About extends Component {
   render() {
     return (
       <div className="container">
-        <h1>ABOUT</h1>
+        <h1>About</h1>
         <br />
         <div className="content">
           <p>By Forte is a streetwear brand based in Vancouver, Canada.</p>

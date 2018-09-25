@@ -14,7 +14,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="middle-align container">
+      <div className="hv-center container">
         <PictureRow />
       </div>
     );

@@ -8,9 +8,6 @@ import { CheckoutItemRow } from "../Checkout Item Row";
 import "./styles.css";
 
 export class CheckoutItems extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { cart, subtotal, total } = this.props;

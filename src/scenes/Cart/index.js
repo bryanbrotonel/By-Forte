@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Loadable from "react-loadable";
 
-import firebase from "firebase/app";
-import "firebase/auth";
-
-import { Redirect } from "react-router";
 import Cookies from "universal-cookie";
 
 import { getCart, setCart } from "./../../helpers/cookieHelpers";

@@ -8,7 +8,7 @@ export class ThankYou extends Component {
     };
 
     return (
-      <div className="container middle-align">
+      <div className="container hv-center">
         <h1>Thank You</h1>
         {/* <h4 className="text-muted">Your order is being processed</h4> */}
         <div className="text-center" style={divStyle}>
