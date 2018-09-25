@@ -1,19 +1,13 @@
 import React from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink
-} from "reactstrap";
-import { NavLink as RRNavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
+import { MobileNavbar } from "./Mobile Navbar";
+import { DesktopNavbar } from "./Desktop Navbar";
 
 import firebase from "firebase/app";
-import 'firebase/auth';
+import "firebase/auth";
 
-import logo from "images/By Forte Primary (Black).png";
+import logo from "images/By Forte Secondary Logo (White).png";
 import "./styles.css";
 
 export class NavBar extends React.Component {
@@ -31,15 +25,16 @@ export class NavBar extends React.Component {
     this.validateShopper = this.validateShopper.bind(this);
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
-  componentDidMount() {
-    // this.validateShopper();
-    this.updateWindowDimensions();
-    window.addEventListener("resize", this.updateWindowDimensions);
-  }
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowDimensions);
-  }
+  // componentDidMount() {
+  //   // this.validateShopper();
+  //   this.updateWindowDimensions();
+  //   window.addEventListener("resize", this.updateWindowDimensions);
+  // }
+  //
+  // componentWillUnmount() {
+  //   window.removeEventListener("resize", this.updateWindowDimensions);
+  // }
 
   validateShopper() {
     const self = this;
@@ -86,38 +81,28 @@ export class NavBar extends React.Component {
   }
 
   render() {
+
     const navLinks = this.state.pages.map(page => {
       return (
-        <NavItem key={page}>
+        <li key={page}>
           <NavLink
-            onClick={this.handleClick}
             to={"/" + page}
             activeStyle={{
-              fontWeight: "bold"
+              color: "white"
             }}
-            className="nav-link text-uppercase mx-auto"
-            tag={RRNavLink}
+            className="navbar-link mx-auto"
           >
             {page}
           </NavLink>
-        </NavItem>
+        </li>
       );
     });
 
     return (
-      <div className="container p-0">
-        <Navbar light={true} expand="md">
-          <NavbarBrand to="/" className="navbar-brand mr-auto" tag={RRNavLink}>
-            <img className="navbar-logo" src={logo} alt="By Forte" />
-          </NavbarBrand>
-          <NavbarToggler onClick={this.handleClick} />
-          <Collapse isOpen={this.state.isOpen} navbar={true}>
-            <Nav className="ml-auto" navbar={true}>
-              {navLinks}
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
+      <React.Fragment>
+        <MobileNavbar logo={logo} navLinks={navLinks}  />
+        <DesktopNavbar logo={logo} navLinks={navLinks} />
+      </React.Fragment>
     );
   }
 }
