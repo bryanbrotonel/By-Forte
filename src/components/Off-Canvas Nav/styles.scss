@@ -1,3 +1,34 @@
-.uk-offcanvas-bar {
-  background-color: black;
+@import 'scss/modules/colours';
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: $white;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: $black;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.30em;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: $white;
+  padding: 0.8em;
+}
+
+.bm-item {
+  padding: 0.3em;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
 }

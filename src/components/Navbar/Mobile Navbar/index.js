@@ -14,7 +14,8 @@ export class MobileNavbar extends React.Component {
       <React.Fragment>
         <div className="d-block d-md-none">
           <nav className="uk-navbar text-white" uk-navbar="true">
-            <div className="uk-navbar-left ml-3">
+            <OffCanvas logo={logo} navLinks={navLinks} />
+            <div className="uk-navbar-left ml-4">
               <FontAwesomeIcon
                 uk-toggle="target: #offcanvas-nav"
                 icon="bars"
@@ -29,7 +30,6 @@ export class MobileNavbar extends React.Component {
             </div>
           </nav>
         </div>
-        <OffCanvas logo={logo} navLinks={navLinks} />
       </React.Fragment>
     );
   }
