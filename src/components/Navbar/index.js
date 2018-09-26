@@ -88,7 +88,8 @@ export class NavBar extends React.Component {
           <NavLink
             to={"/" + page}
             activeStyle={{
-              color: "white"
+              color: "white",
+              fontWeight: "bold"
             }}
             className="navbar-link mx-auto"
           >

@@ -12,7 +12,7 @@ export default class ComingSoon extends Component {
     };
 
     if (text) {
-      comingSoon = <h1 className="base-font mb-0">{text}</h1>;
+      comingSoon = <h2 className="base-font text-uppercase mb-0">{text}</h2>;
     }
 
     return (

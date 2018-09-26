@@ -1,15 +1,30 @@
 // navbar.scss
-@import 'scss/modules/colours';
-@import 'scss/modules/typography';
+@import "scss/modules/colours";
+@import "scss/modules/typography";
 
 .uk-navbar {
-  background-color: black;
+  background-color: $black;
 }
 
-.uk-navbar-nav>li>a {
-  color: $faded;
-  font-weight: bold;
-  font-family: $base-font;
+.uk-navbar-nav {
+  li {
+    padding: 0 15px;
+
+    &:first-of-type {
+      padding-left: 0;
+    }
+
+    &:last-of-type {
+      padding-right: 0;
+    }
+
+    a {
+      color: $faded;
+      font-family: $base-font;
+      font-weight: bold;
+      padding: 0;
+    }
+  }
 }
 
 .active-navbar-link {
