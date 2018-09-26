@@ -1,12 +1,19 @@
 import React, { Component } from "react";
+import Loadable from "react-loadable";
 
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
+import Loading from "./../../components/Loading";
 import { ProductShop } from "./components/Product Shop";
 
 import "./styles.css";
+
+const ComingSoon = Loadable({
+  loader: () => import("../../components/ComingSoon"),
+  loading: Loading
+});
 
 export default class Shop extends Component {
   constructor(props) {
@@ -57,9 +64,13 @@ export default class Shop extends Component {
 
   render() {
     return (
-      <div className="mt-5 container d-flex">
-        <ProductShop />
-      </div>
+      <ComingSoon
+        bgImage="https://source.unsplash.com/7YwWjgS7aJs/1600x1024"
+        text="Coming Soon"
+      />
+      // <div className="mt-5 container d-flex">
+      //   <ProductShop />
+      // </div>
     );
   }
 }

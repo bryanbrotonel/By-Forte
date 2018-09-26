@@ -14,27 +14,16 @@ export class NavBar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.toggle = this.toggle.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.state = {
-      isOpen: false,
-      pages: ["Home", "Editorial", "Shop", "About", "Cart"],
-      width: 0
+      pages: ["Home", "Editorial", "Shop", "About"]
     };
 
     this.validateShopper = this.validateShopper.bind(this);
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
-  // componentDidMount() {
-  //   // this.validateShopper();
-  //   this.updateWindowDimensions();
-  //   window.addEventListener("resize", this.updateWindowDimensions);
-  // }
-  //
-  // componentWillUnmount() {
-  //   window.removeEventListener("resize", this.updateWindowDimensions);
-  // }
+  componentDidMount() {
+    this.validateShopper();
+  }
 
   validateShopper() {
     const self = this;
@@ -55,29 +44,6 @@ export class NavBar extends React.Component {
         });
       }
     });
-  }
-
-  handleClick() {
-    if (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      ) ||
-      this.state.width < 767
-    ) {
-      this.setState({
-        isOpen: !this.state.isOpen
-      });
-    }
-  }
-
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
-
-  updateWindowDimensions() {
-    this.setState({ width: window.innerWidth });
   }
 
   render() {
