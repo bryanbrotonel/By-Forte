@@ -10,7 +10,6 @@ export default class Loading extends Component {
         <div className="container hv-center text-muted">
           <h2>LOADING</h2>
           <h5>error</h5>
-          {console.log(error)}
           <button className="uk-button uk-button-default" onClick={retry}>
             Retry
           </button>

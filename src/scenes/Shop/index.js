@@ -57,8 +57,7 @@ export default class Shop extends Component {
 
   render() {
     return (
-      <div className="container d-flex">
-        <br />
+      <div className="mt-5 container d-flex">
         <ProductShop />
       </div>
     );
