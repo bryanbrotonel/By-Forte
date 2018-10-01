@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 
 export class DesktopNavbar extends React.Component {
   render() {
@@ -22,3 +23,8 @@ export class DesktopNavbar extends React.Component {
     );
   }
 }
+
+DesktopNavbar.propTypes = {
+  logo: propTypes.obj,
+  navLinks: propTypes.array
+};

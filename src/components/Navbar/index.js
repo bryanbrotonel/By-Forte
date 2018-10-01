@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import { MobileNavbar } from "./Mobile Navbar";
-import { DesktopNavbar } from "./Desktop Navbar";
-
 import firebase from "firebase/app";
 import "firebase/auth";
+
+import { MobileNavbar } from "./Mobile Navbar";
+import { DesktopNavbar } from "./Desktop Navbar";
 
 import logo from "images/By Forte Secondary Logo (White).png";
 import "./styles.css";
@@ -15,7 +15,7 @@ export class NavBar extends React.Component {
     super(props);
 
     this.state = {
-      pages: ["Home", "Editorial", "Shop", "About", "Cart"]
+      pages: ["Home", "Editorial", "Shop", "About"]
     };
 
     this.validateShopper = this.validateShopper.bind(this);
@@ -47,7 +47,6 @@ export class NavBar extends React.Component {
   }
 
   render() {
-
     const navLinks = this.state.pages.map(page => {
       return (
         <li key={page}>
@@ -67,7 +66,7 @@ export class NavBar extends React.Component {
 
     return (
       <React.Fragment>
-        <MobileNavbar logo={logo} navLinks={navLinks}  />
+        <MobileNavbar logo={logo} navLinks={navLinks} />
         <DesktopNavbar logo={logo} navLinks={navLinks} />
       </React.Fragment>
     );

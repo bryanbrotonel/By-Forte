@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 
 import { push as Menu } from "react-burger-menu";
 
@@ -15,7 +16,6 @@ export class OffCanvas extends React.Component {
   render() {
     const { navLinks } = this.props;
     const { isOpen } = this.state;
-
     return (
       <Menu width={"75%"} isOpen={isOpen}>
         {navLinks}
@@ -23,3 +23,7 @@ export class OffCanvas extends React.Component {
     );
   }
 }
+
+OffCanvas.propTypes = {
+  navLinks: propTypes.array
+};

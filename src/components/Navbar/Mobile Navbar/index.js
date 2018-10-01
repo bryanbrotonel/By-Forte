@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -17,7 +18,6 @@ export class MobileNavbar extends React.Component {
             <OffCanvas logo={logo} navLinks={navLinks} />
             <div className="uk-navbar-left ml-4">
               <FontAwesomeIcon
-                uk-toggle="target: #offcanvas-nav"
                 icon="bars"
                 size="2x"
               />
@@ -34,3 +34,8 @@ export class MobileNavbar extends React.Component {
     );
   }
 }
+
+MobileNavbar.propTypes = {
+  logo: propTypes.obj,
+  navLinks: propTypes.array
+};
