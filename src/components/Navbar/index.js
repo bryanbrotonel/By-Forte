@@ -15,7 +15,7 @@ export class NavBar extends React.Component {
     super(props);
 
     this.state = {
-      pages: ["Home", "Editorial", "Shop", "About"]
+      pages: ["Home", "Editorial", "Shop", "About", "Cart"]
     };
 
     this.validateShopper = this.validateShopper.bind(this);

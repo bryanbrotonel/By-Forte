@@ -13,22 +13,49 @@ a {
   }
 }
 
-.fill-height-or-more {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  > * {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+// UIKit Compoennts
+.uk-select,
+.uk-input,
+.uk-button {
+
+  &:enabled {
+    border: 1px solid $black;
+  }
+
+}
+
+.uk-button-default:not([disabled]),
+.uk-select,
+.uk-input {
+  background-color: $white;
+  text-align-last: center;
+  color: $black;
+
+  &:hover,
+  &:enabled {
+    color: $black;
   }
 }
 
-.center-align {
-  align-items: center;
-  display: flex;
-  flex: 1;
+.uk-button[type="submit"]:not([disabled]) {
+  background-color: $white;
+  text-align-last: center;
+
+  &:hover {
+    background-color: $black;
+    color: $white;
+  }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+input[type="number"] {
+  padding: 0;
+  width: 50px;
+  text-align: center;
 }
 
 .hv-center {
@@ -45,47 +72,4 @@ a {
 
 .h-center {
   margin: 0 auto;
-}
-
-.content {
-  width: 100%;
-}
-
-// UIKit Compoennts
-.uk-button-default,
-.uk-select {
-  color: $black;
-  &:hover,
-  &:enabled {
-    color: $black;
-  }
-}
-
-.uk-button-default,
-.uk-select {
-  background-color: #ffffff;
-  text-align-last: center;
-
-  &:hover,
-  &:enabled {
-    border: 1px solid #e5e5e5;
-  }
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  opacity: 1;
-}
-
-input[type="number"] {
-  padding: 0;
-  width: 50px;
-  text-align: center;
-}
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 576px) {
-  .content {
-    width: 50%;
-  }
 }

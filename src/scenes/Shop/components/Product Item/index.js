@@ -38,7 +38,7 @@ export class ProductItem extends Component {
           />
         </Link>
         <br />
-        <p className="text-uppercase">
+        <p>
           {productName} <br />
           <span className="text-muted">{productVariation}</span>
         </p>

@@ -11,14 +11,6 @@ h3 {
   font-family: $header-font-family;
 }
 
-h1 {
-  @include font-size-map($h1-font-size);
-}
-
-h2 {
-  @include font-size-map($h2-font-size);
-}
-
 h4,
 h5,
 h6 {

@@ -22,7 +22,7 @@ export class CartFooter extends Component {
           </div>
           <div className="row justify-content-end">
             <NavLink to="/checkout">
-              <button className="uk-button uk-button-default">
+              <button type="submit" className="uk-button uk-button-default">
                 <h5>CHECKOUT</h5>
               </button>
             </NavLink>

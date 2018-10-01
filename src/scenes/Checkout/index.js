@@ -142,7 +142,7 @@ export default class Checkout extends Component {
     ) : this.state.orderPlaced ? (
       <ThankYou />
     ) : (
-      <div className="container">
+      <div className="container pt-5">
         <div className="d-flex flex-md-row flex-column-reverse justify-content-md-between checkout-container">
           <div className="checkout-form-wrapper pb-3 pb-md-0">
             <CheckoutForm handleCheckoutSubmit={this.handleCheckoutSubmit} />
