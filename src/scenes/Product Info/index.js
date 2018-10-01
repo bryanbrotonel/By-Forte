@@ -24,7 +24,8 @@ export default class ProductInfo extends Component {
       itemQuantity: 1,
       productDescription: [],
       redirect: false,
-      isLoading: true
+      isLoading: true,
+      dirtyForm: false
     };
 
     this.handleOrderedItemChange = this.handleOrderedItemChange.bind(this);
@@ -77,8 +78,15 @@ export default class ProductInfo extends Component {
     if (id === "itemQuantity") {
       value = parseInt(value, 10);
 
-      if (isNaN(value)) {
-        value = 0;
+      if (!Number.isInteger(value)) {
+        value = String(value)
+        this.setState({
+          dirtyForm: true
+        });
+      } else {
+        this.setState({
+          dirtyForm: false
+        });
       }
     }
 
@@ -154,7 +162,8 @@ export default class ProductInfo extends Component {
       isLoading,
       productName,
       productVariation,
-      productImages
+      productImages,
+      dirtyForm
     } = this.state;
     const productDescription = [];
 
@@ -173,7 +182,7 @@ export default class ProductInfo extends Component {
 
     const productImagesDisplay = productImages.map(image => {
       return (
-        <div key={image}>
+        <div key={image} className="mb-3">
           <img src={image} alt={`${productName} - ${productVariation}`} />
         </div>
       );
@@ -191,7 +200,7 @@ export default class ProductInfo extends Component {
         );
       },
       arrows: false,
-      dots: true,
+      dots: productImagesDisplay.length > 1,
       lazyLoad: true,
       dotsClass: "slick-dots slick-thumb",
       infinite: true,
@@ -199,67 +208,59 @@ export default class ProductInfo extends Component {
       slidesToShow: 1,
       slidesToScroll: 1
     };
-
     return redirect ? (
       <Redirect to="/error" />
     ) : (
       <div className="container">
         {isLoading ? (
-          <h1 className="text-muted">Loading...</h1>
+          <h1 className="text-muted hv-center mt-5">Loading...</h1>
         ) : (
-          <div className="row justify-content-md-center align-items-center">
-            <div className="col-md-5 p-4">
+          <div className="row justify-content-center mt-5">
+            <div className="product-image col-lg-6">
               <Slider {...settings}>{productImagesDisplay}</Slider>
             </div>
-            <div className="col-md-5">
+            <div className="product-info col-lg-6">
               <div>
-                <h2>{this.state.productName}</h2>
-                <h4 className="text-muted text-uppercase">
-                  {this.state.productVariation}
-                </h4>
+                <h3 className="font-weight-bold">{productName}</h3>
+                <h4 className="text-muted">{productVariation}</h4>
                 <h5>${this.state.productPrice}</h5>
+                <p className="product-desc">{productDescription}</p>
               </div>
-              <p>{productDescription}</p>
               <form
                 id="productForm"
                 name="productForm"
                 onSubmit={this.handleSubmit}
               >
-                <div className="row">
-                  <div className="form-group col-5">
-                    {" "}
-                    <select
-                      id="itemSize"
-                      name="itemSize"
-                      className="uk-select text-uppercase"
-                      value={this.state.itemSize}
-                      onChange={this.handleOrderedItemChange}
-                    >
-                      <option value="SMALL">Small</option>
-                      <option value="MEDIUM">Medium</option>
-                      <option value="LARGE">Large</option>
-                    </select>
-                  </div>
-                  <div className="col-3 h-100">
-                    <input
-                      id="itemQuantity"
-                      name="itemQuantity"
-                      type="number"
-                      className="uk-input"
-                      min="1"
-                      value={this.state.itemQuantity}
-                      onChange={this.handleOrderedItemChange}
-                    />
-                  </div>
+                <div className="input-form">
+                  <select
+                    id="itemSize"
+                    name="itemSize"
+                    className="uk-select uk-form-width-small"
+                    value={this.state.itemSize}
+                    onChange={this.handleOrderedItemChange}
+                  >
+                    <option value="SMALL">Small</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="LARGE">Large</option>
+                  </select>
+                  <input
+                    id="itemQuantity"
+                    name="itemQuantity"
+                    type="number"
+                    className="uk-input uk-form-width-small"
+                    min="1"
+                    value={this.state.itemQuantity}
+                    onChange={this.handleOrderedItemChange}
+                  />
                 </div>
-                <div className="row">
-                  <div className="form-group col-md-5 col-8">
-                    <input
-                      type="submit"
-                      className="uk-button uk-button-default uk-form-width-medium text-center w-100"
-                      value="ADD TO CART"
-                    />
-                  </div>
+                <br/>
+                <div className="input-form">
+                  <input
+                    disabled={dirtyForm}
+                    type="submit"
+                    className="uk-button uk-button-default uk-form-width-medium text-center"
+                    value="ADD TO CART"
+                  />
                 </div>
               </form>
             </div>
