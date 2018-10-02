@@ -1,5 +1,7 @@
 @import 'scss/modules/colours';
 
+$text-colour: $white;
+
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
   height: 24px;
@@ -8,7 +10,7 @@
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: $white;
+  background: $text-colour;
 }
 
 /* General sidebar styles */
@@ -20,7 +22,7 @@
 
 /* Wrapper for item list */
 .bm-item-list {
-  color: $white;
+  color: $text-colour;
   padding: 0.8em;
 }
 
@@ -30,5 +32,5 @@
 
 /* Styling of overlay */
 .bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
+  background: $black-overlay;
 }

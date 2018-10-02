@@ -80,7 +80,7 @@ export default class Cart extends Component {
 
     return (
       <div className="container d-flex align-items-start flex-column mt-5">
-        <h1>CART</h1>
+        <h1>Cart</h1>
         <CartContent />
       </div>
     );

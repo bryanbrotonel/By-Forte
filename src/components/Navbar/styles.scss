@@ -23,8 +23,17 @@
       font-family: $base-font;
       font-weight: bold;
       padding: 0;
+      text-decoration: none;
     }
   }
+}
+
+.navbar-link {
+  color: $faded;
+  font-family: $base-font;
+  font-weight: bold;
+  padding: 0;
+  text-decoration: none;
 }
 
 .active-navbar-link {

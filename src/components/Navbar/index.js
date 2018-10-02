@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -47,27 +46,12 @@ export class NavBar extends React.Component {
   }
 
   render() {
-    const navLinks = this.state.pages.map(page => {
-      return (
-        <li key={page}>
-          <NavLink
-            to={"/" + page}
-            activeStyle={{
-              color: "white",
-              fontWeight: "bold"
-            }}
-            className="navbar-link mx-auto"
-          >
-            {page}
-          </NavLink>
-        </li>
-      );
-    });
+    const {pages} = this.state;
 
     return (
       <React.Fragment>
-        <MobileNavbar logo={logo} navLinks={navLinks} />
-        <DesktopNavbar logo={logo} navLinks={navLinks} />
+        <MobileNavbar logo={logo} pages={pages} />
+        <DesktopNavbar logo={logo} pages={pages} />
       </React.Fragment>
     );
   }

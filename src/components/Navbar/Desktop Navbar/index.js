@@ -1,9 +1,25 @@
 import React from "react";
 import propTypes from "prop-types";
 
+import { NavLink } from "react-router-dom";
+
 export class DesktopNavbar extends React.Component {
   render() {
-    const { logo, navLinks } = this.props;
+    const { logo, pages } = this.props;
+
+    const navLinks = pages.map(page => {
+      return (
+        <li key={page}>
+          <NavLink
+            to={"/" + page}
+            activeStyle={{ color: "white", fontWeight: "bold" }}
+            className="navbar-link mx-auto"
+          >
+            {page}
+          </NavLink>{" "}
+        </li>
+      );
+    });
 
     return (
       <div className="d-none d-sm-block">
@@ -25,6 +41,6 @@ export class DesktopNavbar extends React.Component {
 }
 
 DesktopNavbar.propTypes = {
-  logo: propTypes.obj,
-  navLinks: propTypes.array
+  logo: propTypes.string,
+  pages: propTypes.array
 };
