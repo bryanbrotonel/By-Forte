@@ -49,11 +49,7 @@ export default class ProductInfo extends Component {
         const productVariation = productInfo.productVariation;
         const productImages = productInfo.productImages;
         const productPrice = productInfo.productPrice;
-        const productDescription = [
-          productInfo.productMaterial,
-          productInfo.productPrint,
-          productInfo.productFeature
-        ];
+        const productDescription = productInfo.productDescription;
 
         self.setState({
           productName: productName,
@@ -103,6 +99,7 @@ export default class ProductInfo extends Component {
       redirect: true
     });
 
+    console.log(cart);
     setCart(cart);
   }
 
@@ -162,22 +159,13 @@ export default class ProductInfo extends Component {
       isLoading,
       productName,
       productVariation,
+      productDescription,
       productImages,
       dirtyForm
     } = this.state;
-    const productDescription = [];
 
     if (redirect) {
       return <Redirect to="/cart" />;
-    }
-
-    for (var i = 0; i < this.state.productDescription.length; i++) {
-      productDescription.push(
-        <React.Fragment key={this.state.productDescription[i]}>
-          {this.state.productDescription[i].toUpperCase()}
-          <br />
-        </React.Fragment>
-      );
     }
 
     const productImagesDisplay = productImages.map(image => {
@@ -216,7 +204,7 @@ export default class ProductInfo extends Component {
           <h1 className="text-muted hv-center mt-5">Loading...</h1>
         ) : (
           <div className="row justify-content-center mt-5">
-            <div className="product-image col-lg-6">
+            <div className="product-image col-10 col-md-5">
               <Slider {...settings}>{productImagesDisplay}</Slider>
             </div>
             <div className="product-info col-lg-6">
@@ -224,7 +212,7 @@ export default class ProductInfo extends Component {
                 <h3 className="font-weight-bold">{productName}</h3>
                 <h4 className="text-muted">{productVariation}</h4>
                 <h5>&#36;{this.state.productPrice}</h5>
-                <p className="product-desc">{productDescription}</p>
+                <p className="product-desc" >{productDescription}</p>
               </div>
               <form
                 id="productForm"
