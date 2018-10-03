@@ -73,10 +73,7 @@ export class ProductShop extends Component {
       </div>
     ) : (
       <div className="w-100">
-        <h4>All items are currently sold out.</h4>
-        <h4 className="text-muted"><small>The shop will not process any orders. Thank you.</small></h4>
-        <br/>
-        <div className="row justify-content-between text-center">
+        <div className="row text-center">
           {inventory}
         </div>
       </div>

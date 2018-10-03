@@ -25,7 +25,7 @@ export class ProductItem extends Component {
     } = this.state;
 
     return (
-      <div className="col-6 col-lg-3">
+      <div className="col-6 col-md-4 col-lg-3">
         <Link
           to={{
             pathname: `/shop/collections/tops/products/${productLink}`
