@@ -20,7 +20,7 @@ export default class ProductInfo extends Component {
         "https://raw.githubusercontent.com/diegocsandrim/sharp-test/master/output1.png"
       ],
       productPrice: 0,
-      itemSize: "SMALL",
+      itemSize: "Small",
       itemQuantity: 1,
       productDescription: [],
       redirect: false,
@@ -79,7 +79,7 @@ export default class ProductInfo extends Component {
       value = parseInt(value, 10);
 
       if (!Number.isInteger(value)) {
-        value = String(value)
+        value = String(value);
         this.setState({
           dirtyForm: true
         });
@@ -223,7 +223,7 @@ export default class ProductInfo extends Component {
               <div>
                 <h3 className="font-weight-bold">{productName}</h3>
                 <h4 className="text-muted">{productVariation}</h4>
-                <h5>${this.state.productPrice}</h5>
+                <h5>&#36;{this.state.productPrice}</h5>
                 <p className="product-desc">{productDescription}</p>
               </div>
               <form
@@ -239,9 +239,9 @@ export default class ProductInfo extends Component {
                     value={this.state.itemSize}
                     onChange={this.handleOrderedItemChange}
                   >
-                    <option value="SMALL">Small</option>
-                    <option value="MEDIUM">Medium</option>
-                    <option value="LARGE">Large</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
                   </select>
                   <input
                     id="itemQuantity"
@@ -253,7 +253,7 @@ export default class ProductInfo extends Component {
                     onChange={this.handleOrderedItemChange}
                   />
                 </div>
-                <br/>
+                <br />
                 <div className="input-form">
                   <input
                     disabled={dirtyForm}

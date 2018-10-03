@@ -9,8 +9,7 @@ export class ThankYou extends Component {
 
     return (
       <div className="container hv-center">
-        <h1>Thank You</h1>
-        {/* <h4 className="text-muted">Your order is being processed</h4> */}
+        <h2>Thank You</h2>
         <div className="text-center" style={divStyle}>
           <p>
             On behalf of the By Forte team, Trisha and Bryan would like to thank
@@ -24,7 +23,7 @@ export class ThankYou extends Component {
 
         <NavLink to="/shop">
           <button className="uk-button uk-button-default border border-black">
-            CONTINUE SHOPPING
+            Continue Shopping
           </button>
         </NavLink>
       </div>

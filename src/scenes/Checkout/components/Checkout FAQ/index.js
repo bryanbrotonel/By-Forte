@@ -7,11 +7,11 @@ export class CheckoutFAQ extends Component {
     return (
       <React.Fragment>
         <hr />
-        <div className="text-justify">
-          <h5>FAQ</h5>
+        <div className="text-justify text-dark">
+          <h5><strong>FAQ</strong></h5>
           <strong>How do I pay?</strong>
           <p>
-            We don&#39;t have online payments set up on the webstore yet.
+            We don&#39;t have online payments set up on the online shop yet.
             Payments will be done through e-transfers and cash.
           </p>
           <strong>Who do I pay?</strong>

@@ -64,14 +64,16 @@ export class CheckoutItemRow extends Component {
             alt={`${itemName} - ${itemVariation}`}
           />{" "}
         </div>
-        <div className="col text-muted text-truncate text-uppercase">
-          {" "}
-          <h5 className="text-dark">${itemPrice}</h5>
-          <span> {itemName}</span>
-          <br />
-          <span> {itemSize}</span>
-          <br />
-          <span> QTY: {itemQuantity}</span>
+        <div className="col text-truncate text-dark">
+          <ul className="list-unstyled">
+            <li>
+              <strong>{itemName}</strong>
+            </li>
+            <li>&#36;{itemPrice}</li>
+            <li>Variation: {itemVariation}</li>
+            <li>Size: {itemSize}</li>
+            <li>Quantity: {itemQuantity}</li>
+          </ul>
         </div>
       </div>
     );

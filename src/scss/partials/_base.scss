@@ -17,6 +17,7 @@ a {
 .uk-select,
 .uk-input,
 .uk-button {
+  background-color: $white;
 
   &:enabled {
     border: 1px solid $black;
@@ -26,7 +27,7 @@ a {
 
 .uk-button-default:not([disabled]),
 .uk-select,
-.uk-input {
+.uk-input[type="number"] {
   background-color: $white;
   text-align-last: center;
   color: $black;
@@ -39,12 +40,18 @@ a {
 
 .uk-button[type="submit"]:not([disabled]) {
   background-color: $white;
-  text-align-last: center;
+  // text-align-last: center;
 
   &:hover {
     background-color: $black;
     color: $white;
   }
+}
+
+.uk-checkbox:checked,
+.uk-checkbox:indeterminate,
+.uk-radio:checked {
+  background-color: $black;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

@@ -4,7 +4,7 @@ import moment from "moment";
 import firebase from "firebase/app";
 import { Redirect } from "react-router";
 
-import { setCart, getCart } from "./../../helpers/cookieHelpers";
+import { getCart } from "./../../helpers/cookieHelpers";
 
 import { CheckoutItems } from "./components/Checkout Items";
 import { CheckoutForm } from "./components/Checkout Form";
@@ -23,14 +23,14 @@ export default class Checkout extends Component {
     this.handleCheckoutSubmit = this.handleCheckoutSubmit.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.formatOrder = this.formatOrder.bind(this);
-    this.fnfSale = this.fnfSale.bind(this);
+    // this.fnfSale = this.fnfSale.bind(this);
   }
 
   componentDidMount() {
     document.title = "By Forte | Checkout";
-    if (this.state.cart) {
-      this.fnfSale(5);
-    }
+    // if (this.state.cart) {
+    //   this.fnfSale(5);
+    // }
   }
 
   handleCheckoutSubmit(formInfo) {
@@ -83,18 +83,18 @@ export default class Checkout extends Component {
     });
   }
 
-  fnfSale(saleDeductPrice) {
-    var { cart } = this.state;
+  // fnfSale(saleDeductPrice) {
+  //   var { cart } = this.state;
 
-    const saleDeduct = saleDeductPrice * 2 * Math.floor(cart.itemCount / 2);
-    cart.total = cart.subtotal - saleDeduct;
+  //   const saleDeduct = saleDeductPrice * 2 * Math.floor(cart.itemCount / 2);
+  //   cart.total = cart.subtotal - saleDeduct;
 
-    setCart(cart);
+  //   setCart(cart);
 
-    this.setState({
-      cart: cart
-    });
-  }
+  //   this.setState({
+  //     cart: cart
+  //   });
+  // }
 
   addOrderToDB(order) {
     const firebaseDB = firebase.database();
@@ -137,25 +137,15 @@ export default class Checkout extends Component {
   render() {
     const { cart, orderPlaced } = this.state;
 
-    return !cart && !orderPlaced ? (
-      <Redirect to="/shop" />
-    ) : this.state.orderPlaced ? (
-      <ThankYou />
-    ) : (
-      <div className="container pt-5">
-        <div className="d-flex flex-md-row flex-column-reverse justify-content-md-between checkout-container">
-          <div className="checkout-form-wrapper pb-3 pb-md-0">
-            <CheckoutForm handleCheckoutSubmit={this.handleCheckoutSubmit} />
+    return !cart && !orderPlaced ? <Redirect to="/shop" /> : this.state.orderPlaced ? <ThankYou /> : <div className="container pt-5">
+        <div className="row">
+          <div className="checkout-items-wrapper col-md-5 order-md-2">
+            <CheckoutItems cart={cart} subtotal={cart.subtotal} total={cart.total} />
           </div>
-          <div className="checkout-items-wrapper pb-3 pb-md-0">
-            <CheckoutItems
-              cart={cart}
-              subtotal={cart.subtotal}
-              total={cart.total}
-            />
-          </div>
+        <div className="checkout-form-wrapper col-md-7 order-md-1">
+          <CheckoutForm handleCheckoutSubmit={this.handleCheckoutSubmit} />
         </div>
-      </div>
-    );
+        </div>
+      </div>;
   }
 }
