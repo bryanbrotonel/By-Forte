@@ -135,7 +135,7 @@ export class CartItemRow extends Component {
           <ul className="list-unstyled">
             <li>Variation: {productVariation}</li>
             <li>Size: {itemSize}</li>
-            <li>Quantity: {itemQuantity}</li>
+                <li className="d-block d-md-none">Quantity: {itemQuantity}</li>
           </ul>
         </div>
         <div className="col-1 d-block d-md-none p-0">
