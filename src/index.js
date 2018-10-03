@@ -6,7 +6,7 @@ import registerServiceWorker from "./registerServiceWorker";
 import firebase from 'firebase/app';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import App from "scenes/App";
 
@@ -14,7 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "scss/main.css";
 
 // Add social media icons
-library.add(faBars);
+library.add(faBars, faTimes);
 
 // Initialize Firebase
 var config = {

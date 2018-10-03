@@ -24,6 +24,10 @@ $text-colour: $white;
 .bm-item-list {
   color: $text-colour;
   padding: 0.8em;
+
+  .navbar-link {
+    font-weight: 500;
+  }
 }
 
 .bm-item {
