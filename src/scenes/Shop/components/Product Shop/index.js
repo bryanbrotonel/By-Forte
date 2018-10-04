@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ProductItem } from "./../Product Item";
 
-import firebase from "firebase/app";
+import {getProducts} from "./../../../../helpers/dbHelpers";
 
 import "./styles.css";
 
@@ -16,7 +16,7 @@ export class ProductShop extends Component {
 
   componentDidMount() {
     const self = this;
-    this.getProducts()
+    getProducts()
       .then(function(inventory) {
         self.setState({
           inventory: inventory,
@@ -26,33 +26,6 @@ export class ProductShop extends Component {
       .catch(function(inventory) {
         console.log("getProducts: catch", inventory);
       });
-  }
-
-  getProducts() {
-    const self = this;
-    this.inventory = [];
-
-    return new Promise(function(resolve, reject) {
-      firebase
-        .database()
-        .ref("inventory")
-        .once("value", function(snapshot) {
-          snapshot.forEach(function(childSnapshot) {
-            var childData = childSnapshot.val();
-
-            const productItem = {
-              productName: childData.productName,
-              productVariation: childData.productVariation,
-              productImages: childData.productImages
-            };
-
-            self.inventory.push(productItem);
-            return self.inventory
-              ? resolve(self.inventory)
-              : reject(self.inventory);
-          });
-        });
-    });
   }
 
   render() {

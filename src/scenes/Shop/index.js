@@ -7,6 +7,7 @@ import "firebase/database";
 
 // import Loading from "./../../components/Loading";
 import { ProductShop } from "./components/Product Shop";
+import { PasswordInput } from "./components/passwordInput";
 
 import "./styles.css";
 
@@ -34,6 +35,10 @@ export default class Shop extends Component {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         self.setState({ validShopper: true });
+        console.log('user')
+      }
+      else {
+        console.log('not user')
       }
     });
   }
@@ -63,14 +68,27 @@ export default class Shop extends Component {
   }
 
   render() {
-    return (
-      // <ComingSoon
-      //   bgImage="https://source.unsplash.com/7YwWjgS7aJs/1600x1024"
-      //   text="Coming Soon"
-      // />
-      <div className="mt-5 container d-flex">
+    const { validPassword, errorMessage, validShopper } = this.state;
+    console.log(validShopper);
+    return validShopper ? (
+      <div className="container d-flex mt-5">
+        <br />
         <ProductShop />
+      </div>
+    ) : (
+      <div className="container hv-center">
+      {console.log('fuck')}
+        <PasswordInput
+          signIn={this.signIn}
+          validPassword={validPassword}
+          errorMessage={errorMessage}
+        />
       </div>
     );
   }
 }
+
+// <ComingSoon
+//   bgImage="https://source.unsplash.com/7YwWjgS7aJs/1600x1024"
+//   text="Coming Soon"
+// />

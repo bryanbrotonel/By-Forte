@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import Slider from "react-slick";
 
-import { setCart, getCart } from "../../helpers/cookieHelpers";
+import { setCart, updateCart } from "../../helpers/cookieHelpers";
 import { getProductInfo } from "../../helpers/dbHelpers";
 
 import "./styles.css";
@@ -30,8 +30,7 @@ export default class ProductInfo extends Component {
 
     this.handleOrderedItemChange = this.handleOrderedItemChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.findItem = this.findItem.bind(this);
-    this.updateCart = this.updateCart.bind(this);
+    this.setProductInformation = this.setProductInformation.bind(this);
   }
 
   componentDidMount() {
@@ -45,29 +44,33 @@ export default class ProductInfo extends Component {
       params.itemVariation.replace(/-/g, " ")
     )
       .then(function(productInfo) {
-        const productName = productInfo.productName;
-        const productVariation = productInfo.productVariation;
-        const productImages = productInfo.productImages;
-        const productPrice = productInfo.productPrice;
-        const productDescription = productInfo.productDescription;
-
-        self.setState({
-          productName: productName,
-          productVariation: productVariation,
-          productImages: productImages,
-          productPrice: productPrice,
-          productDescription: productDescription,
-          isLoading: false,
-          redirect: false
-        });
-
-        document.title = "By Forte | " + productName + " - " + productVariation;
+        self.setProductInformation(productInfo);
       })
       .catch(function() {
-        self.setState({
-          redirect: true
-        });
+        self.setState({ redirect: true });
       });
+  }
+
+  setProductInformation(productInfo) {
+    const {
+      productName,
+      productVariation,
+      productImages,
+      productPrice,
+      productDescription
+    } = productInfo;
+
+    this.setState({
+      productName: productName,
+      productVariation: productVariation,
+      productImages: productImages,
+      productPrice: productPrice,
+      productDescription: productDescription,
+      isLoading: false,
+      redirect: false
+    });
+
+    document.title = "By Forte | " + productName + " - " + productVariation;
   }
 
   handleOrderedItemChange = ({ target: { id, value } }) => {
@@ -76,83 +79,25 @@ export default class ProductInfo extends Component {
 
       if (!Number.isInteger(value)) {
         value = String(value);
-        this.setState({
-          dirtyForm: true
-        });
+        this.setState({ dirtyForm: true });
       } else {
-        this.setState({
-          dirtyForm: false
-        });
+        this.setState({ dirtyForm: false });
       }
     }
 
-    this.setState({
-      [id]: value
-    });
+    this.setState({ [id]: value });
   };
 
   handleSubmit(event) {
     event.preventDefault();
 
-    const cart = this.updateCart();
-    this.setState({
-      redirect: true
-    });
+    const cart = updateCart(this.state);
+    this.setState({ redirect: true });
 
     console.log(cart);
     setCart(cart);
   }
 
-  updateCart() {
-    const previousCart = getCart();
-
-    const orderedItem = {
-      productName: this.state.productName,
-      productVariation: this.state.productVariation,
-      itemSize: this.state.itemSize,
-      itemPrice: this.state.productPrice,
-      itemQuantity: this.state.itemQuantity
-    };
-
-    const currentCart =
-      !previousCart || previousCart === undefined || previousCart.length === 0
-        ? { total: 0, subtotal: 0, itemCount: 0, items: [] }
-        : previousCart;
-
-    const currentCartItems = currentCart.items;
-
-    const duplicateItem =
-      currentCartItems.length !== 0
-        ? currentCartItems.findIndex(this.findItem)
-        : -1;
-
-    const itemQuantity = orderedItem.itemQuantity;
-
-    if (duplicateItem === -1) {
-      currentCartItems.push(orderedItem);
-    } else {
-      currentCartItems[duplicateItem].itemQuantity += itemQuantity;
-    }
-
-    currentCart.itemCount += itemQuantity;
-
-    const itemTotal = orderedItem.itemPrice * itemQuantity;
-
-    currentCart.total += itemTotal;
-    currentCart.subtotal += itemTotal;
-
-    return currentCart;
-  }
-
-  findItem(currentitem) {
-    const orderedItem = this.state;
-
-    return (
-      currentitem.itemName === orderedItem.itemName &&
-      currentitem.itemSize === orderedItem.itemSize &&
-      currentitem.productVariation === orderedItem.productVariation
-    );
-  }
   render() {
     const {
       redirect,
@@ -196,6 +141,7 @@ export default class ProductInfo extends Component {
       slidesToShow: 1,
       slidesToScroll: 1
     };
+
     return redirect ? (
       <Redirect to="/error" />
     ) : (
@@ -211,8 +157,11 @@ export default class ProductInfo extends Component {
               <div>
                 <h3 className="font-weight-bold">{productName}</h3>
                 <h4 className="text-muted">{productVariation}</h4>
-                <h5>&#36;{this.state.productPrice}</h5>
-                <p className="product-desc" >{productDescription}</p>
+                <h5>
+                  &#36;
+                  {this.state.productPrice}
+                </h5>
+                <p className="product-desc">{productDescription}</p>
               </div>
               <form
                 id="productForm"

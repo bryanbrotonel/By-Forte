@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Loadable from "react-loadable";
 
-import { Redirect } from "react-router-dom";
-
 import Cookies from "universal-cookie";
 
 import { getCart, setCart } from "./../../helpers/cookieHelpers";
@@ -51,10 +49,6 @@ export default class Cart extends Component {
   render() {
     const { cart } = this.state;
     const self = this;
-
-    if (cart != null) {
-      return <Redirect to="/shop" />;
-    }
 
     let cartItems = cart.items;
 
