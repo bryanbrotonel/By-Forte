@@ -11,8 +11,6 @@ export class CheckoutItems extends Component {
   render() {
     const { cart, subtotal, total } = this.props;
 
-    console.log("checkout Items", cart);
-
     const productItemsCart = cart.items ? (
       cart.items.map(product => (
         <CheckoutItemRow

@@ -35,10 +35,6 @@ export default class Shop extends Component {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         self.setState({ validShopper: true });
-        console.log('user')
-      }
-      else {
-        console.log('not user')
       }
     });
   }
@@ -69,7 +65,6 @@ export default class Shop extends Component {
 
   render() {
     const { validPassword, errorMessage, validShopper } = this.state;
-    console.log(validShopper);
     return validShopper ? (
       <div className="container d-flex mt-5">
         <br />
@@ -77,7 +72,6 @@ export default class Shop extends Component {
       </div>
     ) : (
       <div className="container hv-center">
-      {console.log('fuck')}
         <PasswordInput
           signIn={this.signIn}
           validPassword={validPassword}

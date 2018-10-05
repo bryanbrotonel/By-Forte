@@ -94,7 +94,6 @@ export default class ProductInfo extends Component {
     const cart = updateCart(this.state);
     this.setState({ redirect: true });
 
-    console.log(cart);
     setCart(cart);
   }
 

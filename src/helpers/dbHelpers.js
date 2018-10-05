@@ -75,11 +75,40 @@ export function getProducts() {
 
 export function addOrderToDB(order) {
   const firebaseDB = firebase.database();
+  const items = order.cart.items;
 
-  var updates = {};
-  updates[
+  for (let i = 0; i < items.length; i++) {
+    let { productName, productVariation, itemSize, itemQuantity } = items[i];
+    const dbPath =
+      "inventory/" +
+      productName.toLowerCase() +
+      " - " +
+      productVariation.toLowerCase() +
+      "/product" +
+      itemSize +
+      "Quantity";
+
+    updateInventory(dbPath, itemQuantity);
+  }
+
+  var orderUpdates = {};
+  orderUpdates[
     "orderList/" + firebaseDB.ref("orderList").push().key + "-" + order.orderID
   ] = order;
 
-  firebaseDB.ref().update(updates);
+  firebaseDB.ref().update(orderUpdates);
+}
+
+function updateInventory(dbPath, itemQuantity) {
+  const firebaseDB = firebase.database();
+  var inventoryUpdates = {};
+
+  firebaseDB
+    .ref(dbPath)
+    .once("value")
+    .then(snapshot => {
+      var dbValue = snapshot.val();
+      inventoryUpdates[dbPath] = dbValue + itemQuantity;
+      firebaseDB.ref().update(inventoryUpdates);
+    });
 }
