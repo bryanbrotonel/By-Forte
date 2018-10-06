@@ -35,6 +35,12 @@ export default class ProductInfo extends Component {
 
   componentDidMount() {
     const self = this;
+    self.setProductInformation();
+  }
+
+  setProductInformation() {
+    const self = this;
+
     const {
       match: { params }
     } = this.props;
@@ -44,33 +50,30 @@ export default class ProductInfo extends Component {
       params.itemVariation.replace(/-/g, " ")
     )
       .then(function(productInfo) {
-        self.setProductInformation(productInfo);
+        const {
+          productName,
+          productVariation,
+          productImages,
+          productPrice,
+          productDescription
+        } = productInfo;
+
+        self.setState({
+          productName: productName,
+          productVariation: productVariation,
+          productImages: productImages,
+          productPrice: productPrice,
+          productDescription: productDescription,
+          isLoading: false,
+          redirect: false
+        });
+
+        document.title = "By Forte | " + productName + " - " + productVariation;
       })
-      .catch(function() {
+      .catch(function(error) {
+        console.log(error);
         self.setState({ redirect: true });
       });
-  }
-
-  setProductInformation(productInfo) {
-    const {
-      productName,
-      productVariation,
-      productImages,
-      productPrice,
-      productDescription
-    } = productInfo;
-
-    this.setState({
-      productName: productName,
-      productVariation: productVariation,
-      productImages: productImages,
-      productPrice: productPrice,
-      productDescription: productDescription,
-      isLoading: false,
-      redirect: false
-    });
-
-    document.title = "By Forte | " + productName + " - " + productVariation;
   }
 
   handleOrderedItemChange = ({ target: { id, value } }) => {
