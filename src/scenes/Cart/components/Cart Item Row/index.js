@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { Redirect } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { getCart, removeCart } from "./../../../../helpers/cookieHelpers";
 import { getProductInfo } from "./../../../../helpers/dbHelpers";
@@ -118,46 +119,51 @@ export class CartItemRow extends Component {
       <p className="text-center text-muted">Loading...</p>
     ) : (
       <div className="row cart-row">
-        <div className="col-md-1 align-self-center d-none d-md-block">
-          <button
-            onClick={this.hanldeRemoveItem}
-            className="uk-button uk-button-default"
-          >
-            <h4>x</h4>
-          </button>
-        </div>
-        <div className="col-5 col-md-2">
+        <div className="col-6 col-md-2">
           <img
             className="d-block"
             src={productImage}
             alt={`${productName} - ${productVariation}`}
           />
         </div>
-        <div className="col-7 col-md-9">
-          <div className="row text-center">
-            <div className="col-8 h-100">
-              <h5 className="row text-justify text-uppercase">
-                {" "}
-                {productName}
-              </h5>
-              <h6 className="row text-justify text-muted text-uppercase">
-                COLOUR: {productVariation}
-              </h6>
-              <h6 className="row text-justify text-muted text-uppercase">
-                SIZE: {itemSize}
-              </h6>
-            </div>
-            <div className="col-6 py-2 py-md-0 col-md-2 ml-md-auto">
+        <div className="col-5 col-md-4">
+          <h5 className="font-weight-bold">{productName}</h5>
+          <h6 className="d-block d-md-none">
+            &#36;
+            {productPrice}
+          </h6>
+          <ul className="list-unstyled">
+            <li>Variation: {productVariation}</li>
+            <li>Size: {itemSize}</li>
+                <li className="d-block d-md-none">Quantity: {itemQuantity}</li>
+          </ul>
+        </div>
+        <div className="col-1 d-block d-md-none p-0">
+          <FontAwesomeIcon
+            className="float-left"
+            icon="times"
+            size="lg"
+            onClick={this.hanldeRemoveItem}
+          />
+        </div>
+        <div className="col-12 col-md-6 d-none d-md-block">
+          <div className="row">
+            <div className="col-5 text-center">
               <span>{itemQuantity}</span>
             </div>
-            <div className="col-6 py-2 py-md-0 col-md-2">
-              <span>${productPrice}</span>
+            <div className="col-5 text-center">
+              <span>
+                &#36;
+                {productPrice}
+              </span>
             </div>
-            <div
-              className="d-md-none d-lg text-left pt-1 text-danger"
-              onClick={this.hanldeRemoveItem}
-            >
-              <span className="text-danger">REMOVE</span>
+            <div className="col-1 text-center p-0 float-center">
+              <FontAwesomeIcon
+                className="ml-4"
+                icon="times"
+                size="lg"
+                onClick={this.hanldeRemoveItem}
+              />
             </div>
           </div>
         </div>

@@ -23,7 +23,14 @@ export class Footer extends React.Component {
       facebookLink
     } = this.state;
 
-    return (
+    let windowLocation = window.location.href.toLowerCase();
+    let nonFooterPages = ["", "editorial"];
+
+    var hideFooter = nonFooterPages.includes(
+      windowLocation.substr(windowLocation.lastIndexOf("/") + 1)
+    );
+
+    return hideFooter ? null : (
       <div className="footer container">
         <hr />
         <div className="d-flex justify-content-between">
@@ -33,9 +40,7 @@ export class Footer extends React.Component {
               <NavLink to="/contact">{contactLink}</NavLink>
             </li>
             <li>
-              <NavLink to="/terms-and-conditions">
-                {termsLink.toUpperCase()}
-              </NavLink>
+              <NavLink to="/terms-and-conditions">{termsLink}</NavLink>
             </li>
             <li>
               <NavLink to="/refund-Policy">{refundLink}</NavLink>

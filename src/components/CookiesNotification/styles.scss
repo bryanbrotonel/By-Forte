@@ -1,6 +1,6 @@
 @import 'scss/modules/colours';
 
-.cookie-prompt {
+.cookies-prompt {
   background-color: $black;
   bottom: 0;
   color: $white;
@@ -10,6 +10,6 @@
 }
 
 .cookies-prompt-button {
-  background-color: $black;
+  color: $black;
   border: solid $white 1px;
 }

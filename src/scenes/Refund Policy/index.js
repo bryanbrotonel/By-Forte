@@ -12,7 +12,7 @@ export default class RefundPolicy extends Component {
 
   render() {
     return (
-      <div className="container text-justify">
+      <div className="container text-justify mt-5">
         <h1>REFUND POLICY</h1>
 
         <p>----</p>

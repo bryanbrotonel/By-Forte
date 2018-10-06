@@ -1,1 +1,13 @@
 // about.scss
+
+.about-write-up {
+  margin-top: 3vh;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .about-write-up {
+    margin-top: 0;
+    text-align: justify;
+  }
+}

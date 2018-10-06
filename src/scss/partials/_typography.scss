@@ -9,15 +9,6 @@ h1,
 h2,
 h3 {
   font-family: $header-font-family;
-  text-transform: uppercase;
-}
-
-h1 {
-  @include font-size-map($h1-font-size);
-}
-
-h2 {
-  @include font-size-map($h2-font-size);
 }
 
 h4,
@@ -26,12 +17,25 @@ h6 {
   font-family: $base-font-family;
 }
 
+label {
+  color: $black;
+}
+
+.base-font {
+  font-family: $base-font-family;
+}
+
 .nav-link {
   font-family: $header-font-family;
   font-size: 18px;
 }
 
-a,
-a > :hover {
+.uk-card-default .uk-card-title {
+  font-family: $header-font-family;
+  color: $black;
+  font-weight: bold;
+}
+
+.text-dark {
   color: $black;
 }

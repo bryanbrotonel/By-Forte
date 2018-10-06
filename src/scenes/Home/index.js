@@ -1,6 +1,14 @@
 import React, { Component } from "react";
-import { PictureRow } from "./components/PictureRow";
+import Loadable from "react-loadable";
+
+import Loading from "./../../components/Loading";
+
 import "./styles.css";
+
+const ComingSoon = Loadable({
+  loader: () => import("../../components/ComingSoon"),
+  loading: Loading
+});
 
 export default class Home extends Component {
   constructor() {
@@ -14,9 +22,10 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="middle-align container">
-        <PictureRow />
-      </div>
+      <ComingSoon
+        bgImage="https://source.unsplash.com/K61C1XrwTWs/1600x1024"
+        text="Coming Soon"
+      />
     );
   }
 }
