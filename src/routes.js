@@ -3,8 +3,8 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Loadable from "react-loadable";
 
-import ShopRoute from "./components/ShopRoute";
 import Loading from "./components/Loading";
+import ShopRoute from "./components/ShopRoute";
 
 const homeLoadable = Loadable({
   loader: () => import("./scenes/Home"),
