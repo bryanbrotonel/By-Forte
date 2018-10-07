@@ -14,8 +14,7 @@ export default class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: [],
-      validShopper: false
+      cart: []
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);

@@ -1,8 +1,11 @@
 import React from "react";
+
 import { Switch, Route, Redirect } from "react-router-dom";
 import Loadable from "react-loadable";
 
 import Loading from "./components/Loading";
+
+import ShopRoute from "./components/ShopRoute";
 
 const homeLoadable = Loadable({
   loader: () => import("./scenes/Home"),
@@ -66,12 +69,12 @@ const Routes = () => (
     <Route exact={true} path="/about" component={aboutLoadable} />
     <Route exact={true} path="/editorial" component={editorialLoadable} />
     <Route exact={true} path="/shop" component={shopLoadable} />
-    <Route
+    <ShopRoute
       path="/shop/collections/tops/products/:itemName/:itemVariation"
       component={productInfoLoadable}
     />
-    <Route path="/cart" component={cartLoadable} />
-    <Route path="/checkout" component={checkoutLoadable} />
+    <ShopRoute path="/cart" component={cartLoadable} />
+    <ShopRoute path="/checkout" component={checkoutLoadable} />
     <Route path="/contact" component={contactLoadable} />
     <Route
       path="/terms-and-conditions"
