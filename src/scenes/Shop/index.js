@@ -10,6 +10,7 @@ import { ProductShop } from "./components/Product Shop";
 import { PasswordInput } from "./components/passwordInput";
 
 import "./styles.css";
+import { authValidate } from "../../helpers/dbHelpers";
 
 // const ComingSoon = Loadable({
 //   loader: () => import("../../components/ComingSoon"),
@@ -28,17 +29,13 @@ export default class Shop extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
   }
   componentDidMount() {
-    const self = this;
-
     document.title = "By Forte | Shop";
 
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
+    const self = this;
+
+    authValidate().then(function(result) {
+      if (result) {
         self.setState({ validShopper: true });
-        console.log('user')
-      }
-      else {
-        console.log('not user')
       }
     });
   }
@@ -68,8 +65,8 @@ export default class Shop extends Component {
   }
 
   render() {
-    const { validPassword, errorMessage, validShopper } = this.state;
-    console.log(validShopper);
+    const { validPassword, validShopper } = this.state;
+
     return validShopper ? (
       <div className="container d-flex mt-5">
         <br />
@@ -77,12 +74,7 @@ export default class Shop extends Component {
       </div>
     ) : (
       <div className="container hv-center">
-      {console.log('fuck')}
-        <PasswordInput
-          signIn={this.signIn}
-          validPassword={validPassword}
-          errorMessage={errorMessage}
-        />
+        <PasswordInput signIn={this.signIn} validPassword={validPassword} />
       </div>
     );
   }
