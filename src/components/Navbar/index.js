@@ -30,11 +30,11 @@ export class NavBar extends React.Component {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         self.setState(prevState => ({
-          pages: prevState.pages.concat(["cart"])
+          pages: prevState.pages.concat(["Cart"])
         }));
       } else {
         var navbarPages = self.state.pages;
-        var index = navbarPages.indexOf("cart");
+        var index = navbarPages.indexOf("Cart");
         if (index > -1) {
           navbarPages.splice(index, 1);
         }

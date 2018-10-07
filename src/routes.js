@@ -1,11 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 import Loadable from "react-loadable";
 
 import Loading from "./components/Loading";
-import { authValidate } from "./helpers/dbHelpers";
+import ShopRoute from "./components/ShopRoute";
 
 const homeLoadable = Loadable({
   loader: () => import("./scenes/Home"),
@@ -61,19 +60,6 @@ const pageNotFoundLoadable = Loadable({
   loader: () => import("./scenes/Page Not Found"),
   loading: Loading
 });
-
-const ShopRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      !authValidate() ? <Redirect to="/shop" /> : <Component {...props} />
-    }
-  />
-);
-
-ShopRoute.propTypes = {
-  component: PropTypes.func
-};
 
 const Routes = () => (
   <Switch>

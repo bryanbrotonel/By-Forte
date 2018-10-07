@@ -5,8 +5,10 @@ import "firebase/database";
 import { getCurrentTimestamp, PadWithZeros } from "./baseHelper";
 
 export function authValidate() {
-  firebase.auth().onAuthStateChanged(function(user) {
-    return user;
+  return new Promise(function(resolve) {
+    firebase.auth().onAuthStateChanged(function(user) {
+      return user ? resolve(true) : resolve(false);
+    });
   });
 }
 
