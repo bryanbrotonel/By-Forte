@@ -40,7 +40,7 @@ export class CheckoutForm extends Component {
   render() {
     return (
       <div className="uk-card uk-card-default uk-card-body">
-        <h3 className="uk-card-title">CHECKOUT</h3>
+        <h3 className="uk-card-title">Checkout</h3>
         <form onSubmit={this.handleSubmit}>
           <div className="form-row">
             <div className="form-group col-md-6">

@@ -13,10 +13,10 @@ export default class PageNotFound extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>PAGE NOT FOUND</h1>
+      <div className="container mt-5">
+        <h1>Page Not Found</h1>
         <NavLink to="/shop">
-          <p className="text-muted">Continue shopping.</p>
+          <p>Continue shopping.</p>
         </NavLink>
       </div>
     );

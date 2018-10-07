@@ -32,12 +32,9 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div id="app">
-        <div id="NavBar">
-          <NavBar />
-        </div>
+        <NavBar />
         <div id="body">
           <Routes />
         </div>

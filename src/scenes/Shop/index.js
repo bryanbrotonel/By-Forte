@@ -1,12 +1,21 @@
 import React, { Component } from "react";
+import Loadable from "react-loadable";
 
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
-import { ProductShop } from "./components/Product Shop";
+import Loading from "./../../components/Loading";
+// import { ProductShop } from "./components/Product Shop";
+// import { PasswordInput } from "./components/passwordInput";
 
 import "./styles.css";
+import { authValidate } from "../../helpers/dbHelpers";
+
+const ComingSoon = Loadable({
+  loader: () => import("../../components/ComingSoon"),
+  loading: Loading
+});
 
 export default class Shop extends Component {
   constructor(props) {
@@ -20,12 +29,12 @@ export default class Shop extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
   }
   componentDidMount() {
-    const self = this;
-
     document.title = "By Forte | Shop";
 
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
+    const self = this;
+
+    authValidate().then(function(result) {
+      if (result) {
         self.setState({ validShopper: true });
       }
     });
@@ -56,11 +65,24 @@ export default class Shop extends Component {
   }
 
   render() {
+    const { validPassword, validShopper } = this.state;
+
     return (
-      <div className="container d-flex">
-        <br />
-        <ProductShop />
-      </div>
+      <ComingSoon
+        bgImage="https://source.unsplash.com/7YwWjgS7aJs/1600x1024"
+        text="Coming Soon"
+      />
     );
+
+    // return validShopper ? (
+    //   <div className="container d-flex mt-5">
+    //     <br />
+    //     <ProductShop />
+    //   </div>
+    // ) : (
+    //   <div className="container hv-center">
+    //     <PasswordInput signIn={this.signIn} validPassword={validPassword} />
+    //   </div>
+    // );
   }
 }

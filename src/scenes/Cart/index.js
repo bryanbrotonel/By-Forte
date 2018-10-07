@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Loadable from "react-loadable";
 
-import firebase from "firebase/app";
-import "firebase/auth";
-
-import { Redirect } from "react-router";
 import Cookies from "universal-cookie";
 
 import { getCart, setCart } from "./../../helpers/cookieHelpers";
@@ -18,8 +14,7 @@ export default class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: [],
-      validShopper: false
+      cart: []
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -47,15 +42,12 @@ export default class Cart extends Component {
       cart: cartObject
     });
 
-    setCart(cartObject)
+    setCart(cartObject);
   }
 
   render() {
     const { cart } = this.state;
     const self = this;
-    // if (cart != null) {
-    //   return <Redirect to="/shop" />;
-    // }
 
     let cartItems = cart.items;
 
@@ -83,8 +75,8 @@ export default class Cart extends Component {
           });
 
     return (
-      <div className="container d-flex align-items-start flex-column">
-        <h1>CART</h1>
+      <div className="container d-flex align-items-start flex-column mt-5">
+        <h1>Cart</h1>
         <CartContent />
       </div>
     );

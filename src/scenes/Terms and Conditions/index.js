@@ -12,7 +12,7 @@ export default class TermsAndConditions extends Component {
 
   render() {
     return (
-      <div className="container text-justify">
+      <div className="container text-justif container mt-5">
         <h1>TERMS AND CONDITIONS</h1>
 
         <p>----</p>

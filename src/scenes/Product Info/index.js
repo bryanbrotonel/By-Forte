@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import Slider from "react-slick";
 
-import { setCart, getCart } from "../../helpers/cookieHelpers";
+import { setCart, updateCart } from "../../helpers/cookieHelpers";
 import { getProductInfo } from "../../helpers/dbHelpers";
 
 import "./styles.css";
@@ -20,21 +20,27 @@ export default class ProductInfo extends Component {
         "https://raw.githubusercontent.com/diegocsandrim/sharp-test/master/output1.png"
       ],
       productPrice: 0,
-      itemSize: "SMALL",
+      itemSize: "Small",
       itemQuantity: 1,
       productDescription: [],
       redirect: false,
-      isLoading: true
+      isLoading: true,
+      dirtyForm: false
     };
 
     this.handleOrderedItemChange = this.handleOrderedItemChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.findItem = this.findItem.bind(this);
-    this.updateCart = this.updateCart.bind(this);
+    this.setProductInformation = this.setProductInformation.bind(this);
   }
 
   componentDidMount() {
     const self = this;
+    self.setProductInformation();
+  }
+
+  setProductInformation() {
+    const self = this;
+
     const {
       match: { params }
     } = this.props;
@@ -44,15 +50,13 @@ export default class ProductInfo extends Component {
       params.itemVariation.replace(/-/g, " ")
     )
       .then(function(productInfo) {
-        const productName = productInfo.productName;
-        const productVariation = productInfo.productVariation;
-        const productImages = productInfo.productImages;
-        const productPrice = productInfo.productPrice;
-        const productDescription = [
-          productInfo.productMaterial,
-          productInfo.productPrint,
-          productInfo.productFeature
-        ];
+        const {
+          productName,
+          productVariation,
+          productImages,
+          productPrice,
+          productDescription
+        } = productInfo;
 
         self.setState({
           productName: productName,
@@ -66,10 +70,9 @@ export default class ProductInfo extends Component {
 
         document.title = "By Forte | " + productName + " - " + productVariation;
       })
-      .catch(function() {
-        self.setState({
-          redirect: true
-        });
+      .catch(function(error) {
+        console.log(error);
+        self.setState({ redirect: true });
       });
   }
 
@@ -77,103 +80,44 @@ export default class ProductInfo extends Component {
     if (id === "itemQuantity") {
       value = parseInt(value, 10);
 
-      if (isNaN(value)) {
-        value = 0;
+      if (!Number.isInteger(value)) {
+        value = String(value);
+        this.setState({ dirtyForm: true });
+      } else {
+        this.setState({ dirtyForm: false });
       }
     }
 
-    this.setState({
-      [id]: value
-    });
+    this.setState({ [id]: value });
   };
 
   handleSubmit(event) {
     event.preventDefault();
 
-    const cart = this.updateCart();
-    this.setState({
-      redirect: true
-    });
+    const cart = updateCart(this.state);
+    this.setState({ redirect: true });
 
     setCart(cart);
   }
 
-  updateCart() {
-    const previousCart = getCart();
-
-    const orderedItem = {
-      productName: this.state.productName,
-      productVariation: this.state.productVariation,
-      itemSize: this.state.itemSize,
-      itemPrice: this.state.productPrice,
-      itemQuantity: this.state.itemQuantity
-    };
-
-    const currentCart =
-      !previousCart || previousCart === undefined || previousCart.length === 0
-        ? { total: 0, subtotal: 0, itemCount: 0, items: [] }
-        : previousCart;
-
-    const currentCartItems = currentCart.items;
-
-    const duplicateItem =
-      currentCartItems.length !== 0
-        ? currentCartItems.findIndex(this.findItem)
-        : -1;
-
-    const itemQuantity = orderedItem.itemQuantity;
-
-    if (duplicateItem === -1) {
-      currentCartItems.push(orderedItem);
-    } else {
-      currentCartItems[duplicateItem].itemQuantity += itemQuantity;
-    }
-
-    currentCart.itemCount += itemQuantity;
-
-    const itemTotal = orderedItem.itemPrice * itemQuantity;
-
-    currentCart.total += itemTotal;
-    currentCart.subtotal += itemTotal;
-
-    return currentCart;
-  }
-
-  findItem(currentitem) {
-    const orderedItem = this.state;
-
-    return (
-      currentitem.itemName === orderedItem.itemName &&
-      currentitem.itemSize === orderedItem.itemSize &&
-      currentitem.productVariation === orderedItem.productVariation
-    );
-  }
   render() {
     const {
       redirect,
       isLoading,
       productName,
       productVariation,
-      productImages
+      productDescription,
+      productImages,
+      dirtyForm
     } = this.state;
-    const productDescription = [];
 
     if (redirect) {
       return <Redirect to="/cart" />;
     }
 
-    for (var i = 0; i < this.state.productDescription.length; i++) {
-      productDescription.push(
-        <React.Fragment key={this.state.productDescription[i]}>
-          {this.state.productDescription[i].toUpperCase()}
-          <br />
-        </React.Fragment>
-      );
-    }
-
     const productImagesDisplay = productImages.map(image => {
       return (
-        <div key={image}>
+        <div key={image} className="mb-3">
           <img src={image} alt={`${productName} - ${productVariation}`} />
         </div>
       );
@@ -191,7 +135,7 @@ export default class ProductInfo extends Component {
         );
       },
       arrows: false,
-      dots: true,
+      dots: productImagesDisplay.length > 1,
       lazyLoad: true,
       dotsClass: "slick-dots slick-thumb",
       infinite: true,
@@ -205,61 +149,57 @@ export default class ProductInfo extends Component {
     ) : (
       <div className="container">
         {isLoading ? (
-          <h1 className="text-muted">Loading...</h1>
+          <h1 className="text-muted hv-center mt-5">Loading...</h1>
         ) : (
-          <div className="row justify-content-md-center align-items-center">
-            <div className="col-md-5 p-4">
+          <div className="row justify-content-center mt-5">
+            <div className="product-image col-10 col-md-5">
               <Slider {...settings}>{productImagesDisplay}</Slider>
             </div>
-            <div className="col-md-5">
+            <div className="product-info col-lg-6">
               <div>
-                <h2>{this.state.productName}</h2>
-                <h4 className="text-muted text-uppercase">
-                  {this.state.productVariation}
-                </h4>
-                <h5>${this.state.productPrice}</h5>
+                <h3 className="font-weight-bold">{productName}</h3>
+                <h4 className="text-muted">{productVariation}</h4>
+                <h5>
+                  &#36;
+                  {this.state.productPrice}
+                </h5>
+                <p className="product-desc">{productDescription}</p>
               </div>
-              <p>{productDescription}</p>
               <form
                 id="productForm"
                 name="productForm"
                 onSubmit={this.handleSubmit}
               >
-                <div className="row">
-                  <div className="form-group col-5">
-                    {" "}
-                    <select
-                      id="itemSize"
-                      name="itemSize"
-                      className="uk-select text-uppercase"
-                      value={this.state.itemSize}
-                      onChange={this.handleOrderedItemChange}
-                    >
-                      <option value="SMALL">Small</option>
-                      <option value="MEDIUM">Medium</option>
-                      <option value="LARGE">Large</option>
-                    </select>
-                  </div>
-                  <div className="col-3 h-100">
-                    <input
-                      id="itemQuantity"
-                      name="itemQuantity"
-                      type="number"
-                      className="uk-input"
-                      min="1"
-                      value={this.state.itemQuantity}
-                      onChange={this.handleOrderedItemChange}
-                    />
-                  </div>
+                <div className="input-form">
+                  <select
+                    id="itemSize"
+                    name="itemSize"
+                    className="uk-select uk-form-width-small"
+                    value={this.state.itemSize}
+                    onChange={this.handleOrderedItemChange}
+                  >
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                  </select>
+                  <input
+                    id="itemQuantity"
+                    name="itemQuantity"
+                    type="number"
+                    className="uk-input uk-form-width-small"
+                    min="1"
+                    value={this.state.itemQuantity}
+                    onChange={this.handleOrderedItemChange}
+                  />
                 </div>
-                <div className="row">
-                  <div className="form-group col-md-5 col-8">
-                    <input
-                      type="submit"
-                      className="uk-button uk-button-default uk-form-width-medium text-center w-100"
-                      value="ADD TO CART"
-                    />
-                  </div>
+                <br />
+                <div className="input-form">
+                  <input
+                    disabled={dirtyForm}
+                    type="submit"
+                    className="uk-button uk-button-default uk-form-width-medium text-center"
+                    value="ADD TO CART"
+                  />
                 </div>
               </form>
             </div>

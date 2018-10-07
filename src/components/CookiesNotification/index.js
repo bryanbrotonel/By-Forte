@@ -27,7 +27,7 @@ export class CookiesNotification extends Component {
     const { cookiesMessage, confirmText } = this.state;
 
     return (
-      <div className="cookie-prompt">
+      <div className="cookies-prompt">
         <div className="container">
           <div className="row justify-content-between align-items-center">
             <div className="col-9r">
@@ -36,7 +36,7 @@ export class CookiesNotification extends Component {
             <div className="col-4 col-md-1 text-uppercase">
               <input
                 type="button"
-                className="uk-button cookies-prompt-button"
+                className="cookies-prompt-button uk-button"
                 value={confirmText}
                 onClick={this.handleSelect}
               />

@@ -8,14 +8,8 @@ import { CheckoutItemRow } from "../Checkout Item Row";
 import "./styles.css";
 
 export class CheckoutItems extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { cart, subtotal, total } = this.props;
-
-    console.log('checkout Items', cart);
 
     const productItemsCart = cart.items ? (
       cart.items.map(product => (
@@ -37,21 +31,43 @@ export class CheckoutItems extends Component {
     return (
       <div className="uk-card uk-card-default uk-card-body">
         <div className="row justify-content-between align-text-bottom align-bottom">
-          <h3 className="col-5 uk-card-title">{cart.itemCount} ITEMS</h3>
+          <h1 className="col-5 uk-card-title font-weight-bold">
+            {cart.itemCount} Items
+          </h1>
           <Link
             className="col-5 text-right align-self-center text-muted"
             to="/cart"
           >
             {" "}
-            <h6>EDIT</h6>
+            <h6>Edit</h6>
           </Link>
         </div>
         <hr />
         {productItemsCart}
         <hr />
-        <div className="text-right text-dark">
-          <h6>SUBTOTAL: ${subtotal}</h6>
-          <h3>TOTAL: ${total}</h3>
+        <div className="container text-dark">
+          <div className="row justify-content-between">
+            <div className="col-2 ">
+              <h6>Subtotal</h6>
+            </div>
+            <div className="col-2 text-right pr-0">
+              <h6>
+                &#36;
+                {subtotal}
+              </h6>
+            </div>
+          </div>
+          <div className="row justify-content-between">
+            <div className="col-2 ">
+              <h6>Total</h6>
+            </div>
+            <div className="col-2 text-right pr-0">
+              <h6>
+                &#36;
+                {total}
+              </h6>
+            </div>
+          </div>
         </div>
       </div>
     );
