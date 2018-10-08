@@ -27,17 +27,6 @@ let config = {
 };
 firebase.initializeApp(config);
 
-// // Initialize Firebase
-// var config = {
-//   apiKey: "AIzaSyCtWTweCtNXjW_WjYfW59T9IG-upFejw2k",
-//   authDomain: "by-forte-test.firebaseapp.com",
-//   databaseURL: "https://by-forte-test.firebaseio.com",
-//   projectId: "by-forte-test",
-//   storageBucket: "by-forte-test.appspot.com",
-//   messagingSenderId: "652878859375"
-// };
-// firebase.initializeApp(config);
-
 ReactDOM.render(
   <Router>
     <App />

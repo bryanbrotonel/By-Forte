@@ -24,7 +24,7 @@ export default class About extends Component {
           </div>
           <div className="col-10 col-md-5 hv-center">
             <div className="about-write-up">
-              <p>By Forte is a streetwear from based in Vancouver, Canada.</p>
+              <p>By Forte is a streetwear brand based in Vancouver, Canada.</p>
               <p>
                 We represent what it means to bring the ideas that we visualize
                 in our minds to life. By Forte embraces the creative process by
