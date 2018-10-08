@@ -42,7 +42,7 @@ export class ProductShop extends Component {
 
     return isLoading ? (
       <div className="hv-center text-muted text-center">
-        <h2>LOADING</h2>
+        <h2>Loading</h2>
       </div>
     ) : (
       <div className="w-100">

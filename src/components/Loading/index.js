@@ -8,7 +8,7 @@ export default class Loading extends Component {
     if (error) {
       return (
         <div className="container hv-center text-muted">
-          <h2>LOADING</h2>
+          <h2>Loading</h2>
           <h5>error</h5>
           <button className="uk-button uk-button-default" onClick={retry}>
             Retry
@@ -16,22 +16,18 @@ export default class Loading extends Component {
         </div>
       );
     } else if (timedOut) {
-      return (
-        <div className="container hv-center text-muted">
-          <h2>LOADING</h2>
+      return <div className="container hv-center text-muted">
+          <h2>Loading</h2>
           <h5>{timedOut}</h5>
           <button className="uk-button uk-button-default" onClick={retry}>
             Retry
           </button>
-        </div>
-      );
+        </div>;
     } else if (pastDelay) {
-      return (
-        <div className="container hv-center text-muted">
-          <h2>LOADING</h2>
+      return <div className="container hv-center text-muted">
+          <h2>Loading</h2>
           <h5>{pastDelay}</h5>
-        </div>
-      );
+        </div>;
     } else {
       return null;
     }
