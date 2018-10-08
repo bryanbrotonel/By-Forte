@@ -13,12 +13,12 @@ export default class Contact extends Component {
   render() {
     return (
       <div className="container mt-5">
-        <h1>CONTACT</h1>
+        <h1>Contact</h1>
         <br />
         <div>
           {" "}
           <h5>
-            <b>EMAIL</b>
+            <b>Email</b>
           </h5>
           <a
             href="mailto:supplybyforte@gmail.com"
@@ -31,7 +31,7 @@ export default class Contact extends Component {
         <div>
           {" "}
           <h5>
-            <b>INSTAGRAM</b>
+            <b>Instagram</b>
           </h5>
           <a
             href="https://www.instagram.com/supplybyforte/"
@@ -44,7 +44,7 @@ export default class Contact extends Component {
         <div>
           {" "}
           <h5>
-            <b>FACEBOOK</b>
+            <b>Facebook</b>
           </h5>
           <a
             href="https://www.facebook.com/byforte"

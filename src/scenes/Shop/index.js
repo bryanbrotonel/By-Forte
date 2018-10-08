@@ -1,21 +1,14 @@
 import React, { Component } from "react";
-import Loadable from "react-loadable";
 
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
-import Loading from "./../../components/Loading";
-// import { ProductShop } from "./components/Product Shop";
-// import { PasswordInput } from "./components/passwordInput";
+import { ProductShop } from "./components/Product Shop";
+import { PasswordInput } from "./components/passwordInput";
 
 import "./styles.css";
 import { authValidate } from "../../helpers/dbHelpers";
-
-const ComingSoon = Loadable({
-  loader: () => import("../../components/ComingSoon"),
-  loading: Loading
-});
 
 export default class Shop extends Component {
   constructor(props) {
@@ -67,22 +60,15 @@ export default class Shop extends Component {
   render() {
     const { validPassword, validShopper } = this.state;
 
-    return (
-      <ComingSoon
-        bgImage="https://source.unsplash.com/7YwWjgS7aJs/1600x1024"
-        text="Coming Soon"
-      />
+    return validShopper ? (
+      <div className="container d-flex mt-5">
+        <br />
+        <ProductShop />
+      </div>
+    ) : (
+      <div className="container hv-center">
+        <PasswordInput signIn={this.signIn} validPassword={validPassword} />
+      </div>
     );
-
-    // return validShopper ? (
-    //   <div className="container d-flex mt-5">
-    //     <br />
-    //     <ProductShop />
-    //   </div>
-    // ) : (
-    //   <div className="container hv-center">
-    //     <PasswordInput signIn={this.signIn} validPassword={validPassword} />
-    //   </div>
-    // );
   }
 }
