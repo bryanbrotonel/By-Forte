@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Loadable from "react-loadable";
 
-import Loading from "./../../components/Loading";
-
+import Loading from "../../components/Loading";
 import "./styles.css";
 
-const ComingSoon = Loadable({
-  loader: () => import("../../components/ComingSoon"),
+import MP4video from "../../videos/Storm Clouds.mp4";
+
+const VideoBackground = Loadable({
+  loader: () => import("../../components/VideoBackgorund"),
   loading: Loading
 });
 
@@ -22,10 +23,11 @@ export default class Home extends Component {
 
   render() {
     return (
-      <ComingSoon
-        bgImage="https://source.unsplash.com/K61C1XrwTWs/1600x1024"
-        text="Coming Soon"
-      />
+      // <ComingSoon
+      //   bgImage="https://source.unsplash.com/K61C1XrwTWs/1600x1024"
+      //   text="Coming Soon"
+      // />
+      <VideoBackground MP4video={MP4video} />
     );
   }
 }
