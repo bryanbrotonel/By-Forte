@@ -14,3 +14,8 @@ export function getCurrentTimestamp() {
 
   return [timeStamp.valueOf(), timeOffset];
 }
+
+  // Parses string from contentful videobackground content
+  export function parseURL(str, title) {
+    return `https:${str[0]}${title.fields.file.url}`;
+  }
