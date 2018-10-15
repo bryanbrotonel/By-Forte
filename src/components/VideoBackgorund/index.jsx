@@ -21,23 +21,28 @@ class VideoBackground extends React.Component {
     );
 
     return loading ? (
-      <div className="hv-center text-white">{pageContent}</div>
+      <div
+        className="hv-center text-center text-white"
+        style={{ backgroundColor: "black" }}
+      >
+        {pageContent}
+      </div>
     ) : (
       <div
         className="uk-cover-container hv-center"
         style={{ backgroundColor: "black" }}
       >
-          <video
-            playsInline
-            autoPlay
-            loop
-            muted
-            uk-cover="true"
-            style={{ minWidth: "100%", minHeight: "100%" }}
-          >
-            <source type="video/mp4" src={MP4video} />
-            <source type="video/webm" src={WEBMvideo} />
-          </video>
+        <video
+          playsInline
+          autoPlay
+          loop
+          muted
+          uk-cover="true"
+          style={{ minWidth: "100%", minHeight: "100%" }}
+        >
+          <source type="video/mp4" src={MP4video} />
+          <source type="video/webm" src={WEBMvideo} />
+        </video>
         <div className="overlay-desc hv-center text-center text-white">
           {pageContent}
         </div>
