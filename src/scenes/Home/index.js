@@ -29,6 +29,8 @@ export default class Home extends Component {
     loadBackgroundVideo().then(response => {
       const fields = response.fields;
 
+      console.log(fields);
+
       self.setState({
         loading: false,
         MP4video: parseURL`${fields.mp4video}`,
