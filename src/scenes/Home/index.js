@@ -1,33 +1,49 @@
 import React, { Component } from "react";
-import Loadable from "react-loadable";
 
-import Loading from "../../components/Loading";
+import VideoBackground from "../../components/VideoBackgorund"
+
+import { parseURL } from "../../helpers/baseHelper";
+import loadBackgroundVideo from "../../helpers/contentfulHelper";
+
 import "./styles.css";
-
-import MP4video from "../../videos/Storm Clouds.mp4";
-
-const VideoBackground = Loadable({
-  loader: () => import("../../components/VideoBackgorund"),
-  loading: Loading
-});
 
 export default class Home extends Component {
   constructor() {
     super();
+
+    this.state = {
+      loading: true,
+      MP4video: "",
+      OGVvideo: ""
+    };
+
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount() {
+    const self = this;
+
     document.title = "By Forte";
+
+    loadBackgroundVideo().then(response => {
+      const fields = response.fields;
+
+      self.setState({
+        loading: false,
+        MP4video: parseURL`${fields.mp4video}`,
+        OGVvideo: parseURL`${fields.ogvvideo}`
+      });
+    });
   }
 
   render() {
+    const { loading, MP4video, OGVvideo } = this.state;
     return (
-      // <ComingSoon
-      //   bgImage="https://source.unsplash.com/K61C1XrwTWs/1600x1024"
-      //   text="Coming Soon"
-      // />
-      <VideoBackground MP4video={MP4video} />
+      <VideoBackground
+        loading={loading}
+        MP4video={MP4video}
+        OGVvideo={OGVvideo}
+      />
     );
   }
 }
