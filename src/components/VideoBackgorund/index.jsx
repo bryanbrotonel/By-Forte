@@ -1,38 +1,32 @@
 import React from "react";
 import propTypes from "prop-types";
 
-import { Link } from "react-router-dom";
-
 import "./styles.css";
 
 class VideoBackground extends React.Component {
   render() {
-    const { loading, MP4video, OGVvideo } = this.props;
+    const { loading, pageContent, MP4video, WEBMvideo } = this.props;
 
-    const pageContent = (
-      <div>
-        <h2 className="base-font font-weight-bold">Propser Through Noise</h2>
-        <Link to="/shop">
-          <h6 className="mb-0">Shop FW 18 now</h6>
-        </Link>
-      </div>
-    );
+    const divStyle = { backgroundColor: "black" };
 
     return loading ? (
-      <div className="hv-center text-white">{pageContent}</div>
+      <div className="hv-center" style={divStyle}>
+        {pageContent}
+      </div>
     ) : (
-      <div
-        className="uk-cover-container hv-center"
-        style={{ backgroundColor: "black" }}
-      >
-        <video playsInline autoPlay loop muted uk-cover="true">
-          <source src={OGVvideo} type="video/ogg" />
-          <source src={MP4video} type="video/mp4" />
-          Prosper Thorugh Noise
+      <div className="uk-cover-container" style={divStyle}>
+        <video
+          playsInline
+          autoPlay
+          loop
+          muted
+          uk-cover="true"
+          style={{ minWidth: "100%", minHeight: "100%" }}
+        >
+          <source type="video/mp4" src={MP4video} />
+          <source type="video/webm" src={WEBMvideo} />
         </video>
-        <div className="overlay-desc hv-center text-center text-white">
-          {pageContent}
-        </div>
+        <div className="overlay-desc hv-center">{pageContent}</div>
       </div>
     );
   }
@@ -40,7 +34,8 @@ class VideoBackground extends React.Component {
 
 VideoBackground.propTypes = {
   MP4video: propTypes.string.isRequired,
-  OGVvideo: propTypes.string.isRequired,
+  WEBMvideo: propTypes.string.isRequired,
+  pageContent: propTypes.object.isRequired,
   loading: propTypes.bool.isRequired
 };
 
