@@ -13,7 +13,7 @@ class VideoBackground extends React.Component {
 
     const pageContent = (
       <div>
-        <h2 className="base-font font-weight-bold">Propser Through Noise</h2>
+        <h2 className="base-font font-weight-bold">Prosper Through Noise</h2>
         <Link to="/shop">
           <h6 className="mb-0">Shop FW 18 now</h6>
         </Link>
