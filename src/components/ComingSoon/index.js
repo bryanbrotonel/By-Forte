@@ -4,7 +4,6 @@ import propTypes from "prop-types";
 export default class ComingSoon extends Component {
   render() {
     const { bgImage, text } = this.props;
-
     let comingSoon;
 
     var divStyle = {
@@ -13,11 +12,7 @@ export default class ComingSoon extends Component {
     };
 
     if (text) {
-      comingSoon = (
-        <h2 className="base-font text-uppercase font-weight-bold mb-0">
-          {text}
-        </h2>
-      );
+      comingSoon = <h2 className="base-font text-uppercase font-weight-bold mb-0">{text}</h2>;
     }
 
     return (
