@@ -25,7 +25,7 @@ class VideoBackground extends React.Component {
         className="uk-cover-container hv-center"
         style={{ backgroundColor: "black" }}
       >
-        <video autoPlay loop muted uk-cover="true">
+        <video playsInline autoPlay loop muted uk-cover="true">
           <source src={OGVvideo} type="video/ogg" />
           <source src={MP4video} type="video/mp4" />
           Prosper Thorugh Noise
