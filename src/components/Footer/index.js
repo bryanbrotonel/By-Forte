@@ -24,7 +24,7 @@ export class Footer extends React.Component {
     } = this.state;
 
     let windowLocation = window.location.href.toLowerCase();
-    let nonFooterPages = ["", "editorial", "shop"];
+    let nonFooterPages = ["", "editorial"];
 
     var hideFooter = nonFooterPages.includes(
       windowLocation.substr(windowLocation.lastIndexOf("/") + 1)
