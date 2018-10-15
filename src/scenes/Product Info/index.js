@@ -152,7 +152,7 @@ export default class ProductInfo extends Component {
           <h1 className="text-muted hv-center mt-5">Loading...</h1>
         ) : (
           <div className="row justify-content-center mt-5">
-            <div className="product-image col-10 col-md-5">
+            <div className="product-image col-12 col-md-10 col-lg-5">
               <Slider {...settings}>{productImagesDisplay}</Slider>
             </div>
             <div className="product-info col-lg-6">
