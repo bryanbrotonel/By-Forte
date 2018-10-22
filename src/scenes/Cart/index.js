@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Loadable from "react-loadable";
 
 import Cookies from "universal-cookie";
+import { Link } from "react-router-dom";
 
 import { getCart, setCart } from "./../../helpers/cookieHelpers";
 
@@ -76,7 +77,16 @@ export default class Cart extends Component {
 
     return (
       <div className="container d-flex align-items-start flex-column mt-5">
-        <h1>Cart</h1>
+        <div className="row justify-content-between w-100">
+          <div className="col-6 v-center">
+            <h1 className="mb-0">Cart</h1>
+          </div>
+          <div className="col-6 p-0 v-center text-right">
+            <Link to="/shop">
+              <h6 className="text-muted mb-0">Continue shopping</h6>
+            </Link>
+          </div>
+        </div>
         <CartContent />
       </div>
     );
