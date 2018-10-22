@@ -3,7 +3,9 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 export function setEnabledCookies() {
-  cookies.set("Cookies Enabled", true, { path: "/" });
+  cookies.set("Cookies Enabled", true, {
+    path: "/"
+  });
 }
 
 export function getEnabledCookies() {
@@ -15,7 +17,9 @@ export function getCart() {
 }
 
 export function setCart(cart) {
-  return cookies.set("My Cart", cart, { path: "/" });
+  return cookies.set("My Cart", cart, {
+    path: "/"
+  });
 }
 
 export function updateCart(state) {
@@ -30,25 +34,29 @@ export function updateCart(state) {
     itemQuantity: currentState.itemQuantity
   };
 
-  const currentCart =
-    !previousCart || previousCart === undefined || previousCart.length === 0
-      ? { total: 0, subtotal: 0, itemCount: 0, items: [] }
-      : previousCart;
+  const currentCart = !previousCart || previousCart === undefined || previousCart.length === 0 ?
+    {
+      total: 0,
+      subtotal: 0,
+      itemCount: 0,
+      items: []
+    } :
+    previousCart;
 
   const currentCartItems = currentCart.items;
 
   const duplicateItem =
-    currentCartItems.length !== 0
-      ? currentCartItems.findIndex(function(currentitem) {
-          const orderedItem = currentState;
-
-          return (
-            currentitem.itemName === orderedItem.itemName &&
-            currentitem.itemSize === orderedItem.itemSize &&
-            currentitem.productVariation === orderedItem.productVariation
-          );
-        })
-      : -1;
+    currentCartItems.length !== 0 ?
+    currentCartItems.findIndex(function (currentitem) {
+      const orderedItem = currentState;
+      
+      return (
+        currentitem.itemName === orderedItem.productName &&
+        currentitem.productVariation === orderedItem.productVariation &&
+        currentitem.itemSize === orderedItem.itemSize
+      );
+    }) :
+    -1;
 
   const itemQuantity = orderedItem.itemQuantity;
 
@@ -69,5 +77,7 @@ export function updateCart(state) {
 }
 
 export function removeCart() {
-  cookies.remove("My Cart", { path: "/" });
+  cookies.remove("My Cart", {
+    path: "/"
+  });
 }
