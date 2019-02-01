@@ -3,9 +3,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import VideoBackground from "../../components/VideoBackgorund";
 
-import { parseURL } from "../../helpers/baseHelper";
-import loadBackgroundVideo from "../../helpers/contentfulHelper";
-
 import "./styles.css";
 
 export default class Home extends Component {
@@ -22,25 +19,11 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    const self = this;
-
     document.title = "By Forte";
-
-    loadBackgroundVideo().then(response => {
-      const fields = response.fields;
-
-      console.log(fields);
-
-      self.setState({
-        loading: false,
-        MP4video: parseURL`${fields.mp4video}`,
-        WEBMvideo: parseURL`${fields.webmvideo}`
-      });
-    });
   }
 
   render() {
-    const { loading, MP4video, WEBMvideo } = this.state;
+    const { loading } = this.state;
 
     const pageContent = (
       <div className="text-center text-white">
@@ -57,8 +40,6 @@ export default class Home extends Component {
       <VideoBackground
         loading={loading}
         pageContent={pageContent}
-        MP4video={MP4video}
-        WEBMvideo={WEBMvideo}
       />
     );
   }

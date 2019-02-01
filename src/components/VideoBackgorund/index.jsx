@@ -5,16 +5,13 @@ import "./styles.css";
 
 class VideoBackground extends React.Component {
   render() {
-    const { loading, pageContent, MP4video, WEBMvideo } = this.props;
+    const { pageContent } = this.props;
 
     const divStyle = { backgroundColor: "black" };
 
-    return loading ? (
-      <div className="hv-center" style={divStyle}>
-        {pageContent}
-      </div>
-    ) : (
+    return (
       <div className="uk-cover-container" style={divStyle}>
+        <h1>Fuck</h1>
         <video
           playsInline
           autoPlay
@@ -23,8 +20,14 @@ class VideoBackground extends React.Component {
           uk-cover="true"
           style={{ minWidth: "100%", minHeight: "100%" }}
         >
-          <source type="video/mp4" src={MP4video} />
-          <source type="video/webm" src={WEBMvideo} />
+          <source
+            type="video/mp4"
+            src={require("../../../src/videos/clouds.mp4")}
+          />
+          <source
+            type="video/webm"
+            src={require("../../../src/videos/clouds.webm")}
+          />
         </video>
         <div className="overlay-desc hv-center">{pageContent}</div>
       </div>
@@ -33,8 +36,6 @@ class VideoBackground extends React.Component {
 }
 
 VideoBackground.propTypes = {
-  MP4video: propTypes.string.isRequired,
-  WEBMvideo: propTypes.string.isRequired,
   pageContent: propTypes.object.isRequired,
   loading: propTypes.bool.isRequired
 };
