@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router";
+import { Navigate } from "react-router";
 import PropTypes from "prop-types";
 
 import Slider from "react-slick";
@@ -112,7 +112,7 @@ export default class ProductInfo extends Component {
     } = this.state;
 
     if (redirect) {
-      return <Redirect to="/cart" />;
+      return <Navigate to="/cart" />;
     }
 
     const productImagesDisplay = productImages.map(image => {

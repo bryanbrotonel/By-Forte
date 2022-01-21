@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { Redirect } from "react-router";
+import { Navigate } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { getCart, removeCart } from "./../../../../helpers/cookieHelpers";
@@ -114,7 +114,7 @@ export class CartItemRow extends Component {
     var productVariation = item.productVariation;
 
     return redirect ? (
-      <Redirect to="/error" />
+      <Route to="/error" />
     ) : isLoading ? (
       <p className="text-center text-muted">Loading...</p>
     ) : (

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Route, Redirect } from "react-router-dom";
+import { Route, Navigate } from "react-router-dom";
 
 import Loading from "../Loading";
 
@@ -39,7 +39,7 @@ export default class ShopRoute extends React.Component {
           {...rest}
           render={props =>
             !isAuthenticated ? (
-              <Redirect
+              <Navigate
                 to={{
                   pathname: "/shop",
                   state: { from: Location }

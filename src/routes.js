@@ -1,87 +1,88 @@
-import React from "react";
+import React from 'react';
 
-import { Switch, Route, Redirect } from "react-router-dom";
-import Loadable from "react-loadable";
+import { Route, Routes } from 'react-router';
+import { Navigate } from 'react-router-dom';
 
-import Loading from "./components/Loading";
-import ShopRoute from "./components/ShopRoute";
+import Loadable from 'react-loadable';
 
-const homeLoadable = Loadable({
-  loader: () => import("./scenes/Home"),
-  loading: Loading
+import Loading from './components/Loading';
+
+const HomeLoadable = Loadable({
+  loader: () => import('./scenes/Home'),
+  loading: Loading,
 });
 
-const aboutLoadable = Loadable({
-  loader: () => import("./scenes/About"),
-  loading: Loading
+const AboutLoadable = Loadable({
+  loader: () => import('./scenes/About'),
+  loading: Loading,
 });
 
-const editorialLoadable = Loadable({
-  loader: () => import("./scenes/Editorial"),
-  loading: Loading
+const EditorialLoadable = Loadable({
+  loader: () => import('./scenes/Editorial'),
+  loading: Loading,
 });
 
-const shopLoadable = Loadable({
-  loader: () => import("./scenes/Shop"),
-  loading: Loading
+const ShopLoadable = Loadable({
+  loader: () => import('./scenes/Shop'),
+  loading: Loading,
 });
 
-const productInfoLoadable = Loadable({
-  loader: () => import("./scenes/Product Info"),
-  loading: Loading
+const ProductInfoLoadable = Loadable({
+  loader: () => import('./scenes/Product Info'),
+  loading: Loading,
 });
 
-const cartLoadable = Loadable({
-  loader: () => import("./scenes/Cart"),
-  loading: Loading
+const CartLoadable = Loadable({
+  loader: () => import('./scenes/Cart'),
+  loading: Loading,
 });
 
-const checkoutLoadable = Loadable({
-  loader: () => import("./scenes/Checkout"),
-  loading: Loading
+const CheckoutLoadable = Loadable({
+  loader: () => import('./scenes/Checkout'),
+  loading: Loading,
 });
 
-const contactLoadable = Loadable({
-  loader: () => import("./scenes/Contact"),
-  loading: Loading
+const ContactLoadable = Loadable({
+  loader: () => import('./scenes/Contact'),
+  loading: Loading,
 });
 
-const termsAndConditionsLoadable = Loadable({
-  loader: () => import("./scenes/Terms and Conditions"),
-  loading: Loading
+const TermsAndConditionsLoadable = Loadable({
+  loader: () => import('./scenes/Terms and Conditions'),
+  loading: Loading,
 });
 
-const refundPolicyLoadable = Loadable({
-  loader: () => import("./scenes/Refund Policy"),
-  loading: Loading
+const RefundPolicyLoadable = Loadable({
+  loader: () => import('./scenes/Refund Policy'),
+  loading: Loading,
 });
 
-const pageNotFoundLoadable = Loadable({
-  loader: () => import("./scenes/Page Not Found"),
-  loading: Loading
+const PageNotFoundLoadable = Loadable({
+  loader: () => import('./scenes/Page Not Found'),
+  loading: Loading,
 });
 
-const Routes = () => (
-  <Switch>
-    <Redirect from="/home" to="/" />
-    <Route exact={true} path="/" component={homeLoadable} />
-    <Route exact={true} path="/about" component={aboutLoadable} />
-    <Route exact={true} path="/editorial" component={editorialLoadable} />
-    <Route exact={true} path="/shop" component={shopLoadable} />
-    <ShopRoute
+const Routing = () => (
+  <Routes>
+    <Route path="home" element={<Navigate to="/" />} />
+    <Route exact={true} path="/" element={<HomeLoadable />} />
+    <Route exact={true} path="/about" element={<AboutLoadable />} />
+    <Route exact={true} path="/editorial" element={<EditorialLoadable />} />
+    <Route exact={true} path="/shop" component={<ShopLoadable />} />
+    <Route
       path="/shop/collections/tops/products/:itemName/:itemVariation"
-      component={productInfoLoadable}
+      element={<ProductInfoLoadable />}
     />
-    <ShopRoute path="/cart" component={cartLoadable} />
-    <ShopRoute path="/checkout" component={checkoutLoadable} />
-    <Route path="/contact" component={contactLoadable} />
+    <Route path="/cart" element={<CartLoadable />} />
+    <Route path="/checkout" element={<CheckoutLoadable />} />
+    <Route path="/contact" element={<ContactLoadable />} />
     <Route
       path="/terms-and-conditions"
-      component={termsAndConditionsLoadable}
+      element={<TermsAndConditionsLoadable />}
     />
-    <Route path="/refund-policy" component={refundPolicyLoadable} />
-    <Route path="*" exact={true} component={pageNotFoundLoadable} />
-  </Switch>
+    <Route path="/refund-policy" element={<RefundPolicyLoadable />} />
+    <Route path="*" exact={true} element={<PageNotFoundLoadable />} />
+  </Routes>
 );
 
-export default Routes;
+export default Routing;

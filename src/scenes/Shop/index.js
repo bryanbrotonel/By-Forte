@@ -1,35 +1,40 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/database";
+import firebase from 'firebase/app';
+import {
+  getAuth,
+  setPersistence,
+  signInWithEmailAndPassword,
+  browserSessionPersistence,
+} from 'firebase/auth';
+import 'firebase/database';
 
-import { ProductShop } from "./components/Product Shop";
-import { PasswordInput } from "./components/passwordInput";
+import { ProductShop } from './components/Product Shop';
+import { PasswordInput } from './components/passwordInput';
 
-import "./styles.css";
-import { authValidate } from "../../helpers/dbHelpers";
+import './styles.css';
+import { authValidate } from '../../helpers/dbHelpers';
 
 export default class Shop extends Component {
   constructor(props) {
     super(props);
     this.state = {
       validShopper: false,
-      validPassword: true
+      validPassword: true,
     };
 
     this.signIn = this.signIn.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
   }
   componentDidMount() {
-    document.title = "By Forte | Shop";
+    document.title = 'By Forte | Shop';
 
     const self = this;
 
-    authValidate().then(function(result) {
+    authValidate().then(function (result) {
       if (result) {
         self.setState({
-          validShopper: true
+          validShopper: true,
         });
       }
     });
@@ -39,24 +44,17 @@ export default class Shop extends Component {
   signIn(value) {
     // Validate
     const self = this;
-    const shopEmail = "shop@byforte.store";
+    const shopEmail = 'shop@byforte.store';
+    const password = value;
 
-    firebase
-      .auth()
-      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-      .then(function() {
-        return firebase
-          .auth()
-          .signInWithEmailAndPassword(shopEmail, value)
-          .then(function() {
-            self.setState({
-              validShopper: true
-            });
-          });
+    const auth = getAuth();
+    setPersistence(auth, browserSessionPersistence)
+      .then(() => {
+        return signInWithEmailAndPassword(auth, shopEmail, password);
       })
-      .catch(function() {
+      .catch(() => {
         self.setState({
-          validPassword: false
+          validPassword: false,
         });
       });
   }
@@ -71,7 +69,7 @@ export default class Shop extends Component {
       </div>
     ) : (
       <div className="container hv-center">
-        <PasswordInput signIn={this.signIn} validPassword={validPassword} />{" "}
+        <PasswordInput signIn={this.signIn} validPassword={validPassword} />{' '}
       </div>
     );
   }
