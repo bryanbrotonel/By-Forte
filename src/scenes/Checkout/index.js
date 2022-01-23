@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { getAuth, signOut } from 'firebase/auth';
 import { Navigate } from 'react-router';
 
 import { getCart } from './../../helpers/cookieHelpers';
@@ -29,24 +28,16 @@ export default class Checkout extends Component {
   }
 
   handleCheckoutSubmit(formInfo) {
-    let self = this;
+    const self = this;
+
     const { cart } = this.state;
 
     formatOrder(formInfo, cart).then(function (order) {
       addOrderToDB(order);
-
-      const auth = getAuth();
-
-      signOut(auth)
-        .then(() => {
-          self.setState({
-            orderPlaced: true,
-          });
-        })
-        .catch(function (error) {
-          // An error happened.
-          console.log(error.code, error.message);
-        });
+      
+      self.setState({
+        orderPlaced: true,
+      });
     });
   }
 

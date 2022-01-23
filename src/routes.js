@@ -68,7 +68,7 @@ const Routing = () => (
     <Route exact={true} path="/" element={<HomeLoadable />} />
     <Route exact={true} path="/about" element={<AboutLoadable />} />
     <Route exact={true} path="/editorial" element={<EditorialLoadable />} />
-    <Route exact={true} path="/shop" component={<ShopLoadable />} />
+    <Route exact={true} path="/shop" element={<ShopLoadable />} />
     <Route
       path="/shop/collections/tops/products/:itemName/:itemVariation"
       element={<ProductInfoLoadable />}

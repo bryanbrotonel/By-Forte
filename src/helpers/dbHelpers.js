@@ -1,4 +1,3 @@
-import firebase from 'firebase/app';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, push, update } from 'firebase/database';
 
@@ -21,7 +20,8 @@ export function getProductInfo(name, variation) {
       db,
       'inventory/' + name.toLowerCase() + ' - ' + variation.toLowerCase()
     );
-    productRef.on('value', function (snapshot) {
+
+    onValue(productRef, (snapshot) => {
       const productInfo = snapshot.val();
       return productInfo ? resolve(productInfo) : reject();
     });
@@ -31,7 +31,7 @@ export function getProductInfo(name, variation) {
 // Get current order ID
 export function getOrderID() {
   return new Promise(function (resolve, reject) {
-    const db = getDatabse();
+    const db = getDatabase();
 
     // Reference to order list in DB
     const dbRef = ref(db, 'orderList');
@@ -40,7 +40,7 @@ export function getOrderID() {
     onValue(
       dbRef,
       (snapshot) => {
-        var orderID = snapshot.numChildren();
+        var orderID = snapshot.size;
         orderID = PadWithZeros(++orderID);
         return orderID ? resolve(orderID) : reject();
       },
@@ -75,7 +75,7 @@ export function getProducts() {
   var inventory = [];
 
   return new Promise(function (resolve, reject) {
-    const db = getDatabse();
+    const db = getDatabase();
 
     // Reference to order list in DB
     const dbRef = ref(db, 'inventory');
@@ -128,11 +128,11 @@ export function addOrderToDB(order) {
   orderUpdates['orderList/' + push(orderListRef).key + '-' + order.orderID] =
     order;
 
-  update(ref(db, orderUpdates));
+  update(ref(db), orderUpdates);
 }
 
 function updateInventory(dbPath, itemQuantity) {
-  const db = getDatabse();
+  const db = getDatabase();
   var inventoryUpdates = {};
 
   // Reference to order list in DB
@@ -145,7 +145,7 @@ function updateInventory(dbPath, itemQuantity) {
       var dbValue = snapshot.val();
       inventoryUpdates[dbPath] = dbValue + itemQuantity;
 
-      update(ref(db, inventoryUpdates));
+      update(ref(db), inventoryUpdates);
     },
     {
       onlyOnce: true,
