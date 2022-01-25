@@ -3,85 +3,35 @@ import React from 'react';
 import { Route, Routes } from 'react-router';
 import { Navigate } from 'react-router-dom';
 
-import Loadable from 'react-loadable';
-
-import Loading from './components/Loading';
-
-const HomeLoadable = Loadable({
-  loader: () => import('./scenes/Home'),
-  loading: Loading,
-});
-
-const AboutLoadable = Loadable({
-  loader: () => import('./scenes/About'),
-  loading: Loading,
-});
-
-const EditorialLoadable = Loadable({
-  loader: () => import('./scenes/Editorial'),
-  loading: Loading,
-});
-
-const ShopLoadable = Loadable({
-  loader: () => import('./scenes/Shop'),
-  loading: Loading,
-});
-
-const ProductInfoLoadable = Loadable({
-  loader: () => import('./scenes/Product Info'),
-  loading: Loading,
-});
-
-const CartLoadable = Loadable({
-  loader: () => import('./scenes/Cart'),
-  loading: Loading,
-});
-
-const CheckoutLoadable = Loadable({
-  loader: () => import('./scenes/Checkout'),
-  loading: Loading,
-});
-
-const ContactLoadable = Loadable({
-  loader: () => import('./scenes/Contact'),
-  loading: Loading,
-});
-
-const TermsAndConditionsLoadable = Loadable({
-  loader: () => import('./scenes/Terms and Conditions'),
-  loading: Loading,
-});
-
-const RefundPolicyLoadable = Loadable({
-  loader: () => import('./scenes/Refund Policy'),
-  loading: Loading,
-});
-
-const PageNotFoundLoadable = Loadable({
-  loader: () => import('./scenes/Page Not Found'),
-  loading: Loading,
-});
+import Home from './scenes/Home';
+import About from './scenes/About';
+import Editorial from './scenes/Editorial';
+import Shop from './scenes/Shop';
+import ProductInfo from './scenes/Product Info';
+import Cart from './scenes/Cart';
+import Checkout from './scenes/Checkout';
+import Contact from './scenes/Contact';
+import TermsAndConditions from './scenes/Terms and Conditions';
+import RefundPolicy from './scenes/Refund Policy';
+import PageNotFound from './scenes/Page Not Found';
 
 const Routing = () => (
   <Routes>
     <Route path="home" element={<Navigate to="/" />} />
-    <Route exact={true} path="/" element={<HomeLoadable />} />
-    <Route exact={true} path="/about" element={<AboutLoadable />} />
-    <Route exact={true} path="/editorial" element={<EditorialLoadable />} />
-    <Route exact={true} path="/shop" element={<ShopLoadable />} />
+    <Route exact={true} path="/" element={<Home />} />
+    <Route exact={true} path="/about" element={<About />} />
+    <Route exact={true} path="/editorial" element={<Editorial />} />
+    <Route exact={true} path="/shop" element={<Shop />} />
     <Route
       path="/shop/collections/tops/products/:itemName/:itemVariation"
-      element={<ProductInfoLoadable />}
+      element={<ProductInfo />}
     />
-    <Route path="/cart" element={<CartLoadable />} />
-    <Route path="/checkout" element={<CheckoutLoadable />} />
-    <Route path="/contact" element={<ContactLoadable />} />
-    <Route
-      path="/terms-and-conditions"
-      element={<TermsAndConditionsLoadable />}
-    />
-    <Route path="/refund-policy" element={<RefundPolicyLoadable />} />
-    <Route path="*" exact={true} element={<PageNotFoundLoadable />} />
+    <Route path="/cart" element={<Cart />} />
+    <Route path="/checkout" element={<Checkout />} />
+    <Route path="/contact" element={<Contact />} />
+    <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+    <Route path="/refund-policy" element={<RefundPolicy />} />
+    <Route path="*" exact={true} element={<PageNotFound />} />
   </Routes>
 );
 

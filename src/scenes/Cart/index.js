@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Loadable from "react-loadable";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import Cookies from "universal-cookie";
-import { Link } from "react-router-dom";
+import Cookies from 'universal-cookie';
+import { Link } from 'react-router-dom';
 
-import { getCart, setCart } from "./../../helpers/cookieHelpers";
+import { getCart, setCart } from './../../helpers/cookieHelpers';
 
-import Loading from "./../../components/Loading";
+import FullCart from './components/Full Cart';
+import EmptyCart from './components/Empty Cart';
 
-import "./styles.css";
+import './styles.css';
 
 export default class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: []
+      cart: [],
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -27,11 +27,11 @@ export default class Cart extends Component {
     const { cart } = this.state;
     let currentCart = getCart();
 
-    document.title = "By Forte | Cart";
+    document.title = 'By Forte | Cart';
 
     if (currentCart) {
       this.setState({
-        cart: currentCart
+        cart: currentCart,
       });
     } else {
       this.updateCart(cart);
@@ -40,7 +40,7 @@ export default class Cart extends Component {
 
   updateCart(cartObject) {
     this.setState({
-      cart: cartObject
+      cart: cartObject,
     });
 
     setCart(cartObject);
@@ -52,28 +52,14 @@ export default class Cart extends Component {
 
     let cartItems = cart.items;
 
-    const CartContent =
-      cartItems !== undefined &&
-      cartItems !== "undefined" &&
-      cartItems.length !== 0
-        ? Loadable({
-            loader: () => import("./components/Full Cart"),
-            render(loaded) {
-              let Component = loaded.default;
-              return (
-                <Component
-                  cart={cart}
-                  getCart={getCart}
-                  updateCart={self.updateCart}
-                />
-              );
-            },
-            loading: Loading
-          })
-        : Loadable({
-            loader: () => import("./components/Empty Cart"),
-            loading: Loading
-          });
+    const filledCart =
+      cartItems !== (undefined && 'undefined') && cartItems.length !== 0;
+
+    const cartContent = filledCart ? (
+      <FullCart cart={cart} getCart={getCart} updateCart={self.updateCart} />
+    ) : (
+      <EmptyCart />
+    );
 
     return (
       <div className="container d-flex align-items-start flex-column mt-5">
@@ -82,12 +68,14 @@ export default class Cart extends Component {
             <h1 className="mb-0">Cart</h1>
           </div>
           <div className="col-6 p-0 v-center text-right">
-            <Link to="/shop">
-              <h6 className="text-muted mb-0">Continue shopping</h6>
-            </Link>
+            {filledCart && (
+              <Link to="/shop">
+                <h6 className="text-muted mb-0">Continue shopping</h6>
+              </Link>
+            )}
           </div>
         </div>
-        <CartContent />
+        {cartContent}
       </div>
     );
   }
@@ -95,5 +83,5 @@ export default class Cart extends Component {
 
 Cart.propTypes = {
   location: PropTypes.object,
-  orderedItem: PropTypes.object
+  orderedItem: PropTypes.object,
 };
