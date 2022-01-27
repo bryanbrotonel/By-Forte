@@ -11,22 +11,22 @@ class VideoBackground extends React.Component {
 
     return (
       <div className="uk-cover-container" style={divStyle}>
-        <h1>Fuck</h1>
         <video
+          preload="auto"
           playsInline
           autoPlay
           loop
           muted
           uk-cover="true"
-          style={{ minWidth: "100%", minHeight: "100%" }}
+          style={{ minWidth: '100%', minHeight: '100%' }}
         >
           <source
             type="video/mp4"
-            src={require("../../../src/videos/clouds.mp4")}
+            src={require('../../../src/videos/clouds.mp4')}
           />
           <source
             type="video/webm"
-            src={require("../../../src/videos/clouds.webm")}
+            src={require('../../../src/videos/clouds.webm')}
           />
         </video>
         <div className="overlay-desc hv-center">{pageContent}</div>
