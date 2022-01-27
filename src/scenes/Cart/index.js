@@ -64,6 +64,9 @@ export default class Cart extends Component {
     return (
       <div className="container d-flex align-items-start flex-column mt-5">
         <div className="row justify-content-between w-100">
+          <div className="alert alert-warning" role="alert">
+            For demonstration purposes only. All orders will not be processed.
+          </div>
           <div className="col-6 v-center">
             <h1 className="mb-0">Cart</h1>
           </div>

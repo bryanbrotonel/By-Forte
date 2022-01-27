@@ -11,11 +11,15 @@ export default class Shop extends Component {
   }
   componentDidMount() {
     document.title = 'By Forte | Shop';
+
   }
 
   render() {
     return (
       <div className="container d-flex mt-5">
+        <div className="alert alert-warning" role="alert">
+          For demonstration purposes only. All orders will not be processed.
+        </div>
         <br />
         <ProductShop />
       </div>

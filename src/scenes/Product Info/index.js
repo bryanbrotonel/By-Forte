@@ -106,7 +106,11 @@ function ProductInfo() {
   const productImagesDisplay = productImages.map((image) => {
     return (
       <div key={image} className="mb-3">
-        <img src={image} alt={`${productName} - ${productVariation}`} />
+        <img
+          loading="lazy"
+          src={image}
+          alt={`${productName} - ${productVariation}`}
+        />
       </div>
     );
   });
@@ -116,6 +120,7 @@ function ProductInfo() {
       return (
         <a>
           <img
+            loading="lazy"
             src={productImages[i]}
             alt={`${productName} - ${productVariation}`}
           />
@@ -144,6 +149,9 @@ function ProductInfo() {
         <h1 className="text-muted hv-center mt-5">Loading...</h1>
       ) : (
         <div className="row justify-content-center mt-5">
+          <div className="alert alert-warning" role="alert">
+            For demonstration purposes only. All orders will not be processed.
+          </div>
           <div className="product-image col-12 col-md-10 col-lg-5">
             <Slider {...settings}>{productImagesDisplay}</Slider>
           </div>

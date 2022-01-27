@@ -18,6 +18,7 @@ export default class About extends Component {
         <div className="row justify-content-around">
           <div className="col-10 col-md-6">
             <img
+              loading="lazy"
               src="https://source.unsplash.com/rc3So-nVtsw/1600x1024"
               alt="By Forte About"
             />

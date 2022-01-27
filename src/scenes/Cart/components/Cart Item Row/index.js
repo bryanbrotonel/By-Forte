@@ -121,6 +121,7 @@ export class CartItemRow extends Component {
       <div className="row cart-row">
         <div className="col-6 col-md-2">
           <img
+          loading="lazy"
             className="d-block"
             src={productImage}
             alt={`${productName} - ${productVariation}`}

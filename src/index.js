@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter  } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
 import registerServiceWorker from './registerServiceWorker';
 import { initializeApp } from 'firebase/app';
@@ -27,10 +28,12 @@ let config = {
 };
 initializeApp(config);
 
+const history = createBrowserHistory();
+
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <BrowserRouter history={history}>
+    <App history={history} />
+  </BrowserRouter>,
   document.getElementById('root')
 );
 registerServiceWorker();

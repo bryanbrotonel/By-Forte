@@ -50,6 +50,9 @@ export default class Checkout extends Component {
       <ThankYou />
     ) : (
       <div className="container pt-5">
+        <div className="alert alert-warning" role="alert">
+          For demonstration purposes only. All orders will not be processed.
+        </div>
         <div className="row">
           <div className="checkout-items-wrapper col-md-5 order-md-2">
             <CheckoutItems

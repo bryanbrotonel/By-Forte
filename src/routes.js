@@ -2,18 +2,33 @@ import React from 'react';
 
 import { Route, Routes } from 'react-router';
 import { Navigate } from 'react-router-dom';
+import loadable from '@loadable/component';
 
-import Home from './scenes/Home';
-import About from './scenes/About';
-import Editorial from './scenes/Editorial';
-import Shop from './scenes/Shop';
-import ProductInfo from './scenes/Product Info';
-import Cart from './scenes/Cart';
-import Checkout from './scenes/Checkout';
-import Contact from './scenes/Contact';
-import TermsAndConditions from './scenes/Terms and Conditions';
-import RefundPolicy from './scenes/Refund Policy';
-import PageNotFound from './scenes/Page Not Found';
+// import Home from './scenes/Home';
+// import About from './scenes/About';
+// import Editorial from './scenes/Editorial';
+// import Shop from './scenes/Shop';
+// import ProductInfo from './scenes/Product Info';
+// import Cart from './scenes/Cart';
+// import Checkout from './scenes/Checkout';
+// import Contact from './scenes/Contact';
+// import TermsAndConditions from './scenes/Terms and Conditions';
+// import RefundPolicy from './scenes/Refund Policy';
+// import PageNotFound from './scenes/Page Not Found';
+
+const Home = loadable(() => import('./scenes/Home'));
+const About = loadable(() => import('./scenes/About'));
+const Editorial = loadable(() => import('./scenes/Editorial'));
+const Shop = loadable(() => import('./scenes/Shop'));
+const ProductInfo = loadable(() => import('./scenes/Product Info'));
+const Cart = loadable(() => import('./scenes/Cart'));
+const Checkout = loadable(() => import('./scenes/Checkout'));
+const Contact = loadable(() => import('./scenes/Contact'));
+const TermsAndConditions = loadable(() =>
+  import('./scenes/Terms and Conditions')
+);
+const RefundPolicy = loadable(() => import('./scenes/Refund Policy'));
+const PageNotFound = loadable(() => import('./scenes/Page Not Found'));
 
 const Routing = () => (
   <Routes>
