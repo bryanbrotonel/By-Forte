@@ -59,6 +59,7 @@ export class CheckoutItemRow extends Component {
       <div className="row pb-2">
         <div className="col">
           <img
+          loading="lazy"
             className="d-block"
             src={itemImage}
             alt={`${itemName} - ${itemVariation}`}

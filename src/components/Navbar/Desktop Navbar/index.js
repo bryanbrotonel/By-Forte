@@ -1,22 +1,22 @@
-import React from "react";
-import propTypes from "prop-types";
+import React from 'react';
+import propTypes from 'prop-types';
 
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 export class DesktopNavbar extends React.Component {
   render() {
     const { logo, pages } = this.props;
 
-    const navLinks = pages.map(page => {
+    const navLinks = pages.map((page) => {
       return (
         <li key={page}>
           <NavLink
-            to={"/" + page}
-            activeStyle={{ color: "white", fontWeight: "bold" }}
+            to={'/' + page}
+            style={({ isActive }) => ({ color: isActive ? 'white' : '' })}
             className="navbar-link mx-auto"
           >
             {page}
-          </NavLink>{" "}
+          </NavLink>
         </li>
       );
     });
@@ -26,7 +26,7 @@ export class DesktopNavbar extends React.Component {
         <nav className="uk-navbar" uk-navbar="true">
           <div className="uk-navbar-left ml-4">
             <a href="/" className="uk-logo">
-              {" "}
+              {' '}
               <img className="navbar-logo" src={logo} alt="By Forte" />
             </a>
           </div>
@@ -42,5 +42,5 @@ export class DesktopNavbar extends React.Component {
 
 DesktopNavbar.propTypes = {
   logo: propTypes.string,
-  pages: propTypes.array
+  pages: propTypes.array,
 };

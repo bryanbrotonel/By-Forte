@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-import Loadable from "react-loadable";
 
-import Loading from "./../../components/Loading";
-
-const ComingSoon = Loadable({
-  loader: () => import("../../components/ComingSoon"),
-  loading: Loading
-});
+import ComingSoon from "../../components/ComingSoon"
 
 export default class Editorial extends Component {
   constructor() {
@@ -20,7 +14,7 @@ export default class Editorial extends Component {
 
   render() {
     return (
-      <ComingSoon bgImage="https://source.unsplash.com/Qid2PBGeJmc/1600x1024" text="Coming Soon" />
+      <ComingSoon bgImage="https://source.unsplash.com/Qid2PBGeJmc/1600x1024&fm=webp&auto=compress&lossless=true" text="Coming Soon" />
     );
   }
 }

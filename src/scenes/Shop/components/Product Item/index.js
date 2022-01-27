@@ -28,10 +28,11 @@ export class ProductItem extends Component {
       <div className="col-6 col-md-4 col-lg-3">
         <Link
           to={{
-            pathname: `/shop/collections/tops/products/${productLink}`
+            pathname: `/shop/collections/tops/products/${productLink}`,
           }}
         >
           <img
+            loading="lazy"
             className="mx-auto d-block"
             src={productImages}
             alt={`${productName} - ${productVariation}`}

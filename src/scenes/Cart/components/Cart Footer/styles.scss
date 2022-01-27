@@ -10,11 +10,16 @@
 .total-title-box,
 .total-box {
   border: solid black 1px;
+  text-align: center;
+  display: inline-block;
   h5 {
     margin-top: 7px;
   }
 }
 
-.total-title-box{
+.total-title-box {
   background-color: black;
+  h5 {
+    color: white !important;
+  }
 }

@@ -31,7 +31,7 @@ export class CookiesNotification extends Component {
         <div className="container">
           <div className="row justify-content-between align-items-center">
             <div className="col-9r">
-              <h6>{cookiesMessage}</h6>
+              <h6 className="text-white">{cookiesMessage}</h6>
             </div>
             <div className="col-4 col-md-1 text-uppercase">
               <input

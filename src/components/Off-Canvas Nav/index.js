@@ -1,17 +1,17 @@
-import React from "react";
-import propTypes from "prop-types";
+import React from 'react';
+import propTypes from 'prop-types';
 
-import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { slide as Menu } from "react-burger-menu";
+import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { slide as Menu } from 'react-burger-menu';
 
-import "./styles.css";
+import './styles.css';
 
 export class OffCanvas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuOpen: false
+      menuOpen: false,
     };
   }
 
@@ -31,12 +31,13 @@ export class OffCanvas extends React.Component {
     const { pages } = this.props;
     const { menuOpen } = this.state;
 
-    const navLinks = pages.map(page => {
+    const navLinks = pages.map((page) => {
+
       return (
         <li key={page}>
           <NavLink
-            to={"/" + page}
-            activeStyle={{ color: "white", fontWeight: "bold" }}
+            to={'/' + page}
+            style={({ isActive }) => ({ color: isActive ? 'white' : '' })}
             onClick={() => this.closeMenu()}
             className="navbar-link mx-auto"
           >
@@ -50,10 +51,10 @@ export class OffCanvas extends React.Component {
       <React.Fragment>
         <Menu
           isOpen={menuOpen}
-          onStateChange={state => this.handleStateChange(state)}
+          onStateChange={(state) => this.handleStateChange(state)}
           customBurgerIcon={false}
-          pageWrapId={"body"}
-          outerContainerId={"app"}
+          pageWrapId={'body'}
+          outerContainerId={'app'}
         >
           {navLinks}
         </Menu>
@@ -70,5 +71,5 @@ export class OffCanvas extends React.Component {
   }
 }
 OffCanvas.propTypes = {
-  pages: propTypes.array
+  pages: propTypes.array,
 };

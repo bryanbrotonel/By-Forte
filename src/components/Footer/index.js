@@ -1,42 +1,23 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-import "./styles.css";
+import './styles.css';
 
 export class Footer extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      contactLink: "Contact",
-      termsLink: "Terms and Conditions",
-      refundLink: "Refund Policy",
-      instagramLink: "Instagram",
-      facebookLink: "Facebook"
-    };
-  }
   render() {
-    const {
-      contactLink,
-      termsLink,
-      refundLink,
-      instagramLink,
-      facebookLink
-    } = this.state;
+    const contactLink = 'Contact';
+    const termsLink = 'Terms and Conditions';
+    const refundLink = 'Refund Policy';
+    const instagramLink = 'Instagram';
+    const facebookLink = 'Facebook';
 
-    let windowLocation = window.location.href.toLowerCase();
-    let nonFooterPages = ["", "editorial"];
-
-    var hideFooter = nonFooterPages.includes(
-      windowLocation.substr(windowLocation.lastIndexOf("/") + 1)
-    );
-
-    return hideFooter ? null : (
+    return (
       <div className="footer container">
         <hr />
         <div className="d-flex justify-content-between">
           <ul className="footer-menu text-dark">
             <li>
-              {" "}
+              {' '}
               <NavLink to="/contact">{contactLink}</NavLink>
             </li>
             <li>

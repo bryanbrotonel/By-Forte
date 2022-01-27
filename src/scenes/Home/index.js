@@ -26,11 +26,11 @@ export default class Home extends Component {
     const { loading } = this.state;
 
     const pageContent = (
-      <div className="text-center text-white">
+      <div className="text-center">
         <div>
-          <h2 className="base-font font-weight-bold">Prosper Through Noise</h2>
+          <h2 className="base-font font-weight-bold text-white">Prosper Through Noise</h2>
           <Link to="/shop">
-            <h6 className="mb-0">Shop FW 18 now</h6>
+            <h6 className="mb-0 text-white">Shop FW 18 now</h6>
           </Link>
         </div>
       </div>
