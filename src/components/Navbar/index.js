@@ -3,7 +3,7 @@ import React from 'react';
 import { MobileNavbar } from './Mobile Navbar';
 import { DesktopNavbar } from './Desktop Navbar';
 
-import logo from 'images/By Forte Secondary Logo (White).png';
+import logo from 'images/By Forte Secondary Logo (White).webp';
 import './styles.css';
 
 export class NavBar extends React.Component {

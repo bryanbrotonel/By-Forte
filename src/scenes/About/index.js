@@ -19,7 +19,7 @@ export default class About extends Component {
           <div className="col-10 col-md-6">
             <img
               loading="lazy"
-              src="https://source.unsplash.com/rc3So-nVtsw/1600x1024"
+              src="https://source.unsplash.com/rc3So-nVtsw/1600x1024&fm=webp&auto=compress&lossless=true"
               alt="By Forte About"
             />
           </div>

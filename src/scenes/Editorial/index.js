@@ -14,7 +14,7 @@ export default class Editorial extends Component {
 
   render() {
     return (
-      <ComingSoon bgImage="https://source.unsplash.com/Qid2PBGeJmc/1600x1024" text="Coming Soon" />
+      <ComingSoon bgImage="https://source.unsplash.com/Qid2PBGeJmc/1600x1024&fm=webp&auto=compress&lossless=true" text="Coming Soon" />
     );
   }
 }
