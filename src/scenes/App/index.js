@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useReducer } from 'react';
 import Routes from 'routes';
 import { useLocation } from 'react-router-dom';
 
 import { Fade } from 'reactstrap';
 
-import {
-  getEnabledCookies,
-} from './../..//helpers/cookieHelpers';
+import { getEnabledCookies, setEnabledCookies } from './../..//helpers/cookieHelpers';
 
 import { CookiesNotification } from './../../components/CookiesNotification';
 
@@ -18,6 +16,7 @@ import './styles.css';
 function App() {
   let location = useLocation();
   const [hideFooter, setHideFooter] = useState(true);
+    const [ignored, handleConfirmCookies] = useReducer(setEnabledCookies());
 
   React.useEffect(() => {
     let windowLocation = location.pathname;
@@ -42,7 +41,7 @@ function App() {
       {!getEnabledCookies() ? (
         <Fade in={!getEnabledCookies()} out={getEnabledCookies()}>
           <CookiesNotification
-            handleConfirmCookies={this.handleConfirmCookies}
+            handleConfirmCookies={handleConfirmCookies}
           />
         </Fade>
       ) : null}
