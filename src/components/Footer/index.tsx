@@ -1,71 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import { AiFillHeart } from 'react-icons/ai';
+import React from 'react';
+import { MdFavoriteBorder } from 'react-icons/md';
 import FooterLink from './FooterLink';
 
 function Footer() {
-
   return (
-    <div className="bg-black py-20">
-      <div className="container flex flex-col md:flex-row gap-y-10 md:gap-y-0">
-        <div className="basis-2/4 lg:basis-1/3 order-last md:order-none prose prose-invert">
-          <h2 className="font-serif text-4xl !mb-4">By Forte</h2>
-          <p>Footer content</p>
-          <span className="text-gray-500">
-            <div className="flex items-center">
-              <span> Made with&nbsp;</span>
-              <AiFillHeart className="inline-block black" />
-              <span>
-                &nbsp;by&nbsp;
-                <a
-                  href="https://bryanbrotonel.live"
-                  className="no-underline text-inherit hover:text-white-20"
-                >
-                  Bryan
-                </a>
-              </span>
-            </div>
+    <div className="py-10 flex flex-col md:flex-row md:justify-between text-sm container gap-4 md:gap-0 uppercase items-center">
+      <div className="flex flex-col md:flex-row gap-2 items-center">
+        <FooterLink to="#">Contact</FooterLink>
+        <FooterLink to="#">Terms</FooterLink>
+        <FooterLink to="#">Privacy Policy</FooterLink>
+      </div>
+      <div className="order-last md:order-none md:space-y-1 text-center">
+        <div>
+          <span className="uppercase font-bold">By Forte</span>
+        </div>
+        <div className="text-xs">
+          <span> Made with&nbsp;</span>
+          <MdFavoriteBorder className="inline-block align-text-bottom" />
+          <span>
+            &nbsp;by&nbsp;
+            <a
+              href="https://bryanbrotonel.live"
+              className="no-underline text-inherit hover:text-green-800 "
+            >
+              Bryan
+            </a>
           </span>
         </div>
-        <div className="basis-1/4 lg:basis-1/3 flex justify-start md:justify-center">
-          <div>
-            <h3 className="font-sans text-sm uppercase mb-4 text-gray-400">
-              Pages
-            </h3>
-            <div></div>
-            <ul className="list-none space-y-3 text-lg">
-              <li>
-                <FooterLink to="about">About</FooterLink>
-              </li>
-              <li>
-                <FooterLink to="team">Team</FooterLink>
-              </li>
-              <li>
-                <FooterLink to="projects">Projects</FooterLink>
-              </li>
-              <li>
-                <FooterLink to="blog">Blog</FooterLink>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="basis-1/4 lg:basis-1/3 flex justify-start md:justify-center">
-          <div>
-            <h3 className="font-sans text-sm uppercase mb-4 text-gray-400">
-              Contact
-            </h3>
-            <ul className="list-none space-y-3 text-lg">
-              <li>
-                <FooterLink to="#">Instagram</FooterLink>
-              </li>
-              <li>
-                <FooterLink to="#">Twitter</FooterLink>
-              </li>
-              <li>
-                <FooterLink to="#">Facebook</FooterLink>
-              </li>
-            </ul>
-          </div>
-        </div>
+      </div>
+      <div className="flex flex-col md:flex-row gap-2 items-center">
+        <FooterLink to="#">Instagram</FooterLink>
+        <FooterLink to="#">YouTube</FooterLink>
+        <FooterLink to="#">Facebook</FooterLink>
       </div>
     </div>
   );

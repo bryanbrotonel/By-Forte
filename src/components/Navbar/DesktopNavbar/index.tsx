@@ -14,10 +14,10 @@ function DesktopNavbar(props: { links: string[][] }) {
 
   return (
     <div className="hidden md:block">
-      <div className={`border-b`}>
+      <div className='bg-black text-white'>
         <div className="container flex flex-row justify-between items-baseline py-6">
           <div>
-            <NavLink className="text-2xl font-serif font-bold" to={homeLink[0]}>
+            <NavLink className="text-2xl font-bold" to={homeLink[0]}>
               {homeLink[1]}
             </NavLink>
           </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NavMenu from './NavMenu';
 import { NavLink } from 'react-router-dom';
 
-import { AiOutlineMenu } from 'react-icons/ai';
+import { MdOutlineMenu } from 'react-icons/md';
 
 function MobileNavbar(props: { links: string[][] }) {
   const { links } = props;
@@ -21,15 +21,15 @@ function MobileNavbar(props: { links: string[][] }) {
   return (
     <React.Fragment>
       <div className="md:hidden">
-        <div className={`border-b`}>
+        <div className="bg-black text-white px-4">
           <div className="container py-6 flex justify-between items-center">
             <div>
-              <NavLink className="text-xl font-serif font-bold" to={homeLink[0]}>
+              <NavLink className="text-xl font-bold" to={homeLink[0]}>
                 {homeLink[1]}
               </NavLink>
             </div>
             <div>
-              <AiOutlineMenu size={20} onClick={() => setToggleMenu(true)} />
+              <MdOutlineMenu size={20} onClick={() => setToggleMenu(true)} />
             </div>
           </div>
         </div>
