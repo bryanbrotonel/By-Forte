@@ -15,7 +15,7 @@ const App = () => {
   return (
     <div className="flex flex-col h-screen justify-between bg-white">
       <Navbar />
-      <div className="mb-auto">
+      <div className="mb-auto h-full">
         <NavRoutes />
       </div>
       <Footer />
