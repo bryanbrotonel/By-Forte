@@ -5,6 +5,7 @@ import Loading from './components/Loading';
 import About from './scenes/About';
 import Editorial from './scenes/Editorial';
 import NotFound from './components/NotFound';
+import Shop from './scenes/Shop';
 
 const NavRoutes = () => (
   <Routes>
@@ -29,6 +30,14 @@ const NavRoutes = () => (
       element={
         <Suspense fallback={<Loading />}>
           <Editorial />
+        </Suspense>
+      }
+    ></Route>
+    <Route
+      path="/shop"
+      element={
+        <Suspense fallback={<Loading />}>
+          <Shop />
         </Suspense>
       }
     ></Route>

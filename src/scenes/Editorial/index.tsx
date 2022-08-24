@@ -7,6 +7,7 @@ function Editorial() {
         src="https://source.unsplash.com/Qid2PBGeJmc/640x480"
         alt="Random Placeholder"
         className="h-96 w-96 aspect-square object-cover"
+        loading="lazy"
       />
       <div className="md:w-96 text-center">
         <h1 className="uppercase text-xl font-semibold mb-2">Editorial</h1>
