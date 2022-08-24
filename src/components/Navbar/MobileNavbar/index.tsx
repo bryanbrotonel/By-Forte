@@ -20,18 +20,14 @@ function MobileNavbar(props: { links: string[][] }) {
 
   return (
     <React.Fragment>
-      <div className="md:hidden">
-        <div className="bg-black text-white px-4">
-          <div className="container py-6 flex justify-between items-center">
-            <div>
-              <NavLink className="text-xl font-bold" to={homeLink[0]}>
-                {homeLink[1]}
-              </NavLink>
-            </div>
-            <div>
-              <MdOutlineMenu size={20} onClick={() => setToggleMenu(true)} />
-            </div>
-          </div>
+      <div className="md:hidden container py-6 px-4 flex justify-between items-center border-b broder-gray-500">
+        <div>
+          <NavLink className="text-xl font-bold" to={homeLink[0]}>
+            {homeLink[1]}
+          </NavLink>
+        </div>
+        <div>
+          <MdOutlineMenu size={20} onClick={() => setToggleMenu(true)} />
         </div>
       </div>
       <NavMenu

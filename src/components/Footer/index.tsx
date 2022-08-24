@@ -1,5 +1,4 @@
 import React from 'react';
-import { MdFavoriteBorder } from 'react-icons/md';
 import FooterLink from './FooterLink';
 
 function Footer() {
@@ -13,19 +12,6 @@ function Footer() {
       <div className="order-last md:order-none md:space-y-1 text-center">
         <div>
           <span className="uppercase font-bold">By Forte</span>
-        </div>
-        <div className="text-xs">
-          <span> Made with&nbsp;</span>
-          <MdFavoriteBorder className="inline-block align-text-bottom" />
-          <span>
-            &nbsp;by&nbsp;
-            <a
-              href="https://bryanbrotonel.live"
-              className="no-underline text-inherit hover:text-green-800 "
-            >
-              Bryan
-            </a>
-          </span>
         </div>
       </div>
       <div className="flex flex-col md:flex-row gap-2 items-center">
