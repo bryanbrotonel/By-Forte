@@ -5,7 +5,14 @@ function Shop() {
   let productRow = [];
 
   for (let i = 0; i < 10; i++) {
-    productRow.push(<ShopItem key={i} />);
+    productRow.push(
+      <ShopItem
+        key={i}
+        slug={'by-forte-product'}
+        name={'Product Name'}
+        price={100}
+      />
+    );
   }
   return (
     <div className="container pt-12">
