@@ -14,7 +14,7 @@ function DesktopNavbar(props: { links: string[][] }) {
 
   return (
     <div className="hidden md:block">
-      <div className="container flex flex-row justify-between items-center py-4 border-b broder-gray-500">
+      <div className="container flex flex-row justify-between items-center py-4">
         <div>
           <NavLink className="text-2xl font-semibold" to={homeLink[0]}>
             {homeLink[1]}

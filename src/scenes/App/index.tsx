@@ -13,7 +13,7 @@ const App = () => {
   }, [useLocation()]);
 
   return (
-    <div className="flex flex-col h-screen justify-between bg-white">
+    <div className="flex flex-col h-screen justify-between">
       <Navbar />
       <div className="mb-auto">
         <NavRoutes />

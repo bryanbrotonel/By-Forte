@@ -11,10 +11,10 @@ function Navbar() {
   ];
 
   return (
-    <React.Fragment>
+    <div className="sticky inset-x-0 top-0 bg-white z-50">
       <DesktopNavbar links={links} />
       <MobileNavbar links={links} />
-    </React.Fragment>
+    </div>
   );
 }
 
