@@ -1,0 +1,15 @@
+.sliderWrapper .slider {
+  padding-top: 4rem;
+}
+
+.sliderWrapper .swiper {
+  position: static;
+}
+
+.sliderWrapper .swiper-pagination {
+  bottom: 338.5px;
+}
+
+.sliderWrapper .swiper-pagination-bullet-active {
+  background-color: black;
+}
