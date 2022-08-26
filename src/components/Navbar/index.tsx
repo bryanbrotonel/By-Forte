@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { MdOutlineMenu } from 'react-icons/md';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import CartDrawer from '../CartDrawer';
 import NavMenu from './NavMenu';
 
 function Navbar() {
   const [toggleNavMenu, setToggleNavMenu] = useState(false);
   const [toggleCart, setToggleCart] = useState(false);
+
+  let location = useLocation();
 
   useEffect(() => {
     document.body.style.overflow = toggleNavMenu ? 'hidden' : 'unset';
@@ -51,15 +53,17 @@ function Navbar() {
               By Forte
             </NavLink>
           </div>
-          <div className="basis-1/3">
-            <div className="text-right">
-              <button
-                onClick={() => setToggleCart(true)}
-                className="uppercase text-sm text-light hover:text-black/60"
-              >
-                Cart
-              </button>
-            </div>
+          <div
+            className={`${
+              location.pathname === '/checkout' ? 'hidden' : ''
+            } basis-1/3 text-right`}
+          >
+            <button
+              onClick={() => setToggleCart(true)}
+              className="uppercase text-sm text-light hover:text-black/60"
+            >
+              Cart (3)
+            </button>
           </div>
         </div>
       </div>
@@ -68,10 +72,7 @@ function Navbar() {
         display={toggleNavMenu}
         toggleMenu={setToggleNavMenu}
       />
-      <CartDrawer
-        display={toggleCart}
-        toggleMenu={setToggleCart}
-      />
+      <CartDrawer display={toggleCart} toggleMenu={setToggleCart} />
     </React.Fragment>
   );
 }

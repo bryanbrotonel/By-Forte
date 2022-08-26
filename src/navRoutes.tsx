@@ -7,6 +7,7 @@ import Editorial from './scenes/Editorial';
 import NotFound from './components/NotFound';
 import Shop from './scenes/Shop';
 import ProductPage from './scenes/ProductPage';
+import Checkout from './scenes/Checkout';
 
 const NavRoutes = () => (
   <Routes>
@@ -47,6 +48,14 @@ const NavRoutes = () => (
       element={
         <Suspense fallback={<Loading />}>
           <ProductPage />
+        </Suspense>
+      }
+    ></Route>
+    <Route
+      path="/checkout"
+      element={
+        <Suspense fallback={<Loading />}>
+          <Checkout />
         </Suspense>
       }
     ></Route>

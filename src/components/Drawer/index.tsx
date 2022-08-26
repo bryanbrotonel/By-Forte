@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { MdClose } from 'react-icons/md';
 
-function NavMenu(props: {
+function Drawer(props: {
   poistion: 'left' | 'right';
   display: boolean;
   toggleMenu: Function;
@@ -20,7 +20,7 @@ function NavMenu(props: {
         onClick={() => toggleMenu(false)}
         className={`h-screen absolute inset-0 ${
           display ? 'visible opacity-70' : 'invisible opacity-0'
-        } z-[39] bg-black cursor-pointer transition-all ease-out duration-500`}
+        } z-[39] bg-black transition-all ease-out duration-500`}
       />
       <div
         className={`${
@@ -44,4 +44,4 @@ function NavMenu(props: {
   );
 }
 
-export default NavMenu;
+export default Drawer;
