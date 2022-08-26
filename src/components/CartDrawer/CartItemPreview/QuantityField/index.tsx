@@ -11,25 +11,20 @@ function QuantityField(props: {
     String(itemQuantity)
   );
 
-  // Update quantityField state when itemQuantity changes
+  // Increment quantity
   const onHandleIncrement = () => {
     const newQuantity = itemQuantity + 1;
     updateQuantity(newQuantity);
     setQuantityField(String(newQuantity));
   };
 
-  // Update quantityField state when itemQuantity changes
+  // Decrement quantity when quantity is greater than 1
   const onHandleDecrement = () => {
     if (itemQuantity >= 1) {
       const newQuantity = itemQuantity - 1;
       updateQuantity(newQuantity);
       setQuantityField(String(newQuantity));
     }
-  };
-
-  // Update itemQuantity state when quantityField changes
-  const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuantityField(e.target.value);
   };
 
   // Update cart when input out of focus
@@ -65,9 +60,9 @@ function QuantityField(props: {
         type="text"
         pattern="\d*" // Only allow numbers
         value={quantityField}
-        onChange={(e) => onHandleChange(e)}
+        onChange={(e) => setQuantityField(e.target.value)}
         onBlur={(e) => onHandleUpdate(e)}
-        className="w-10 text-center focus:outline-none"
+        className="w-5 text-center focus:outline-none"
       />
       <div>
         <button className="h-full" onClick={onHandleIncrement}>
