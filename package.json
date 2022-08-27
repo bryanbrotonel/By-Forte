@@ -47,9 +47,11 @@
   "dependencies": {
     "@netlify/functions": "^1.2.0",
     "@reduxjs/toolkit": "^1.8.5",
+    "@types/js-cookie": "^3.0.2",
     "@types/react-redux": "^7.1.24",
     "contentful": "^9.1.33",
     "css-loader": "^6.7.1",
+    "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "markdown-to-jsx": "^7.1.7",
     "postcss-loader": "^7.0.1",
@@ -61,6 +63,7 @@
     "react-router-dom": "^6.3.0",
     "redux": "^4.2.0",
     "style-loader": "^3.3.1",
-    "swiper": "^8.3.2"
+    "swiper": "^8.3.2",
+    "util": "^0.12.4"
   }
 }

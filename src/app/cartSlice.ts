@@ -1,7 +1,8 @@
+import _ from 'lodash';
+import Cookies from 'js-cookie';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from './store';
 import { CartItem, ShopItem, TypeCartState } from '../types';
-import _ from 'lodash';
 
 // Initial state of cart
 const initialState: TypeCartState = {
@@ -9,6 +10,10 @@ const initialState: TypeCartState = {
   quantity: 0,
   subTotal: 0,
   total: 0,
+};
+
+const setCookie = (value: string) => {
+  Cookies.set('cart', value);
 };
 
 export const cartSlice = createSlice({
@@ -28,6 +33,8 @@ export const cartSlice = createSlice({
       // Calculate the totals
       state.subTotal += cartItemTotal;
       state.total += cartItemTotal;
+
+      setCookie(JSON.stringify(state));
     },
     removeFromCart: (state, action: PayloadAction<CartItem>) => {
       // Find item by id and remove it from the cart
@@ -44,6 +51,8 @@ export const cartSlice = createSlice({
       // Calculate the totals
       state.subTotal -= cartItemTotal;
       state.total -= cartItemTotal;
+
+      setCookie(JSON.stringify(state));
     },
     // Update quantity of item in cart
     updateItemQuantity(
@@ -70,6 +79,8 @@ export const cartSlice = createSlice({
 
         // Update the quantity of the item in the cart
         cartItem.quantity = newQuantity;
+
+      setCookie(JSON.stringify(state));
       }
     },
     // Clear the cart
@@ -79,12 +90,26 @@ export const cartSlice = createSlice({
       state.quantity = 0;
       state.subTotal = 0;
       state.total = 0;
+
+      Cookies.remove('cart');
+    },
+    // Set the cart state
+    setCart: (state, action: PayloadAction<TypeCartState>) => {
+      state.items = action.payload.items;
+      state.quantity = action.payload.quantity;
+      state.subTotal = action.payload.subTotal;
+      state.total = action.payload.total;
     },
   },
 });
 
-export const { addToCart, removeFromCart, updateItemQuantity, clearCart } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  updateItemQuantity,
+  clearCart,
+  setCart,
+} = cartSlice.actions;
 
 // Get the cart items
 export const selectCartItems = (state: RootState) => state.cart.items;
