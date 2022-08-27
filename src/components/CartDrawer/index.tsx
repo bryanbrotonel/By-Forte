@@ -1,10 +1,9 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { CartItem } from '../../types';
+import { useAppSelector } from '../../app/hooks';
 import Drawer from '../Drawer';
 import CartItemPreview from './CartItemPreview';
-import { selectCartItems, selectCartSubTotal } from './cartSlice';
+import { selectCartItems, selectCartSubTotal } from '../../app/cartSlice';
 
 function CartDrawer(props: { display: boolean; toggleMenu: Function }) {
   const { display, toggleMenu } = props;
@@ -32,7 +31,7 @@ function CartDrawer(props: { display: boolean; toggleMenu: Function }) {
       <div>
         <div className="space-y-8">
           {cartItems.map((cartItem, index) => {
-            return <CartItemPreview key={index} cartItem={cartItem} />;
+            return <CartItemPreview key={index} cartItemID={cartItem.id} />;
           })}
         </div>
         <div className="pt-8 flex justify-end text-end">

@@ -1,46 +1,52 @@
 import React, { useEffect } from 'react';
-import { CartItem } from '../../../types';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import {
+  removeFromCart,
+  selectCartItemById,
+  updateItemQuantity,
+} from '../../../app/cartSlice';
 import QuantityField from './QuantityField';
 
-function CartItemPreview(props: { cartItem: CartItem }) {
+function CartItemPreview(props: { cartItemID: number }) {
+  const dispatch = useAppDispatch();
+  const cartItem = useAppSelector((state) =>
+    selectCartItemById(state, props.cartItemID)
+  );
 
-  const {
-    cartItem: { id, quantity, item },
-  } = props;
+  const item = cartItem.item;
 
-  const { name, variant, size, price, image } = item;
-
-  const [itemQuantity, setItemQuantity] = React.useState(quantity);
-
-  useEffect(() => {
-    if (itemQuantity === 0) {
-      // TODO: remove item from cart
-      console.log('remove item from cart');
+  const setItemQuantity = (quantity: number) => {
+    if (quantity === 0) {
+      dispatch(removeFromCart(cartItem));
+    } else {
+      dispatch(updateItemQuantity([item, quantity]));
     }
-  }, [itemQuantity]);
+  };
 
   return (
     <div className="flex gap-4 text-sm">
       <div className="basis-2/5">
         <img
-          src={image}
-          alt={`${name} Product Image`}
+          src={item.image}
+          alt={`${item.name} - Product Image`}
           className="aspect-square w-full"
         />
       </div>
       <div className="basis-3/5">
         <div className="mb-4">
-          <h1 className="uppercase font-medium mb-2">{name}</h1>
-          <p>{variant} / {size}</p>
+          <h1 className="uppercase font-medium mb-2">{item.name}</h1>
+          <p>
+            {item.variant} / {item.size}
+          </p>
         </div>
-        <div className='grid grid-cols-2'>
-        <QuantityField
-          itemQuantity={itemQuantity}
-          updateQuantity={setItemQuantity}
-        />
-        <div>
-          <p className="uppercase text-end">CAD${price}</p>
-        </div>
+        <div className="grid grid-cols-2">
+          <QuantityField
+            itemQuantity={cartItem.quantity}
+            updateQuantity={setItemQuantity}
+          />
+          <div>
+            <p className="uppercase text-end">CAD${item.price}</p>
+          </div>
         </div>
       </div>
     </div>

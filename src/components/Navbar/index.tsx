@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { MdOutlineMenu } from 'react-icons/md';
 import { NavLink, useLocation } from 'react-router-dom';
 import CartDrawer from '../CartDrawer';
+import { useAppSelector } from '../../app/hooks';
+import { selectCartQuantity } from '../../app/cartSlice';
 import NavMenu from './NavMenu';
 
 function Navbar() {
@@ -9,6 +11,7 @@ function Navbar() {
   const [toggleCart, setToggleCart] = useState(false);
 
   let location = useLocation();
+  const cartQuantity = useAppSelector(selectCartQuantity);
 
   useEffect(() => {
     document.body.style.overflow = toggleNavMenu ? 'hidden' : 'unset';
@@ -62,7 +65,7 @@ function Navbar() {
               onClick={() => setToggleCart(true)}
               className="uppercase text-sm text-light hover:text-black/60"
             >
-              Cart (3)
+              {`Cart${cartQuantity > 0 ? ` (${cartQuantity})` : ''}`}
             </button>
           </div>
         </div>

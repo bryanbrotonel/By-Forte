@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
@@ -22,9 +23,9 @@ function Home() {
               minus ratione, laborum, iure.
             </p>
             <div className="mt-4">
-              <a href="shop" className="font-bold uppercase hover:underline">
+              <Link to="shop" className="font-bold uppercase hover:underline">
                 Shop Now
-              </a>
+              </Link>
             </div>
           </div>
         </div>
