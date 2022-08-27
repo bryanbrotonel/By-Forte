@@ -1,11 +1,17 @@
-export interface CartItem {
+export interface ShopItem {
   id: number;
   name: string;
   variant: string;
-  size: "S" | "M" | "L" | "XL";
   price: number;
-  quantity: number;
   image: string;
+  size: 'S' | 'M' | 'L' | 'XL';
+}
+
+export type TypeShopItem = ShopItem;
+export interface CartItem {
+  id: number;
+  item: ShopItem;
+  quantity: number;
 }
 
 export type TypeCartItem = CartItem;

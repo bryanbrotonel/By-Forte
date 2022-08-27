@@ -2,9 +2,13 @@ import React, { useEffect } from 'react';
 import { CartItem } from '../../../types';
 import QuantityField from './QuantityField';
 
-function CartItemPreview(props: { item: CartItem }) {
+function CartItemPreview(props: { cartItem: CartItem }) {
 
-  const { item: {id, name, variant, size, price, quantity, image} } = props;
+  const {
+    cartItem: { id, quantity, item },
+  } = props;
+
+  const { name, variant, size, price, image } = item;
 
   const [itemQuantity, setItemQuantity] = React.useState(quantity);
 
