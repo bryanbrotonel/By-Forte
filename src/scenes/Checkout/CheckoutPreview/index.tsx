@@ -1,11 +1,17 @@
 import React from 'react';
+import { selectCartSubTotal } from '../../../app/cartSlice';
+import { useAppSelector } from '../../../app/hooks';
+import { CartItem } from '../../../types';
 import CheckoutItem from './CheckoutItem';
 
-function CheckoutPreview(props: { cart: String[] }) {
+function CheckoutPreview(props: { cart: CartItem[] }) {
   const { cart } = props;
 
+  const cartSubTotal = useAppSelector(selectCartSubTotal);
+  const cartTotal = useAppSelector(selectCartSubTotal);
+
   let cartPreview = cart.map((item, index) => {
-    return <CheckoutItem key={index} />;
+    return <CheckoutItem key={index} cartItem={item} />;
   });
 
   return (
@@ -17,8 +23,8 @@ function CheckoutPreview(props: { cart: String[] }) {
         {cartPreview}
       </div>
       <div className="pt-4 space-y-4 text-end">
-        <h1>Subtotal: $0.00</h1>
-        <h1>Total: $0.00</h1>
+        <h1>Subtotal: ${cartSubTotal}</h1>
+        <h1>Total: ${cartTotal}</h1>
       </div>
     </div>
   );
