@@ -9,7 +9,6 @@ import {
   addToCart,
 } from '../../app/cartSlice';
 import ImageSlider from '../../components/ImageSlider';
-import { TypeShopItem } from '../../types';
 import _ from 'lodash';
 
 function ProductPage() {
@@ -30,7 +29,7 @@ function ProductPage() {
     id: 1,
     name: 'Product Name',
     variant: 'Black',
-    size: productSize as TypeShopItem['size'],
+    size: sizes,
     price: 100,
     image:
       'https://firebasestorage.googleapis.com/v0/b/by-forte.appspot.com/o/images%2Fproducts%2Fby%20forte%20collegiate%20hoodie%20-%20black%2F1538887688631-By%20Forte%20Collegiate%20Hoodie%20-%20Black.png?alt=media&token=2226165c-5167-472d-b2a0-5b07adabffe2',

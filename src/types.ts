@@ -4,7 +4,7 @@ export interface ShopItem {
   variant: string;
   price: number;
   image: string;
-  size: 'S' | 'M' | 'L' | 'XL';
+  size: string[];
 }
 
 export type TypeShopItem = ShopItem;

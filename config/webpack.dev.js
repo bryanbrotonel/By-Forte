@@ -12,5 +12,11 @@ module.exports = merge(common, {
     open: true,
     hot: true,
     liveReload: true,
+    proxy: {
+      '/.netlify/functions': {
+        target: 'http://localhost:8888',
+        secure: false,
+      },
+    },
   },
 });
