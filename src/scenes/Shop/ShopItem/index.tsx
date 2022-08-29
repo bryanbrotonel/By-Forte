@@ -4,14 +4,14 @@ import { ShopItem } from '../../../types';
 
 function ShopItem(props: { product: ShopItem, slug: string }) {
   const { product, slug } = props;
-  const { name, price, image } = product;
+  const { name, price, images } = product;
 
   return (
     <div className="flex justify-center">
       <Link to={slug}>
         <div>
           <img
-            src={image[0]}
+            src={images[0]}
             alt="Product Image"
             className="aspect-square max-h-64 object-cover"
             loading="lazy"

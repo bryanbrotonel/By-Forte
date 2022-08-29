@@ -1,22 +1,28 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Drawer from '../Drawer';
 import CartItemPreview from './CartItemPreview';
-import { selectCartItems, selectCartSubTotal } from '../../app/cartSlice';
+import {
+  selectCartItems,
+  selectCartSubTotal,
+  selectDrawerToggle,
+  toggleDrawer,
+} from '../../app/cartSlice';
 
-function CartDrawer(props: { display: boolean; toggleMenu: Function }) {
-  const { display, toggleMenu } = props;
+function CartDrawer() {
+  let dispatch = useAppDispatch();
 
   const cartItems = useAppSelector(selectCartItems);
   const cartSubtotal = useAppSelector(selectCartSubTotal);
+  const cartDrawerState = useAppSelector(selectDrawerToggle);
 
   let navigate = useNavigate();
   let location = useLocation();
 
   const onCheckout = () => {
     // Close the drawer
-    toggleMenu(false);
+    dispatch(toggleDrawer());
 
     // Navigate to checkout
     if (location.pathname !== '/checkout') {
@@ -48,17 +54,22 @@ function CartDrawer(props: { display: boolean; toggleMenu: Function }) {
         </div>
       </div>
     );
-  }
-  else {
+  } else {
     cartContent = (
       <div className="flex flex-col justify-center items-center h-full">
-        <p className='text-gray-500 uppercase text-xs'>Your cart is empty</p>
+        <p className="text-gray-500 uppercase text-xs">Your cart is empty</p>
       </div>
     );
   }
 
   return (
-    <Drawer poistion={'right'} display={display} toggleMenu={toggleMenu}>
+    <Drawer
+      poistion={'right'}
+      display={cartDrawerState}
+      toggleMenu={() => {
+        dispatch(toggleDrawer());
+      }}
+    >
       <h1 className="uppercase font-semibold mb-12">Shopping Cart</h1>
       {cartContent}
     </Drawer>

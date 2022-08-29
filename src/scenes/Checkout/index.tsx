@@ -4,6 +4,7 @@ import { selectCartItems } from '../../app/cartSlice';
 import { useAppSelector } from '../../app/hooks';
 import CheckoutForm from './CheckoutForm';
 import CheckoutPreview from './CheckoutPreview';
+import Cookies from 'js-cookie';
 
 function Checkout() {
   const cartItems = useAppSelector(selectCartItems);
@@ -15,7 +16,12 @@ function Checkout() {
     };
   }, []);
 
-  if (cartItems.length === 0) {
+    var formatter = new Intl.NumberFormat('en-CA', {
+      style: 'currency',
+      currency: 'CAD',
+    });
+
+  if (cartItems.length === 0 && Cookies.get('cart') === undefined) {
     return <Navigate to="/shop" />;
   }
 
@@ -24,7 +30,7 @@ function Checkout() {
       <h1 className="uppercase font-semibold my-6">Checkout</h1>
       <div className="flex flex-col lg:flex-row justify-center gap-6">
         <div className="md:basis-4/12">
-          <CheckoutPreview cart={cartItems} />
+          <CheckoutPreview cart={cartItems} formatter={formatter} />
         </div>
         <div className="md:basis-8/12 lg:order-first">
           <CheckoutForm />

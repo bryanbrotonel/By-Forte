@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { MdOutlineMenu } from 'react-icons/md';
 import { NavLink, useLocation } from 'react-router-dom';
 import CartDrawer from '../CartDrawer';
-import { useAppSelector } from '../../app/hooks';
-import { selectCartQuantity } from '../../app/cartSlice';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { selectCartQuantity, toggleDrawer } from '../../app/cartSlice';
 import NavMenu from './NavMenu';
 
 function Navbar() {
-  const [toggleNavMenu, setToggleNavMenu] = useState(false);
-  const [toggleCart, setToggleCart] = useState(false);
-
   let location = useLocation();
+  let dispatch = useAppDispatch();
+
+  const [toggleNavMenu, setToggleNavMenu] = useState(false);
+
   const cartQuantity = useAppSelector(selectCartQuantity);
 
   useEffect(() => {
@@ -62,7 +63,7 @@ function Navbar() {
             } basis-1/3 text-right`}
           >
             <button
-              onClick={() => setToggleCart(true)}
+              onClick={() => dispatch(toggleDrawer())}
               className="uppercase text-sm text-light hover:text-black/60"
             >
               {`Cart${cartQuantity > 0 ? ` (${cartQuantity})` : ''}`}
@@ -75,7 +76,7 @@ function Navbar() {
         display={toggleNavMenu}
         toggleMenu={setToggleNavMenu}
       />
-      <CartDrawer display={toggleCart} toggleMenu={setToggleCart} />
+      <CartDrawer />
     </React.Fragment>
   );
 }

@@ -1,10 +1,10 @@
 import _ from 'lodash';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchFirebase } from '../../api/firebase';
 import ShopItem from './ShopItem';
 
 function Shop() {
-  const [products, setProducts] = React.useState({});
+  const [products, setProducts] = useState({});
 
   useEffect(() => {
     fetchFirebase({ action: 'getData', payload: 'products' }).then((data) => {

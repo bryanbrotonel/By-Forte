@@ -27,15 +27,15 @@ function CartItemPreview(props: { cartItemID: number }) {
     <div className="flex gap-4 text-sm">
       <div className="basis-2/5">
         <img
-          src={item.image}
+          src={item.images[0]}
           alt={`${item.name} - Product Image`}
           className="aspect-square w-full"
         />
       </div>
       <div className="basis-3/5">
         <div className="mb-4">
-          <h1 className="uppercase font-medium mb-2">{item.name}</h1>
-          <p>
+          <h1 className="uppercase font-semibold mb-2">{item.name}</h1>
+          <p className="uppercase">
             {item.variant} / {item.size}
           </p>
         </div>

@@ -18,7 +18,7 @@ function Drawer(props: {
     <React.Fragment>
       <div
         onClick={() => toggleMenu(false)}
-        className={`h-screen absolute inset-0 ${
+        className={`absolute inset-0 ${
           display ? 'visible opacity-70' : 'invisible opacity-0'
         } z-[39] bg-black transition-all ease-out duration-500`}
       />

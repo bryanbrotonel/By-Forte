@@ -2,7 +2,8 @@ import React from 'react';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import './styles.css'
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 function ImageSlider(props: { images: string[] }) {
   const { images } = props;
@@ -22,7 +23,7 @@ function ImageSlider(props: { images: string[] }) {
     <div className="sliderWrapper">
       <Swiper
         modules={[Pagination]}
-        loop={true}
+        loop={images.length > 1}
         pagination={{ clickable: true, bulletActiveClass: 'bg-black opacity-100' }}
         className="md:hidden w-full"
       >

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import Cookies from 'js-cookie';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from './store';
-import { CartItem, ShopItem, TypeCartState } from '../types';
+import { CartItem, CartProduct, TypeCartState } from '../types';
 
 // Initial state of cart
 const initialState: TypeCartState = {
@@ -10,6 +10,7 @@ const initialState: TypeCartState = {
   quantity: 0,
   subTotal: 0,
   total: 0,
+  toggleDrawer: false,
 };
 
 const setCookie = (value: string) => {
@@ -39,7 +40,7 @@ export const cartSlice = createSlice({
     removeFromCart: (state, action: PayloadAction<CartItem>) => {
       // Find item by id and remove it from the cart
       const index = state.items.findIndex(
-        (item) => item.item.id === action.payload.item.id
+        (item) => item.id === action.payload.id
       );
       state.items.splice(index, 1);
 
@@ -57,7 +58,7 @@ export const cartSlice = createSlice({
     // Update quantity of item in cart
     updateItemQuantity(
       state,
-      action: PayloadAction<[product: ShopItem, newQuantity: number]>
+      action: PayloadAction<[product: CartProduct, newQuantity: number]>
     ) {
       const [product, newQuantity] = action.payload;
       const cartItem = state.items.find((item) =>
@@ -80,8 +81,15 @@ export const cartSlice = createSlice({
         // Update the quantity of the item in the cart
         cartItem.quantity = newQuantity;
 
-      setCookie(JSON.stringify(state));
+        setCookie(JSON.stringify(state));
       }
+    },
+    // Set the cart state
+    setCart: (state, action: PayloadAction<TypeCartState>) => {
+      state.items = action.payload.items;
+      state.quantity = action.payload.quantity;
+      state.subTotal = action.payload.subTotal;
+      state.total = action.payload.total;
     },
     // Clear the cart
     clearCart: (state) => {
@@ -93,12 +101,8 @@ export const cartSlice = createSlice({
 
       Cookies.remove('cart');
     },
-    // Set the cart state
-    setCart: (state, action: PayloadAction<TypeCartState>) => {
-      state.items = action.payload.items;
-      state.quantity = action.payload.quantity;
-      state.subTotal = action.payload.subTotal;
-      state.total = action.payload.total;
+    toggleDrawer(state) {
+      state.toggleDrawer = !state.toggleDrawer;
     },
   },
 });
@@ -109,6 +113,7 @@ export const {
   updateItemQuantity,
   clearCart,
   setCart,
+  toggleDrawer,
 } = cartSlice.actions;
 
 // Get the cart items
@@ -122,6 +127,8 @@ export const selectCartSubTotal = (state: RootState) => state.cart.subTotal;
 
 // Get the total of the cart
 export const selectCartTotal = (state: RootState) => state.cart.total;
+
+export const selectDrawerToggle = (state: RootState) => state.cart.toggleDrawer;
 
 export const selectCartItemById = (state: RootState, cartItemId: number) =>
   state.cart.items.find((item) => item.id === cartItemId);
