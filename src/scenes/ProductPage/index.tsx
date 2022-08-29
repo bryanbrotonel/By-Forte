@@ -36,8 +36,11 @@ function ProductPage() {
   // Add or update item in cart, and open cart drawer
   const onAddToCartHandler = () => {
     const cartedProduct = {
-      ..._.pick(product, ['name', 'variant', 'price', 'images[0]']),
+      name: product.name,
+      price: product.price,
       size: productSize,
+      variant: product.variant,
+      image: product.images[0],
     } as CartProduct;
 
     // Check if item is already in cart
@@ -54,7 +57,7 @@ function ProductPage() {
     // If item is not in cart, add new item to cart
     else {
       const newCartItem = {
-        id: cartItems.length + 1, // TODO: generate unique id
+        id: params.id,
         item: cartedProduct,
         quantity: 1,
       };

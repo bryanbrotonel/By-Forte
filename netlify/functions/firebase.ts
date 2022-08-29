@@ -1,7 +1,18 @@
 import { Handler } from '@netlify/functions';
 import { initializeApp } from 'firebase/app';
-import { child, get, getDatabase, ref } from 'firebase/database';
+import {
+  child,
+  DataSnapshot,
+  get,
+  getDatabase,
+  push,
+  ref,
+  set,
+  update,
+} from 'firebase/database';
 import 'firebase/auth';
+import _ from 'lodash';
+import { AiOutlineConsoleSql } from 'react-icons/ai';
 
 const firebaseConfig = {
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
@@ -17,7 +28,7 @@ initializeApp(firebaseConfig);
 const dbRef = ref(getDatabase());
 
 // Get product data from firebase database
-async function getData( ref: string ) {
+async function getData(ref: string) {
   return await get(child(dbRef, ref))
     .then((snapshot) => {
       if (snapshot.exists()) {
@@ -32,16 +43,32 @@ async function getData( ref: string ) {
     });
 }
 
+async function writeOrderData(order: object) {
+  const db = getDatabase();
+
+  const orderID = await generateOrderID();
+
+  const newOrderKey = `${push(child(ref(db), 'orders')).key}-${orderID}`;
+
+  const updates = { [`orders/${newOrderKey}`]: order };
+  updates['orders/' + newOrderKey] = order;
+
+  return await update(ref(db), updates).then(() => {
+    return orderID;
+  });
+}
+
+async function generateOrderID() {
+  const dbRef = ref(getDatabase());
+
+  return await get(child(dbRef, 'orders')).then((snapshot) => {
+    const orderID = snapshot.size + 1;
+    return _.padStart(String(orderID), 4, '0');
+  });
+}
+
 // Handle netlify function request
 const handler: Handler = async (event, context) => {
-  // If not using POST, return 405 Method Not Allowed
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      body: 'Method Not Allowed',
-    };
-  }
-
   // If no body, return 400 Bad Request
   if (!event.body) {
     return {
@@ -59,6 +86,10 @@ const handler: Handler = async (event, context) => {
   switch (action) {
     case 'getData':
       responseData = JSON.stringify(await getData(payload));
+      break;
+    case 'writeOrderData':
+      const order = JSON.parse(payload);
+      responseData = JSON.stringify(await writeOrderData(order));
       break;
     default:
       statusCode = 400;

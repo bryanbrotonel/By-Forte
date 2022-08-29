@@ -7,7 +7,7 @@ import {
 } from '../../../app/cartSlice';
 import QuantityField from './QuantityField';
 
-function CartItemPreview(props: { cartItemID: number }) {
+function CartItemPreview(props: { cartItemID: string }) {
   const dispatch = useAppDispatch();
   const cartItem = useAppSelector((state) =>
     selectCartItemById(state, props.cartItemID)
@@ -27,7 +27,7 @@ function CartItemPreview(props: { cartItemID: number }) {
     <div className="flex gap-4 text-sm">
       <div className="basis-2/5">
         <img
-          src={item.images[0]}
+          src={item.image}
           alt={`${item.name} - Product Image`}
           className="aspect-square w-full"
         />

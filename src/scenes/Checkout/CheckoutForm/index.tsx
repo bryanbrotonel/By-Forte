@@ -1,68 +1,114 @@
-import React from 'react';
+import { divide } from 'lodash';
+import React, { useState } from 'react';
+import InputField from './InputField';
 
-function CheckoutForm() {
+function CheckoutForm(props: { formSubmitCallback: Function }) {
+  const { formSubmitCallback } = props;
+
+  const [form, setForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+  });
+
+  const [formErrors, setFormErrors] = useState({
+    error: false,
+    message: '',
+  });
+
+  const onUpdateField = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const isValidEmail = (email: string) => {
+    return /\S+@\S+\.\S+/.test(email);
+  };
+
+  const validateForm = () => {
+    if (!isValidEmail(form.email)) {
+      setFormErrors({
+        error: true,
+        message: 'Please enter a valid email address',
+      });
+      return false;
+    }
+    return true;
+  };
+
   return (
-    <div className=" container bg-white border border-black p-8 space-y-4">
-      <div className="grid md:grid-cols-2 gap-4">
-        <form>
-          <label htmlFor="firstName" className="mb-1">
-            First Name
-          </label>
-          <br />
-          <input
+    <div className="container bg-white border border-black p-8 space-y-4">
+      <form
+        onSubmit={(e: React.SyntheticEvent) => {
+          e.preventDefault();
+          if (validateForm()) {
+            formSubmitCallback(form);
+          }
+        }}
+        className="grid md:grid-cols-2 gap-4"
+      >
+        <div className="col-span-2 md:col-span-1">
+          <InputField
             id="firstName"
             type="text"
-            className="w-full border border-black p-2 rounded-none"
+            label="First Name"
+            value={form.firstName}
+            onChange={onUpdateField}
           />
-        </form>
-        <div>
-          <label htmlFor="lastName" className="mb-1">
-            Last Name
-          </label>
-          <br />
-          <input
+        </div>
+        <div className="col-span-2 md:col-span-1">
+          <InputField
             id="lastName"
             type="text"
-            className="w-full border border-black p-2 rounded-none"
+            label="Last Name"
+            value={form.lastName}
+            onChange={onUpdateField}
           />
         </div>
-        <div>
-          <label htmlFor="email" className="mb-1">
-            Email
-          </label>
-          <br />
-          <input
+        <div className="col-span-2 md:col-span-1">
+          <InputField
             id="email"
             type="email"
-            className="w-full border border-black p-2 rounded-none"
+            label="Email"
+            value={form.email}
+            onChange={onUpdateField}
           />
+          <div className="col-span-2 md:col-span-1">
+            {formErrors.error && (
+              <div>
+                {' '}
+                <span className="text-red-500">{formErrors.message}</span>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-      <div className='pt-4'>
-        <h1 className="text-2xl font-bold">FAQ</h1>
-        <h6 className="pt-5 font-semibold">How Do I Pay?</h6>
-        <p>
-          We don't have online payments set up on the online shop yet. Payments
-          will be done through e-transfers and cash.
-        </p>
-        <h6 className="pt-5 font-semibold">Who do I pay?</h6>
-        <p>
-          All payments should be directed to either Trisha or Bryan. If you
-          don't know who either Bryan or Trisha are, please contact
-          supplybyforte@gmail.com.
-        </p>
-        <h6 className="pt-5 font-semibold">When will I receive my order?</h6>
-        <p>
-          We will begin processing orders on the day of the deadline and once
-          all orders have been taken. Processing time for orders will take
-          around two weeks.
-        </p>
-      </div>
-      <div className="pt-3 flex justify-end">
-        <button className="py-2 px-4 bg-black hover:bg-black/70 text-white uppercase font-medium">
-          Place Order
-        </button>
-      </div>
+        <div className="pt-4 col-span-2">
+          <h1 className="text-xl font-medium">FAQ</h1>
+          <h6 className="pt-5 font-semibold">How Do I Pay?</h6>
+          <p>Payments will be done through e-transfers and cash.</p>
+          <h6 className="pt-5 font-semibold">Who do I pay?</h6>
+          <p>
+            All payments should be directed to either Trisha or Bryan. If you
+            don't know who either Bryan or Trisha are, please contact
+            supplybyforte@gmail.com.
+          </p>
+          <h6 className="pt-5 font-semibold">When will I receive my order?</h6>
+          <p>
+            We will begin processing orders on the day of the deadline and once
+            all orders have been taken. Processing time for orders will take
+            around two weeks.
+          </p>
+        </div>
+        <div className="pt-3 col-span-2 justify-self-end">
+          <input
+            type="submit"
+            value="Submit"
+            className="py-2 px-4 bg-black hover:bg-black/70 hover:cursor-pointer text-white uppercase font-medium"
+          ></input>
+        </div>
+      </form>
     </div>
   );
 }

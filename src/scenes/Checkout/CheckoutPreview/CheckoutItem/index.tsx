@@ -12,7 +12,7 @@ function CheckoutItem(props: {
     <div className="flex justify-between">
       <div>
         <img
-          src={product.images[0]}
+          src={product.image}
           alt={`${product.name} - Image`}
           className="aspect-square w-32"
         />

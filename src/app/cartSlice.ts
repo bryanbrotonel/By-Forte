@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import Cookies from 'js-cookie';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from './store';
-import { CartItem, CartProduct, TypeCartState } from '../types';
+import { CartItem, CartProduct, TypeCartState, TypeCheckoutOrder } from '../types';
+import { fetchFirebase } from '../api/firebase';
 
 // Initial state of cart
 const initialState: TypeCartState = {
@@ -66,7 +67,6 @@ export const cartSlice = createSlice({
       );
 
       if (cartItem) {
-        // If the new quantity is 0, remove the item from the cart
         // Calculate new quantity and totals
         const cartItemTotal = cartItem.item.price * newQuantity;
 
@@ -107,6 +107,22 @@ export const cartSlice = createSlice({
   },
 });
 
+// Redux aync thunk that hadnles cart checkout
+export const sendOrderData = createAsyncThunk(
+  'cart/checkoutOrder',
+  async (order: TypeCheckoutOrder) => {
+
+    return fetchFirebase({
+      action: 'writeOrderData',
+      payload: JSON.stringify(order),
+    }).then(async (data) => {
+      _.assignIn(order, { id: data });
+      console.log(order)
+      return data;
+    });
+  }
+);
+
 export const {
   addToCart,
   removeFromCart,
@@ -115,6 +131,8 @@ export const {
   setCart,
   toggleDrawer,
 } = cartSlice.actions;
+
+export const selectCart = (state: RootState) => state.cart;
 
 // Get the cart items
 export const selectCartItems = (state: RootState) => state.cart.items;
@@ -130,7 +148,7 @@ export const selectCartTotal = (state: RootState) => state.cart.total;
 
 export const selectDrawerToggle = (state: RootState) => state.cart.toggleDrawer;
 
-export const selectCartItemById = (state: RootState, cartItemId: number) =>
+export const selectCartItemById = (state: RootState, cartItemId: string) =>
   state.cart.items.find((item) => item.id === cartItemId);
 
 export default cartSlice.reducer;
