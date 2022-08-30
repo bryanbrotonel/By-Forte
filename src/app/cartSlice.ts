@@ -116,24 +116,24 @@ export const cartSlice = createSlice({
 export const sendOrderData = createAsyncThunk(
   'cart/checkoutOrder',
   async (order: TypeCheckoutOrder) => {
-    return fetchFirebase({
+    return await fetchFirebase({
       action: 'writeOrderData',
       payload: JSON.stringify(order),
     }).then(async (data) => {
       // Add generated id to order
       _.assignIn(order, { id: data });
-      console.log(order)
 
       // Send order to email
       return await fetch('/.netlify/functions/orderEmail-background', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({payload: order}),
-      }).then((response) => {
-        return response.json();
-      });
+        body: JSON.stringify({ payload: order }),
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          return data;
+        });
     });
   }
 );

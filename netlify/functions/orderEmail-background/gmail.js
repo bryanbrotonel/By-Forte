@@ -1,5 +1,3 @@
-// gmail.js
-
 const { google } = require('googleapis');
 const MailComposer = require('nodemailer/lib/mail-composer');
 
@@ -22,8 +20,6 @@ const tokens = {
   token_type: `${process.env.REACT_APP_GMAIL_TOKEN_TYPE}`,
   expiry_date: process.env.REACT_APP_GMAIL_EXPIRY_DATE,
 };
-
-console.log(credentials, tokens)
 
 // Fetches gmail API service
 const getGmailService = () => {

@@ -5,7 +5,6 @@ var fs = require('fs');
 const sendMail = require('./gmail');
 
 const main = async (cartData: TypeCheckoutOrder) => {
-  
   var readHTMLFile = function (path: string, callback: Function) {
     fs.readFile(path, { encoding: 'utf-8' }, function (err: string, html: any) {
       if (err) {
@@ -65,10 +64,7 @@ const handler = async (event: HandlerEvent) => {
     cart: cartData,
   } as TypeCheckoutOrder;
 
-  console.log('sending email');
-  main(emailData)
-    .then(() => console.log('Message sent successfully'))
-    .catch((err) => console.error(err));
+  main(emailData).catch((err) => console.error(err));
 };
 
 export { handler };
