@@ -26,7 +26,7 @@ function Navbar() {
 
   return (
     <React.Fragment>
-      <div className="mx-4">
+      <div className="px-4 fixed top-0 w-full z-[38] bg-white">
         <div className="container flex flex-row items-center py-4">
           <div className="basis-1/3">
             <div className="hidden md:flex md:flex-row md:gap-8">
@@ -49,12 +49,16 @@ function Navbar() {
               <MdOutlineMenu size={20} onClick={() => setToggleNavMenu(true)} />
             </div>
           </div>
-          <div className="basis-1/3 text-center">
+          <div className="basis-1/3 text-center ">
             <NavLink
               className="uppercase font-semibold hover:text-black/60"
               to="/"
             >
-              By Forte
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/by-forte.appspot.com/o/logos%2FBy%20Forte%20Logo.png?alt=media&token=77605eca-734a-4d7d-ab4a-5de18c525557"
+                alt=""
+                className='w-12 md:w-16 mx-auto'
+              />
             </NavLink>
           </div>
           <div
