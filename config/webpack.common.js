@@ -56,7 +56,7 @@ module.exports = {
       },
     }),
     new Dotenv(),
-    new FaviconsWebpackPlugin('./src/static/assets/images/favicon.svg'),
+    new FaviconsWebpackPlugin('./src/static/assets/images/favicon.png'),
   ],
   output: {
     filename: '[name].bundle.js',

@@ -19,8 +19,8 @@ function Navbar() {
   }, [toggleNavMenu]);
 
   const links = [
-    ['/editorial', 'Editorial'],
     ['/shop', 'Shop'],
+    ['/editorial', 'Editorial'],
     ['/about', 'About'],
   ];
 

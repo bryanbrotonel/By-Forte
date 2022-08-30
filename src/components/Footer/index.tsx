@@ -11,7 +11,9 @@ function Footer() {
       </div>
       <div className="order-last md:order-none md:space-y-1 text-center">
         <div>
-          <span className="uppercase font-bold">By Forte</span>
+          <span className="uppercase">
+            &#169; {new Date().getFullYear()} By Forte
+          </span>
         </div>
       </div>
       <div className="flex flex-col md:flex-row gap-2 items-center">

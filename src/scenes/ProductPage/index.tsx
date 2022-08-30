@@ -5,7 +5,7 @@ import {
   updateItemQuantity,
   selectCartItems,
   addToCart,
-  toggleDrawer
+  toggleDrawer,
 } from '../../app/cartSlice';
 import ImageSlider from '../../components/ImageSlider';
 import _ from 'lodash';
@@ -13,6 +13,7 @@ import { fetchFirebase } from '../../api/firebase';
 import { CartProduct, ShopItem } from '../../types';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
+import ShopWarning from '../../components/ShopWarning';
 
 function ProductPage() {
   const params = useParams();
@@ -68,7 +69,7 @@ function ProductPage() {
   };
 
   if (_.isEmpty(product)) {
-    return <div className="container">Loading...</div>;
+    return null;
   } else {
     const { name, price, images, sizes, description, variant } = product;
 
@@ -79,6 +80,7 @@ function ProductPage() {
         <button
           key={value.size}
           value={value.size}
+          disabled={value.quantity === 0}
           onClick={() => setProductSize(value.size)}
           className={`text-xs font-semibold uppercase p-1 w-10 ${
             value.size == productSize
@@ -139,6 +141,7 @@ function ProductPage() {
             </div>
           </div>
         </div>
+        <ShopWarning />
       </div>
     );
   }

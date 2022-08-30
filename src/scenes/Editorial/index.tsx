@@ -9,12 +9,9 @@ function Editorial() {
         className="h-96 w-96 aspect-square object-cover"
         loading="lazy"
       />
-      <div className="md:w-96 text-center">
-        <h1 className="uppercase text-xl font-semibold mb-2">Editorial</h1>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
-          animi, enim recusandae quasi.
-        </p>
+      <div className="md:w-96 text-center uppercase">
+        <h1 className=" text-xl font-semibold mb-2">Editorial</h1>
+        <h2>Coming Soon</h2>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ import { TypeCheckoutOrder } from '../../types';
 function Checkout() {
   const dispatch = useAppDispatch();
   const cart = useAppSelector(selectCart);
-  const [succesfulOrder, setSuccesfulOrder] = React.useState(true);
+  const [succesfulOrder, setSuccesfulOrder] = React.useState(false);
 
   useEffect(() => {
     document.body.classList.add('bg-gray-100');
@@ -67,12 +67,12 @@ function Checkout() {
       <h1 className="text-5xl md:text-7xl font-bold font-serif text-gray-800">
         Thank You!
       </h1>
-      <div className='space-y-4'>
+      <div className="space-y-4">
         <p className="text-xl">
           You will be receiving a confirmation email with your order details.
         </p>
         <p className=" text-gray-800">
-          If you have any questions, please contact us at
+          If you have any questions, please contact us at&nbsp;
           <a
             className="text-blue-500 hover:text-blue-700"
             href="mailto:supplybyforte@gmail.com"
