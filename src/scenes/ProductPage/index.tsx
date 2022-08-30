@@ -49,8 +49,6 @@ function ProductPage() {
       return _.isEqual(cartItem.item, cartedProduct);
     });
 
-    console.log(cartItems, cartedProduct, itemIndex);
-
     // If item is already in cart, update quantity
     if (itemIndex !== -1) {
       dispatch(
