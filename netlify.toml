@@ -1,2 +1,2 @@
-[functions]
-  included_files = ["functions/assets/*"]
+[functions."orderEmail"]
+  included_files = ["functions/assets/orderEmail/*"]
