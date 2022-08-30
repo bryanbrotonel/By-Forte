@@ -18,7 +18,7 @@
   <style>
     td,th,div,p,a,h1,h2,h3,h4,h5,h6 {font-family: "Segoe UI", sans-serif; mso-line-height-rule: exactly;}
   </style>
-  <![endif]-->    <title>Order {{orderNumber}} Confirmed - By Forte</title>    <style>
+  <![endif]-->    <title>Order #{{id}} Confirmed - By Forte</title>    <style>
 .hover-text-decoration-underline:hover {
     text-decoration: underline;
 }
@@ -55,42 +55,44 @@
             <tr>
               <td class="sm-px-0" style="width: 100%; padding-left: 24px; padding-right: 24px; padding-top: 32px; padding-bottom: 32px; text-align: center">
                 <a href="https://byforte.netlify.app">
-                  <img src="https://firebasestorage.googleapis.com/v0/b/by-forte-test.appspot.com/o/images%2Flogos%2FBy%20Forte%20Logo.png?alt=media&token=a4c46da3-127d-424f-9177-f9ba04965661" width="70" alt="By Forte Logo" style="border: 0; max-width: 100%; vertical-align: middle">
+                  <img src="https://firebasestorage.googleapis.com/v0/b/by-forte.appspot.com/o/logos%2FBy%20Forte%20Logo.png?alt=media&token=77605eca-734a-4d7d-ab4a-5de18c525557" width="70" alt="By Forte Logo" style="border: 0; max-width: 100%; vertical-align: middle">
                 </a>
               </td>
             </tr>
             <tr class="sm-px-6" style="padding: 48px">
               <td class="sm-px-0" style="width: 100%; padding-left: 24px; padding-right: 24px; padding-bottom: 32px; text-align: left">
-                <span style="color: #4b5563">Order #{{orderNumber}}</span>
+                <span style="color: #4b5563">Order #{{id}}</span>
                 <h1 style="margin-top: 8px">Thank you for your order!</h1>
                 <p>
-                  Hi {{customerFirstName}}, thank you for shopping at By Forte. I hope you
+                  Hi {{customer.firstName}}, thank you for shopping at By Forte. I hope you
                   found this checkout process easy and enjoyable. If you like
                   what you see, check out more of my work at
-                  <a href="https://bryanbrotonel.live" class="hover-text-decoration-underline" style="text-decoration: none; color: #16a34a">bryanbrotonel.live
-                </a>. &#128640;</p>
+                  <a href="https://bryanbrotonel.live" class="hover-text-decoration-underline" style="text-decoration: none; color: #16a34a">bryanbrotonel.live</a>. &#128640;
+                </p>
               </td>
             </tr>
             <tr class="sm-py-8 sm-px-6" style="padding: 48px">
               <td class="sm-px-0" style="width: 100%; padding-left: 24px; padding-right: 24px; padding-bottom: 32px; text-align: left">
                 <table style="width: 100%; border-radius: 4px; background-color: #fff; font-size: 12px" cellpadding="0" cellspacing="0" role="presentation">
+                  {{#each cart.items}}
                   <tr>
                     <td style="padding: 16px">
-                      <img src="./images/ByForteLogo.png" width="50" alt="By Forte Logo" style="border: 0; max-width: 100%; vertical-align: middle">
+                      <img src={{this.item.image}} width="50" alt="By Forte Logo" style="border: 0; max-width: 100%; vertical-align: middle">
                     </td>
                     <td style="padding: 4px">
                       <p style="font-weight: 700; text-transform: uppercase">Product</p>
-                      <p>{{productName}}<br>{{productVariant}}</p>
+                      <p style="text-transform: capitalize">{{this.item.name}}<br>{{this.item.variant}} / {{this.item.size}}</p>
                     </td>
                     <td style="padding: 16px; text-align: center">
                       <p style="font-weight: 700; text-transform: uppercase">Qty</p>
-                      <p>{{productQuantity}}</p>
+                      <p>{{this.quantity}}</p>
                     </td>
                     <td style="padding: 16px; text-align: right">
                       <p style="font-weight: 700; text-transform: uppercase">Price</p>
-                      <p>${{productPrice}}</p>
+                      <p>${{this.item.price}}</p>
                     </td>
                   </tr>
+                  {{/each}}
                 </table>
               </td>
             </tr>
@@ -103,8 +105,8 @@
                       <p>Total</p>
                     </td>
                     <td style="padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; text-align: right; font-weight: 700">
-                      <p style="font-size: 14px">${{cartSubtotal}}</p>
-                      <p>${{cartTotal}}</p>
+                      <p style="font-size: 14px">${{cart.subTotal}}</p>
+                      <p>${{cart.total}}</p>
                     </td>
                   </tr>
                 </table>
@@ -116,14 +118,14 @@
                   <tr>
                     <td style="border-radius: 4px; background-color: #fff; padding: 16px">
                       <h3>Customer Information</h3>
-                      <p>{{customerFirstName}} {{customerLastName}}</p>
-                      <p style="text-decoration: underline">{{customerEmail}}</p>
+                      <p>{{customer.firstName}} {{customer.lastName}}</p>
+                      <p>{{customer.email}}</p>
                     </td>
                   </tr>
                 </table>
               </td>
             </tr>
-            <tr class="sm-py-8 sm-px-6" style="padding: 48px">
+            <tr class="sm-px-0" style="padding-left: 24px; padding-right: 24px; padding-top: 32px; padding-bottom: 32px; text-align: center">
               <td class="sm-px-0" style="width: 100%; padding-left: 24px; padding-right: 24px; padding-bottom: 32px; text-align: left">
                 <table style="width: 100%; border-radius: 4px; background-color: #fff" cellpadding="0" cellspacing="0" role="presentation">
                   <tr>

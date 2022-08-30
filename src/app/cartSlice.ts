@@ -2,7 +2,12 @@ import _ from 'lodash';
 import Cookies from 'js-cookie';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from './store';
-import { CartItem, CartProduct, TypeCartState, TypeCheckoutOrder } from '../types';
+import {
+  CartItem,
+  CartProduct,
+  TypeCartState,
+  TypeCheckoutOrder,
+} from '../types';
 import { fetchFirebase } from '../api/firebase';
 
 // Initial state of cart
@@ -111,14 +116,24 @@ export const cartSlice = createSlice({
 export const sendOrderData = createAsyncThunk(
   'cart/checkoutOrder',
   async (order: TypeCheckoutOrder) => {
-
     return fetchFirebase({
       action: 'writeOrderData',
       payload: JSON.stringify(order),
     }).then(async (data) => {
+      // Add generated id to order
       _.assignIn(order, { id: data });
       console.log(order)
-      return data;
+
+      // Send order to email
+      return await fetch('/.netlify/functions/orderEmail-background', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({payload: order}),
+      }).then((response) => {
+        return response.json();
+      });
     });
   }
 );

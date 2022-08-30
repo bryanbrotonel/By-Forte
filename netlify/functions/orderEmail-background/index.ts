@@ -1,9 +1,11 @@
 import { HandlerEvent } from '@netlify/functions';
+import { TypeCheckoutOrder } from '../../../src/types';
 var handlebars = require('handlebars');
 var fs = require('fs');
 const sendMail = require('./gmail');
 
-const main = async () => {
+const main = async (cartData: TypeCheckoutOrder) => {
+  
   var readHTMLFile = function (path: string, callback: Function) {
     fs.readFile(path, { encoding: 'utf-8' }, function (err: string, html: any) {
       if (err) {
@@ -20,23 +22,16 @@ const main = async () => {
     async function (err: string, html: any) {
       var template = handlebars.compile(html);
       var replacements = {
-        orderNumber: '123',
-        customerFirstName: 'John',
-        customerLastName: 'Doe',
-        customerEmail: 'supplybyForte@gmail.com',
-        productName: 'Product Name',
-        productVariant: 'Product Variant',
-        productQuantity: '1',
-        productPrice: '100',
-        cartSubtotal: '100',
-        cartTotal: '100',
+        id: cartData.id,
+        customer: cartData.customer,
+        cart: cartData.cart,
       };
 
       var htmlToSend = template(replacements);
 
       const options = {
-        to: 'bryan.brotonel98@gmail.com',
-        subject: `Order #{{orderNumber}} Confirmed - By Forte`,
+        to: cartData.customer.email,
+        subject: `Order #${cartData.id} Confirmed`,
         textEncoding: 'base64',
         html: htmlToSend,
       };
@@ -48,8 +43,30 @@ const main = async () => {
 };
 
 const handler = async (event: HandlerEvent) => {
+  if (!event.body) {
+    return {
+      statusCode: 400,
+      body: 'Bad Request',
+    };
+  }
+
+  const { payload } = JSON.parse(event.body);
+  const { customer, cart } = payload;
+
+  // Create cart data with array of items
+  const cartData = {
+    ...cart,
+    items: Object.values(cart.items),
+  };
+
+  const emailData = {
+    id: payload.id,
+    customer: customer,
+    cart: cartData,
+  } as TypeCheckoutOrder;
+
   console.log('sending email');
-  main()
+  main(emailData)
     .then(() => console.log('Message sent successfully'))
     .catch((err) => console.error(err));
 };
