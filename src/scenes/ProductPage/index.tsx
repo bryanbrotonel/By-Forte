@@ -49,6 +49,8 @@ function ProductPage() {
       return _.isEqual(cartItem.item, cartedProduct);
     });
 
+    console.log(cartItems, cartedProduct, itemIndex);
+
     // If item is already in cart, update quantity
     if (itemIndex !== -1) {
       dispatch(
@@ -58,7 +60,7 @@ function ProductPage() {
     // If item is not in cart, add new item to cart
     else {
       const newCartItem = {
-        id: params.id,
+        id: `${params.id}-${productSize}`,
         item: cartedProduct,
         quantity: 1,
       };

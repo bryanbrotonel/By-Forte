@@ -104,7 +104,7 @@ function CheckoutForm(props: { formSubmitCallback: Function }) {
         <div className="pt-3 col-span-2 justify-self-end">
           <input
             type="submit"
-            value="Submit"
+            value="Place Order"
             className="py-2 px-4 bg-black hover:bg-black/70 hover:cursor-pointer text-white uppercase font-medium"
           ></input>
         </div>

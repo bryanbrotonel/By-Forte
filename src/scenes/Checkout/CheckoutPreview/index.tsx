@@ -21,8 +21,8 @@ function CheckoutPreview(props: {
         {cartPreview}
       </div>
       <div className="uppercase pt-4 space-y-4 text-end">
-        <h1>Subtotal: {formatter.format(cart.subTotal)}</h1>
-        <h1>Total: {formatter.format(cart.total)}</h1>
+        <p className='text-sm'>Subtotal: {formatter.format(cart.subTotal)}</p>
+        <p className='font-medium'>Total: {formatter.format(cart.total)}</p>
       </div>
     </div>
   );

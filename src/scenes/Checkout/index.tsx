@@ -65,6 +65,9 @@ function Checkout() {
   };
 
   if (succesfulOrder && orderData) {
+    // Scroll to top of page
+    window.scrollTo({ top: 0, left: 0 });
+    
     const { id, customer, cart } = orderData;
     console.log('Order data', orderData);
 
@@ -110,7 +113,12 @@ function Checkout() {
                         {cartItem.item.name}
                       </h4>
                       <div className="text-sm text-gray-500">
-                        <p>Color: {cartItem.item.variant}</p>
+                        <p>
+                          Color:{' '}
+                          <span className="uppercase">
+                            {cartItem.item.variant}
+                          </span>
+                        </p>
                         <p>Size: {cartItem.item.size}</p>
                       </div>
                     </div>

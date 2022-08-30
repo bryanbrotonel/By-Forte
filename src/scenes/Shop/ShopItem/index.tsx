@@ -17,7 +17,7 @@ function ShopItem(props: { product: ShopItem, slug: string }) {
             loading="lazy"
           />
           <div className="text-center mt-2">
-            <p className="font-semibold">{name}</p>
+            <p className="font-semibold uppercase">{name}</p>
             <p className="text-sm">{`$${price}`}</p>
           </div>
         </div>
