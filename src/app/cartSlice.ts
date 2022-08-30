@@ -2,12 +2,7 @@ import _ from 'lodash';
 import Cookies from 'js-cookie';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from './store';
-import {
-  CartItem,
-  CartProduct,
-  TypeCartState,
-  TypeCheckoutOrder,
-} from '../types';
+import { CartItem, CartProduct, CheckoutOrder, TypeCartState } from '../types';
 import { fetchFirebase } from '../api/firebase';
 
 // Initial state of cart
@@ -115,26 +110,22 @@ export const cartSlice = createSlice({
 // Redux aync thunk that hadnles cart checkout
 export const sendOrderData = createAsyncThunk(
   'cart/checkoutOrder',
-  async (order: TypeCheckoutOrder) => {
-    return await fetchFirebase({
+  async (order: CheckoutOrder) => {
+    // Get orderID from firebase
+    const orderID = await fetchFirebase({
       action: 'writeOrderData',
       payload: JSON.stringify(order),
-    }).then(async (data) => {
-      // Add generated id to order
-      _.assignIn(order, { id: data });
-
-      // Send order to email
-      return await fetch('/.netlify/functions/orderEmail-background', {
-        method: 'POST',
-        body: JSON.stringify({ payload: order }),
-      })
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          return data;
-        });
     });
+
+    // Add generated id to order
+    _.assignIn(order, { id: orderID });
+
+    await fetch('/.netlify/functions/orderEmail', {
+      method: 'POST',
+      body: JSON.stringify({ payload: order }),
+    });
+
+    return order.id;
   }
 );
 

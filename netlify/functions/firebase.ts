@@ -1,18 +1,15 @@
 import { Handler } from '@netlify/functions';
+import _ from 'lodash';
 import { initializeApp } from 'firebase/app';
 import {
   child,
-  DataSnapshot,
   get,
   getDatabase,
   push,
   ref,
-  set,
   update,
 } from 'firebase/database';
 import 'firebase/auth';
-import _ from 'lodash';
-import { AiOutlineConsoleSql } from 'react-icons/ai';
 
 const firebaseConfig = {
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
