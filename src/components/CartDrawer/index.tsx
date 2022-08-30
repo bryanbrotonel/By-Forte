@@ -9,6 +9,7 @@ import {
   selectDrawerToggle,
   toggleDrawer,
 } from '../../app/cartSlice';
+import _ from 'lodash';
 
 function CartDrawer() {
   let dispatch = useAppDispatch();
@@ -33,10 +34,11 @@ function CartDrawer() {
   let cartContent;
 
   if (cartItems.length > 0) {
+    // Reverse list to show most recent items first
     cartContent = (
-      <div>
-        <div className="space-y-8">
-          {cartItems.map((cartItem, index) => {
+      <div className='flex flex-col'>
+        <div className="space-y-8 overflow-auto">
+          {[...cartItems].reverse().map((cartItem, index) => {
             return <CartItemPreview key={index} cartItemID={cartItem.id} />;
           })}
         </div>

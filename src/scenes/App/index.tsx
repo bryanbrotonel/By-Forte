@@ -41,7 +41,7 @@ const App = () => {
   return (
     <div className="relative flex flex-col min-h-screen justify-between">
       <Navbar />
-      <div className="mb-auto">
+      <div className="mb-auto mt-[56px]">
         <NavRoutes />
       </div>
       <Footer />

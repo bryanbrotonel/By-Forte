@@ -17,7 +17,7 @@ const readHTMLFilePromise = async (path: string) => {
 // Send email
 const sendEmailPromise = async (cartData: TypeCheckoutOrder) => {
   const html = await readHTMLFilePromise(
-    './netlify/functions/assets/orderEmail/template.html'
+    './functions/assets/orderEmail/template.html'
   );
 
   // Compile HTML

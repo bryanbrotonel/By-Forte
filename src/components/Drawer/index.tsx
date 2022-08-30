@@ -31,7 +31,7 @@ function Drawer(props: {
             : 'translate-x-full'
         } fixed inset-y-0 ${
           poistion === 'left' ? 'left-0' : 'right-0'
-        } z-40 h-screen w-80 md:w-96 max-w-screen bg-white transition-transform ease-out duration-500`}
+        } z-40 h-screen w-80 md:w-96 max-w-screen bg-white transition-transform ease-out duration-500 overflow-auto`}
       >
         <div className="flex justify-end m-5 text-black">
           <button onClick={() => toggleMenu(false)}>
