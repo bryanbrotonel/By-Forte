@@ -14,6 +14,7 @@ import { CartProduct, ShopItem } from '../../types';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import ShopWarning from '../../components/ShopWarning';
+import NotFound from '../../components/NotFound';
 
 function ProductPage() {
   const params = useParams();
@@ -21,15 +22,23 @@ function ProductPage() {
 
   const [product, setProduct] = useState<ShopItem>(null);
   const [productSize, setProductSize] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchFirebase({
       action: 'getData',
       payload: `products/${params.id}`,
-    }).then((data) => {
-      setProduct(data);
-      setProductSize(data.sizes[0].size);
-    });
+    })
+      .then((data) => {
+        setProduct(data);
+        setProductSize(data.sizes[0].size);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   const cartItems = useAppSelector(selectCartItems);
@@ -68,83 +77,87 @@ function ProductPage() {
     dispatch(toggleDrawer());
   };
 
-  if (_.isEmpty(product)) {
+  if (isLoading) {
     return null;
-  } else {
-    const { name, price, images, sizes, description, variant } = product;
+  }
 
-    let sizesList: React.ReactElement<any>[] = [];
+  if (_.isEmpty(product)) {
+    return <NotFound />;
+  }
 
-    _.forEach(sizes, function (value) {
-      sizesList.push(
-        <button
-          key={value.size}
-          value={value.size}
-          disabled={value.quantity === 0}
-          onClick={() => setProductSize(value.size)}
-          className={`text-xs font-semibold uppercase p-1 w-10 ${
-            value.size == productSize
-              ? 'bg-black text-white'
-              : 'bg-white text-black border border-gray-400 hover:bg-black hover:text-white hover:border-none'
-          }`}
-        >
-          {value.size}
-        </button>
-      );
-    });
+  const { name, price, images, sizes, description, variant } = product;
 
-    // Generate image slider based on product
-    let productImages = images.map((image, key) => (
-      <img
-        key={key}
-        src={image}
-        alt={`${name} - Product Image`}
-        className="h-96 w-96 aspect-square lg:aspect-auto object-cover bg-gray-100"
-        loading="lazy"
-      />
-    ));
+  let sizesList: React.ReactElement<any>[] = [];
 
-    return (
-      <div className="container px-4 py-24">
-        <div className="relative flex flex-col md:flex-row justify-center gap-8">
-          <div className="hidden md:block basis-1/2 lg:basis-auto space-y-4">
-            {productImages}
-          </div>
-          <ImageSlider images={images} />
-          <div className="sticky lg:basis-1/4 md:h-full md:top-80">
-            <div className="space-y-6">
-              <div className="uppercase">
-                <h1 className="text-2xl font-semibold mb-2">{name}</h1>
-                <h2>{variant}</h2>
-              </div>
+  _.forEach(sizes, function (value) {
+    sizesList.push(
+      <button
+        key={value.size}
+        value={value.size}
+        disabled={value.quantity === 0}
+        onClick={() => setProductSize(value.size)}
+        className={`text-xs font-semibold uppercase p-1 w-10 ${
+          value.size == productSize
+            ? 'bg-black text-white'
+            : 'bg-white text-black border border-gray-400 hover:bg-black hover:text-white hover:border-none'
+        }`}
+      >
+        {value.size}
+      </button>
+    );
+  });
+
+  // Generate image slider based on product
+  let productImages = images.map((image, key) => (
+    <img
+      key={key}
+      src={image}
+      alt={`${name} - Product Image`}
+      className="h-96 w-96 aspect-square lg:aspect-auto object-cover bg-gray-100"
+      loading="lazy"
+    />
+  ));
+
+  return (
+    <div className="container px-4 py-24">
+      <div className="relative flex flex-col md:flex-row justify-center gap-8">
+        <div className="hidden md:block basis-1/2 lg:basis-auto space-y-4">
+          {productImages}
+        </div>
+        <ImageSlider images={images} />
+        <div className="sticky lg:basis-1/4 md:h-full md:top-80">
+          <div className="space-y-6">
+            <div className="uppercase">
+              <h1 className="text-2xl font-semibold mb-2">{name}</h1>
+              <h2>{variant}</h2>
+            </div>
+            <div>
+              <span className="font-light">${price}</span>
+            </div>
+            <div className="text-sm">
+              <h2 className="uppercase font-semibold">Product Details</h2>
               <div>
-                <span className="font-light">${price}</span>
+                <ReactMarkdown
+                  rehypePlugins={[rehypeRaw]}
+                  children={description}
+                />
               </div>
-              <div className="text-sm">
-                <h2 className="uppercase font-semibold">Product Details</h2>
-                <div>
-                  <ReactMarkdown
-                    rehypePlugins={[rehypeRaw]}
-                    children={description}
-                  />
-                </div>
-              </div>
-              <div className="space-x-3">{sizesList}</div>
-              <div>
-                <button
-                  onClick={onAddToCartHandler}
-                  className="w-full bg-black hover:bg-black/80 text-white uppercase py-2"
-                >
-                  Add to Cart
-                </button>
-              </div>
+            </div>
+            <div className="space-x-3">{sizesList}</div>
+            <div>
+              <button
+                onClick={onAddToCartHandler}
+                className="w-full bg-black hover:bg-black/80 text-white uppercase py-2"
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>
-        <ShopWarning />
       </div>
-    );
-  }
+      <ShopWarning />
+    </div>
+  );
 }
 
 export default ProductPage;
