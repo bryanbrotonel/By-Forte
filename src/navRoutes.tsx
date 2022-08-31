@@ -20,6 +20,14 @@ const NavRoutes = () => (
       }
     ></Route>
     <Route
+      path="/home"
+      element={
+        <Suspense fallback={<Loading />}>
+          <Home />
+        </Suspense>
+      }
+    ></Route>
+    <Route
       path="/about"
       element={
         <Suspense fallback={<Loading />}>

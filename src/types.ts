@@ -4,6 +4,7 @@ export interface CartState {
   subTotal: number;
   total: number;
   toggleDrawer: boolean;
+  orderState: string;
 }
 
 export type TypeCartState = CartState;

@@ -12,8 +12,8 @@ function ImageSlider(props: { images: string[] }) {
     <SwiperSlide key={key}>
       <img
         src={image}
-        alt="Product Image"
-        className="aspect-square md:aspect-auto object-cover"
+        alt={image}
+        className="w-96 h-96 aspect-square md:aspect-auto object-cover bg-gray-100"
         loading="lazy"
       />
     </SwiperSlide>

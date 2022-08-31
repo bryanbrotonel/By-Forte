@@ -1,29 +1,35 @@
 import React, { useEffect } from 'react';
 import _ from 'lodash';
 import { Navigate } from 'react-router-dom';
-import { clearCart, selectCart, sendOrderData } from '../../app/cartSlice';
+import {
+  clearCart,
+  selectCart,
+  selectOrderState,
+  sendOrderData,
+  setOrderState,
+} from '../../app/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import CheckoutForm from './CheckoutForm';
 import CheckoutPreview from './CheckoutPreview';
 import Cookies from 'js-cookie';
-import { TypeCheckoutOrder } from '../../types';
+import { TypeCheckoutOrder, CheckoutOrder } from '../../types';
+import CheckoutSummary from './CheckoutSummary';
+import OrderProcessing from '../../components/OrderProcessing';
 
 function Checkout() {
   const dispatch = useAppDispatch();
   const cart = useAppSelector(selectCart);
-  const [succesfulOrder, setSuccesfulOrder] = React.useState(true);
+  const orderState = useAppSelector(selectOrderState);
   const [orderData, setOrderData] = React.useState<TypeCheckoutOrder>(null);
 
   useEffect(() => {
     document.body.classList.add('bg-gray-100');
     return () => {
       document.body.classList.remove('bg-gray-100');
-      setSuccesfulOrder(false);
-      setOrderData(null);
     };
   }, []);
 
-  var formatter = new Intl.NumberFormat('en-CA', {
+  const formatter = new Intl.NumberFormat('en-CA', {
     style: 'currency',
     currency: 'CAD',
   });
@@ -31,9 +37,9 @@ function Checkout() {
   if (
     cart.items.length === 0 &&
     Cookies.get('cart') === undefined &&
-    !succesfulOrder
+    orderState === 'idle'
   ) {
-    return <Navigate to="/shop" />;
+    return <Navigate to="/" />;
   }
 
   const onFormSubmit = (formInfo: {
@@ -42,120 +48,39 @@ function Checkout() {
     email: String;
   }) => {
     // Create checkout order
-
     const order = {
       customer: {
         ...formInfo,
       },
-      cart: _.omit(cart, ['toggleDrawer']),
-    } as TypeCheckoutOrder;
+      cart: _.omit(cart, ['toggleDrawer', 'orderState']),
+    } as CheckoutOrder;
 
     dispatch(sendOrderData(order))
       .then((res) => {
         setOrderData(_.assignIn(order, { id: res.payload }));
 
-        // Clear cart cookies
-        dispatch(clearCart());
+        console.log('Order sent succesfully');
 
-        setSuccesfulOrder(true);
+        // Clear cart state and cookies
+        dispatch(clearCart());
+        Cookies.remove('cart');
       })
       .catch((err) => {
         console.log('Order error', err);
       });
   };
 
-  if (succesfulOrder && orderData) {
-    // Scroll to top of page
-    window.scrollTo({ top: 0, left: 0 });
-    
-    const { id, customer, cart } = orderData;
-    console.log('Order data', orderData);
-
-    return (
-      <div className="w-full max-w-[56rem] container flex flex-col items-center justify-center mt-24 px-8 space-y-8">
-        <div className="space-y-8 mb-8">
-          <h1 className="text-5xl font-bold font-serif text-gray-800">
-            Thank You, {customer.firstName}!
-          </h1>
-          <h2 className="text-xl font-bold">
-            Order #{id} has been placed successfully.
-          </h2>
-          <div className="space-y-4 text-slate-500">
-            <p>Your confirmation email has been sent to {customer.email}</p>
-            <p>
-              If you have any questions, please contact us at&nbsp;
-              <a
-                className="text-blue-500 hover:text-blue-700"
-                href="mailto:supplybyforte@gmail.com"
-              >
-                supplybyforte@gmail.com
-              </a>
-            </p>
-          </div>
-        </div>
-        <div className="w-full bg-white rounded p-6 md:p-12">
-          <h3 className="text-2xl font-bold">Order Summary</h3>
-          <div className="flex flex-col md:flex-row md:justify-between">
-            <div className="md:basis-7/12 py-8 space-y-8">
-              {cart.items.map((cartItem) => (
-                <div
-                  key={`${cartItem.id}-${cartItem.item.size}`}
-                  className="flex justify-between items-center"
-                >
-                  <div className="flex items-center space-x-4">
-                    <img
-                      className="w-16 h-16 object-cover rounded"
-                      src={cartItem.item.image}
-                      alt={cartItem.item.name}
-                    />
-                    <div className="flex flex-col">
-                      <h4 className="md:text-lg font-bold">
-                        {cartItem.item.name}
-                      </h4>
-                      <div className="text-sm text-gray-500">
-                        <p>
-                          Color:{' '}
-                          <span className="uppercase">
-                            {cartItem.item.variant}
-                          </span>
-                        </p>
-                        <p>Size: {cartItem.item.size}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <p className="font-semibold">
-                      {formatter.format(cartItem.item.price)}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="md:basis-4/12 p-8 bg-slate-100 rounded">
-              <div className="whitespace-pre">
-                <span className="font-bold text-xl">Summary</span>&nbsp;
-                <span className="text-sm">({cart.quantity} items)</span>
-              </div>
-              <div className="py-6">
-                <hr />
-              </div>
-              <div className="space-y-4">
-                <div className="flex justify-between text-sm">
-                  <span>Subtotal</span>
-                  <span>{formatter.format(cart.subTotal)}</span>
-                </div>
-                <div className="flex justify-between text-lg font-semibold">
-                  <span>Total</span>
-                  <span>{formatter.format(cart.total)}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+  // If or is processing, show processing screen
+  if (orderState === 'processing') {
+    return <OrderProcessing />;
   }
 
+  // If order is done, show order summary
+  if (orderState === 'complete' && orderData) {
+    return <CheckoutSummary orderData={orderData} formatter={formatter} />;
+  }
+
+  // If order is not done, show checkout form
   return (
     <div className="container px-8 md:px-0 xl:px-60">
       <h1 className="uppercase font-bold my-6">Checkout</h1>

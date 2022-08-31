@@ -14,7 +14,7 @@ function CheckoutItem(props: {
         <img
           src={product.image}
           alt={`${product.name} - Image`}
-          className="aspect-square w-32"
+          className="aspect-square w-32 h-32 object-cover bg-gray-100"
         />
       </div>
       <div className="basis-1/2 mb-4 text-xs uppercase">

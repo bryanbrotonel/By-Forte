@@ -5,8 +5,8 @@ function Editorial() {
     <div className="md:h-full flex flex-col items-center gap-8 mx-4 py-12">
       <img
         src="https://source.unsplash.com/Qid2PBGeJmc/640x480"
-        alt="Random Placeholder"
-        className="h-96 w-96 aspect-square object-cover"
+        alt="Editorial Image"
+        className="h-96 w-96 aspect-square object-cover bg-gray-100"
         loading="lazy"
       />
       <div className="md:w-96 text-center uppercase">
