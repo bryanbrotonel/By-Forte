@@ -39,7 +39,7 @@ function CheckoutForm(props: { formSubmitCallback: Function }) {
   };
 
   return (
-    <div className="container bg-white border border-black p-8 space-y-4">
+    <div className="container bg-white border border-black p-4 space-y-4">
       <form
         onSubmit={(e: React.SyntheticEvent) => {
           e.preventDefault();
@@ -105,7 +105,7 @@ function CheckoutForm(props: { formSubmitCallback: Function }) {
           <input
             type="submit"
             value="Place Order"
-            className="py-2 px-4 bg-black hover:bg-black/70 hover:cursor-pointer text-white uppercase font-medium"
+            className="py-2 px-4 bg-black hover:bg-black/70 hover:cursor-pointer text-white uppercase font-medium rounded-none"
           ></input>
         </div>
       </form>

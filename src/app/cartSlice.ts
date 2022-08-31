@@ -12,6 +12,7 @@ const initialState: TypeCartState = {
   subTotal: 0,
   total: 0,
   toggleDrawer: false,
+  orderState: 'idle',
 };
 
 const setCookie = (value: string) => {
@@ -101,9 +102,27 @@ export const cartSlice = createSlice({
 
       Cookies.remove('cart');
     },
+    setOrderState(
+      state,
+      action: PayloadAction<'idle' | 'pending' | 'success'>
+    ) {
+      state.orderState = action.payload;
+    },
     toggleDrawer(state) {
       state.toggleDrawer = !state.toggleDrawer;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(sendOrderData.pending, (state, action) => {
+        // Sets status to loading when fetchPosts thunk is fetching data
+        state.orderState = 'processing';
+      })
+      .addCase(sendOrderData.fulfilled, (state, action) => {
+        // Sets status to succeeded when fetchPosts thunk is receives data
+        state.orderState = 'complete';
+        // Appends data to blog posts
+      });
   },
 });
 
@@ -135,6 +154,7 @@ export const {
   updateItemQuantity,
   clearCart,
   setCart,
+  setOrderState,
   toggleDrawer,
 } = cartSlice.actions;
 
@@ -152,6 +172,10 @@ export const selectCartSubTotal = (state: RootState) => state.cart.subTotal;
 // Get the total of the cart
 export const selectCartTotal = (state: RootState) => state.cart.total;
 
+// Select order completion status
+export const selectOrderState = (state: RootState) => state.cart.orderState;
+
+// Get the cart toggle drawer state
 export const selectDrawerToggle = (state: RootState) => state.cart.toggleDrawer;
 
 export const selectCartItemById = (state: RootState, cartItemId: string) =>
