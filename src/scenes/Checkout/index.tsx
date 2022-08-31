@@ -104,7 +104,7 @@ function Checkout() {
                 >
                   <div className="flex items-center space-x-4">
                     <img
-                      className="w-16 h-16 object-cover rounded"
+                      className="w-16 h-16 object-cover rounded bg-gray-100"
                       src={cartItem.item.image}
                       alt={cartItem.item.name}
                     />

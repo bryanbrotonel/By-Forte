@@ -12,8 +12,8 @@ function ShopItem(props: { product: ShopItem, slug: string }) {
         <div>
           <img
             src={images[0]}
-            alt="Product Image"
-            className="aspect-square max-h-64 object-cover"
+            alt={`${name} - Product Image`}
+            className="aspect-square h-64 w-64 object-cover bg-gray-100"
             loading="lazy"
           />
           <div className="text-center mt-2">

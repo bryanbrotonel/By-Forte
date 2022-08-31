@@ -98,8 +98,8 @@ function ProductPage() {
       <img
         key={key}
         src={image}
-        alt="Product Image"
-        className="h-96 aspect-square lg:aspect-auto object-cover"
+        alt={`${name} - Product Image`}
+        className="h-96 w-96 aspect-square lg:aspect-auto object-cover bg-gray-100"
         loading="lazy"
       />
     ));

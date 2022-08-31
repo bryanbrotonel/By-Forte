@@ -5,8 +5,8 @@ function About() {
     <div className="flex flex-col md:flex-row md:justify-center items-center gap-8 mx-4 py-12 md:-py-0">
       <img
         src="https://unsplash.com/photos/UxK-LXQraJ4/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8NzV8fHZhbmNvdXZlciUyMHNob3B8ZW58MHx8fHwxNjYxMzA4NDI2&force=true&w=640"
-        alt="Random Placeholder"
-        className="h-96 w-96 aspect-square object-cover"
+        alt="About Image"
+        className="h-96 w-96 aspect-square object-cover bg-gray-100"
         loading="lazy"
       />
       <div className="md:w-[32rem] prose">
@@ -17,7 +17,7 @@ function About() {
           minds to life. By Forte embraces the creative process by creating in
           silence and let our products speak for themselves.
         </p>
-        <p className='font-semibold'>Prosper Through Noise</p>
+        <p className="font-semibold">Prosper Through Noise</p>
       </div>
     </div>
   );
